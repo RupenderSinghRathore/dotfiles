@@ -2,9 +2,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Disable the spacebar key's default behavior in Normal and Visual modes
--- vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
-
 -- For conciseness
 local opts = { noremap = true, silent = false }
 
@@ -17,8 +14,12 @@ vim.keymap.set("n", "<leader>s", "<cmd>w<CR>", opts)
 -- to Explorer
 vim.keymap.set("n", "<leader>pv", "<cmd>Ex<CR>", opts)
 
--- Save and open the terminal
+-- open the terminal
 vim.keymap.set("n", "<leader>r", "<cmd>term<CR>", opts)
+
+-- Move current line up/down in Normal mode
+vim.keymap.set("n", "<", "<cmd>m -2<CR>", opts) -- move line up
+vim.keymap.set("n", ">", "<cmd>m +1<CR>", opts) -- move line down
 
 -- Close the terminal
 vim.api.nvim_set_keymap("t", "<C-o>", [[<C-\><C-n><C-o>]], { noremap = true, silent = true })
