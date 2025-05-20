@@ -1,3 +1,4 @@
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -7,6 +8,7 @@ export PATH="$HOME/go/bin:$HOME/.cargo/bin:$PATH"
 export HYPRSHOT_DIR="$HOME/Pictures/Screenshots/"
 export MANPAGER='nvim +Man!'
 typeset -U PATH # remove duplication from path
+
 
 
 # Set name of the theme to load --- if set to "random", it will
@@ -79,7 +81,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git vi-mode zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -121,3 +123,7 @@ alias y="yazi"
 alias f="fastfetch"
 alias mysqlDisable="sudo systemctl disable mysqld"
 alias mysqlStart="sudo systemctl start mysqld"
+
+
+#vi keybinds
+bindkey -M viins 'jj' vi-cmd-mode

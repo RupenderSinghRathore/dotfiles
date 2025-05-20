@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # dir=$(find . -type d | fzf-tmux -p 80%,50%) || exit 0
 # [ -n "$dir" ] && tmux new-window -c "$dir"
