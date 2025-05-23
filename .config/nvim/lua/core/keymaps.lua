@@ -8,6 +8,7 @@ local opts = { noremap = true, silent = false }
 -- Esc
 vim.keymap.set("i", "jj", "<Esc>", opts)
 vim.keymap.set("i", "JJ", "<Esc>", opts)
+
 -- save file
 vim.keymap.set("n", "<leader>s", "<cmd>w<CR>", opts)
 
@@ -54,7 +55,7 @@ vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", opts) -- new buffer
 vim.keymap.set("n", "<leader>v", "<C-w>v", opts)      -- split window vertically
 vim.keymap.set("n", "<leader>h", "<C-w>s", opts)      -- split window horizontally
 vim.keymap.set("n", "<leader>=", "<C-w>=", opts)      -- make split windows equal width & height
-vim.keymap.set("n", "<leader>xs", ":close<CR>", opts) -- close current split window
+vim.keymap.set("n", "<leader>ns", ":close<CR>", opts) -- close current split window
 
 -- Navigate between splits
 vim.keymap.set("n", "<C-k>", ":wincmd k<CR>", opts)

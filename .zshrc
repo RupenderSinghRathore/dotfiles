@@ -6,6 +6,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="$HOME/go/bin:$HOME/.cargo/bin:$PATH"
 export HYPRSHOT_DIR="$HOME/Pictures/Screenshots/"
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:$HOME/.local/share/application"
 export MANPAGER='nvim +Man!'
 typeset -U PATH # remove duplication from path
 
@@ -123,6 +124,7 @@ alias y="yazi"
 alias f="fastfetch"
 alias mysqlDisable="sudo systemctl disable mysqld"
 alias mysqlStart="sudo systemctl start mysqld"
+alias nier="DRI_PRIME=1 wine \"/home/kami-sama/Games/NieR Automata/NieR Automata/NieRAutomata.exe\""
 
 
 #vi keybinds
