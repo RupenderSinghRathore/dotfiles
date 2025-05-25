@@ -48,13 +48,13 @@ vim.keymap.set("n", "<Right>", ":vertical resize +2<CR>", opts)
 -- Buffers
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts)
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts)
-vim.keymap.set("n", "<leader>x", ":bdelete!<CR>", opts)   -- close buffer
+vim.keymap.set("n", "<leader>x", ":bdelete!<CR>", opts) -- close buffer
 vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", opts) -- new buffer
 
 -- Window management
-vim.keymap.set("n", "<leader>v", "<C-w>v", opts)      -- split window vertically
-vim.keymap.set("n", "<leader>h", "<C-w>s", opts)      -- split window horizontally
-vim.keymap.set("n", "<leader>=", "<C-w>=", opts)      -- make split windows equal width & height
+vim.keymap.set("n", "<leader>v", "<C-w>v", opts) -- split window vertically
+vim.keymap.set("n", "<leader>h", "<C-w>s", opts) -- split window horizontally
+vim.keymap.set("n", "<leader>=", "<C-w>=", opts) -- make split windows equal width & height
 vim.keymap.set("n", "<leader>ns", ":close<CR>", opts) -- close current split window
 
 -- Navigate between splits
@@ -65,9 +65,9 @@ vim.keymap.set("n", "<C-l>", ":wincmd l<CR>", opts)
 
 -- Tabs
 vim.keymap.set("n", "<leader>tn", ":tabnew ", opts) -- open new tab
-vim.keymap.set("n", "tx", ":tabclose ", opts)       -- close current tab
-vim.keymap.set("n", "tp", ":tabn<CR>", opts)        --  go to next tab
-vim.keymap.set("n", "tu", ":tabp<CR>", opts)        --  go to previous tab
+vim.keymap.set("n", "tx", ":tabclose ", opts) -- close current tab
+vim.keymap.set("n", "tp", ":tabn<CR>", opts) --  go to next tab
+vim.keymap.set("n", "tu", ":tabp<CR>", opts) --  go to previous tab
 
 -- Toggle line wrapping
 vim.keymap.set("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
@@ -87,22 +87,22 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 
 -- Function to toggle the statusline
 function _G.toggle_statusline()
-    if vim.o.laststatus == 0 then -- just works even with the warning
-        vim.opt.laststatus = 3
-    else
-        vim.opt.laststatus = 0
-    end
+  if vim.o.laststatus == 0 then -- just works even with the warning
+    vim.opt.laststatus = 3
+  else
+    vim.opt.laststatus = 0
+  end
 end
 
 --
 -- Key mapping to toggle the statusline (e.g., <leader>ts)
 vim.keymap.set("n", "<leader>ts", "<cmd>lua toggle_statusline()<cr>", {
-    noremap = true,
-    silent = true,
-    desc = "Toggle statusline visibility",
+  noremap = true,
+  silent = true,
+  desc = "Toggle statusline visibility",
 })
 -- Press `<leader><C-r>` to reload your entire Neovim config
 vim.keymap.set("n", "<leader><C-r>", function()
-    vim.cmd("luafile " .. vim.fn.stdpath("config") .. "/init.lua") -- Always targets your config
-    vim.notify("Neovim config reloaded!", vim.log.levels.INFO)
+  vim.cmd("luafile " .. vim.fn.stdpath("config") .. "/init.lua") -- Always targets your config
+  vim.notify("Neovim config reloaded!", vim.log.levels.INFO)
 end, { desc = "Reload Neovim config" })

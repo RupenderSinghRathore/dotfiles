@@ -29,6 +29,7 @@ require("lazy").setup({
     require("plugins.debugger"),
     -- require("plugins.noice"),
     require("plugins.codium"),
+    -- require("plugins.copilot")
     require("plugins.snippets"),
     require("plugins.dev"),
     require("plugins.vim-be-good"),

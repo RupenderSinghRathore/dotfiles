@@ -125,6 +125,7 @@ alias f="fastfetch"
 alias mysqlDisable="sudo systemctl disable mysqld"
 alias mysqlStart="sudo systemctl start mysqld"
 alias nier="DRI_PRIME=1 wine \"/home/kami-sama/Games/NieR Automata/NieR Automata/NieRAutomata.exe\""
+alias nf="/home/kami-sama/open_file_with_nvim.sh"
 
 
 #vi keybinds
