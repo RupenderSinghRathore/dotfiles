@@ -4,13 +4,14 @@
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export PATH="$HOME/go/bin:$HOME/.cargo/bin:$PATH"
-export HYPRSHOT_DIR="$HOME/Pictures/Screenshots/"
-export XDG_DATA_DIRS="$XDG_DATA_DIRS:$HOME/.local/share/application"
+export PATH="$HOME/go/bin:$HOME/.cargo/bin:$HOME/.local/bin/:$PATH"
+# export XDG_DATA_DIRS="$XDG_DATA_DIRS:$HOME/.local/share/application"
 export MANPAGER='nvim +Man!'
 typeset -U PATH # remove duplication from path
 
 
+# setopt ignoreeof
+# IGNOREEOF=10
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -116,7 +117,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias load="source ~/.zshrc"
 alias n="nvim"
-alias t="tmux"
+alias t="tmux attach || tmux"
 alias kt="tmux kill-server"
 alias b="brightnessctl"
 alias c="clear"
@@ -126,7 +127,16 @@ alias mysqlDisable="sudo systemctl disable mysqld"
 alias mysqlStart="sudo systemctl start mysqld"
 alias nier="DRI_PRIME=1 wine \"/home/kami-sama/Games/NieR Automata/NieR Automata/NieRAutomata.exe\""
 alias nf="/home/kami-sama/open_file_with_nvim.sh"
+alias event="/home/kami-sama/dotfiles/.config/scripts/github_activity_less.sh"
+alias rain="terminal-rain --rain-color magenta --lightning-color white"
 
 
 #vi keybinds
 bindkey -M viins 'jj' vi-cmd-mode
+
+# For tmux
+bindkey ctrl+t "tmux new-window"
+bindkey ctrl+shift+x "tmux new-window"
+
+# Created by `pipx` on 2025-05-26 16:59:05
+export PATH="$PATH:/home/kami-sama/.local/bin"
