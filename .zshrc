@@ -1,5 +1,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 # export PATH="$PATH:/home/kami-sama/.local/bin"
+setopt IGNOREEOF
 export PATH="$HOME/go/bin:$HOME/.cargo/bin:$HOME/.local/bin/:$PATH"
 export MANPAGER='nvim +Man!'
 typeset -U PATH # remove duplication from path
@@ -132,4 +133,4 @@ alias rain="terminal-rain --rain-color magenta --lightning-color white"
 
 
 #vi keybinds
-bindkey -M viins 'jk' vi-cmd-mode
+bindkey -M viins 'ne' vi-cmd-mode

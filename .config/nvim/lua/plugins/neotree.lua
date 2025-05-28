@@ -141,7 +141,7 @@ return {
           ["<cr>"] = "open",
           ["<esc>"] = "cancel", -- close preview or floating neo-tree window
           ["P"] = { "toggle_preview", config = { use_float = true } },
-          ["l"] = "open",
+          ["i"] = "open",
           ["h"] = "open",
           ["S"] = "open_split",
           ["s"] = "open_vsplit",
@@ -183,7 +183,7 @@ return {
           ["?"] = "show_help",
           ["<"] = "prev_source",
           [">"] = "next_source",
-          ["i"] = "show_file_details",
+          ["l"] = "show_file_details",
         },
       },
       nesting_rules = {},
@@ -327,6 +327,15 @@ return {
           -- vim.notify('Neotree root changed to: ' .. new_root_path, vim.log.levels.INFO)
         end
       end,
+    })
+    require("telescope").setup({
+      defaults = {
+        mappings = {
+          n = {
+            ["e"] = require("telescope.actions").move_selection_previous,
+          },
+        },
+      },
     })
   end,
 }
