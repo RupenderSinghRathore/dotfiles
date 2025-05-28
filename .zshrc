@@ -1,13 +1,13 @@
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
-# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+# export PATH="$PATH:/home/kami-sama/.local/bin"
 export PATH="$HOME/go/bin:$HOME/.cargo/bin:$HOME/.local/bin/:$PATH"
-# export XDG_DATA_DIRS="$XDG_DATA_DIRS:$HOME/.local/share/application"
 export MANPAGER='nvim +Man!'
 typeset -U PATH # remove duplication from path
+
+
+# if [ -f ~/dotfiles/.config/zsh/zsh_tmux_setup.zsh ]; then
+#   source ~/dotfiles/.config/zsh/zsh_tmux_setup.zsh 
+# fi
 
 
 # setopt ignoreeof
@@ -132,11 +132,4 @@ alias rain="terminal-rain --rain-color magenta --lightning-color white"
 
 
 #vi keybinds
-bindkey -M viins 'jj' vi-cmd-mode
-
-# For tmux
-bindkey ctrl+t "tmux new-window"
-bindkey ctrl+shift+x "tmux new-window"
-
-# Created by `pipx` on 2025-05-26 16:59:05
-export PATH="$PATH:/home/kami-sama/.local/bin"
+bindkey -M viins 'jk' vi-cmd-mode
