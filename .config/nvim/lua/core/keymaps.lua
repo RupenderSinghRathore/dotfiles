@@ -4,34 +4,33 @@ vim.g.maplocalleader = " "
 
 -- For conciseness
 local opts = { noremap = true, silent = false }
--- For Normal, Visual, and Operator-pending modes
 
--- Keyboard remaping
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    pcall(vim.api.nvim_del_keymap, "n", "e")
-    pcall(vim.api.nvim_del_keymap, "o", "e")
-    pcall(vim.api.nvim_del_keymap, "v", "e")
-    vim.api.nvim_set_keymap("n", "e", "k", { noremap = true })
-    vim.api.nvim_set_keymap("o", "e", "k", { noremap = true })
-    vim.api.nvim_set_keymap("v", "e", "k", { noremap = true })
-  end,
-})
-
-vim.api.nvim_set_keymap("n", "k", "n", { noremap = true })
-vim.api.nvim_set_keymap("n", "K", "N", { noremap = true })
-
--- vim.api.nvim_set_keymap("n", "n", "<Down>", { noremap = true })
--- vim.api.nvim_set_keymap("n", "n", "<Down>", { noremap = true })
--- vim.api.nvim_set_keymap("n", "n", "<Down>", { noremap = true })
-
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    vim.api.nvim_set_keymap("n", "n", "j", { noremap = true })
-    vim.api.nvim_set_keymap("o", "n", "j", { noremap = true })
-    vim.api.nvim_set_keymap("v", "n", "j", { noremap = true })
-  end,
-})
+-- -- Keyboard remaping
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   callback = function()
+--     pcall(vim.api.nvim_del_keymap, "n", "e")
+--     pcall(vim.api.nvim_del_keymap, "o", "e")
+--     pcall(vim.api.nvim_del_keymap, "v", "e")
+--     vim.api.nvim_set_keymap("n", "e", "k", { noremap = true })
+--     vim.api.nvim_set_keymap("o", "e", "k", { noremap = true })
+--     vim.api.nvim_set_keymap("v", "e", "k", { noremap = true })
+--   end,
+-- })
+--
+-- vim.api.nvim_set_keymap("n", "k", "n", { noremap = true })
+-- vim.api.nvim_set_keymap("n", "K", "N", { noremap = true })
+--
+-- -- vim.api.nvim_set_keymap("n", "n", "<Down>", { noremap = true })
+-- -- vim.api.nvim_set_keymap("n", "n", "<Down>", { noremap = true })
+-- -- vim.api.nvim_set_keymap("n", "n", "<Down>", { noremap = true })
+--
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   callback = function()
+--     vim.api.nvim_set_keymap("n", "n", "j", { noremap = true })
+--     vim.api.nvim_set_keymap("o", "n", "j", { noremap = true })
+--     vim.api.nvim_set_keymap("v", "n", "j", { noremap = true })
+--   end,
+-- })
 -- Esc
 vim.keymap.set("i", "ne", "<Esc>", opts)
 vim.keymap.set("i", "NE", "<Esc>", opts)

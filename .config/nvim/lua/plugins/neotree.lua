@@ -233,7 +233,7 @@ return {
         -- instead of relying on nvim autocmd events.
         window = {
           mappings = {
-            ["<C-b>"] = false,
+            -- ["<C-b>"] = false,
             ["<BS>"] = "navigate_up",
             ["."] = "set_root",
             ["H"] = "toggle_hidden",
@@ -327,15 +327,6 @@ return {
           -- vim.notify('Neotree root changed to: ' .. new_root_path, vim.log.levels.INFO)
         end
       end,
-    })
-    require("telescope").setup({
-      defaults = {
-        mappings = {
-          n = {
-            ["e"] = require("telescope.actions").move_selection_previous,
-          },
-        },
-      },
     })
   end,
 }
