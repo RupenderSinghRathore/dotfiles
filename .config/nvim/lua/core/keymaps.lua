@@ -5,45 +5,20 @@ vim.g.maplocalleader = " "
 -- For conciseness
 local opts = { noremap = true, silent = false }
 
--- -- Keyboard remaping
--- vim.api.nvim_create_autocmd("VimEnter", {
---   callback = function()
---     pcall(vim.api.nvim_del_keymap, "n", "e")
---     pcall(vim.api.nvim_del_keymap, "o", "e")
---     pcall(vim.api.nvim_del_keymap, "v", "e")
---     vim.api.nvim_set_keymap("n", "e", "k", { noremap = true })
---     vim.api.nvim_set_keymap("o", "e", "k", { noremap = true })
---     vim.api.nvim_set_keymap("v", "e", "k", { noremap = true })
---   end,
--- })
---
--- vim.api.nvim_set_keymap("n", "k", "n", { noremap = true })
--- vim.api.nvim_set_keymap("n", "K", "N", { noremap = true })
---
--- -- vim.api.nvim_set_keymap("n", "n", "<Down>", { noremap = true })
--- -- vim.api.nvim_set_keymap("n", "n", "<Down>", { noremap = true })
--- -- vim.api.nvim_set_keymap("n", "n", "<Down>", { noremap = true })
---
--- vim.api.nvim_create_autocmd("VimEnter", {
---   callback = function()
---     vim.api.nvim_set_keymap("n", "n", "j", { noremap = true })
---     vim.api.nvim_set_keymap("o", "n", "j", { noremap = true })
---     vim.api.nvim_set_keymap("v", "n", "j", { noremap = true })
---   end,
--- })
 -- Esc
-vim.keymap.set("i", "ne", "<Esc>", opts)
-vim.keymap.set("i", "NE", "<Esc>", opts)
+vim.keymap.set("i", "nn", "<Esc>", opts)
+vim.keymap.set("i", "NN", "<Esc>", opts)
 -- vim.keymap.set("i", "<C-f>", "<Cmd>stopinsert<CR>", opts)
 
 -- save file
-vim.keymap.set("n", "<leader>s", "<cmd>w<CR>", opts)
+vim.keymap.set("n", "<leader>ss", "<cmd>w<CR>", opts)
+vim.keymap.set("n", "<leader>sq", "<cmd>wq<CR>", opts)
 
 -- to Explorer
 vim.keymap.set("n", "<leader>pv", "<cmd>Ex<CR>", opts)
 
 -- open the terminal
-vim.keymap.set("n", "<leader>r", "<cmd>term<CR>", opts)
+vim.keymap.set("n", "<leader>pr", "<cmd>term<CR>", opts)
 
 -- Move current line up/down in Normal mode
 vim.keymap.set("n", "<", "<cmd>m -2<CR>", opts) -- move line up
@@ -124,13 +99,26 @@ end
 
 --
 -- Key mapping to toggle the statusline (e.g., <leader>ts)
-vim.keymap.set("n", "<leader>ts", "<cmd>lua toggle_statusline()<cr>", {
-  noremap = true,
-  silent = true,
-  desc = "Toggle statusline visibility",
-})
+vim.keymap.set("n", "<leader>ts", "<cmd>lua toggle_statusline()<cr>", opts)
 -- Press `<leader><C-r>` to reload your entire Neovim config
 vim.keymap.set("n", "<leader><C-r>", function()
   vim.cmd("luafile " .. vim.fn.stdpath("config") .. "/init.lua") -- Always targets your config
   vim.notify("Neovim config reloaded!", vim.log.levels.INFO)
 end, { desc = "Reload Neovim config" })
+
+vim.keymap.set("n", "<leader>nQ", "<cmd>q!<CR>", opts)
+
+vim.api.nvim_set_keymap("n", "e", "k", { noremap = true })
+vim.api.nvim_set_keymap("v", "e", "k", { noremap = true })
+vim.api.nvim_set_keymap("o", "e", "k", { noremap = true })
+
+vim.api.nvim_set_keymap("n", "k", "n", { noremap = true })
+vim.api.nvim_set_keymap("n", "K", "N", { noremap = true })
+
+vim.api.nvim_set_keymap("n", "n", "j", { noremap = true })
+vim.api.nvim_set_keymap("v", "n", "j", { noremap = true })
+vim.api.nvim_set_keymap("o", "n", "j", { noremap = true })
+
+-- remapping u and U
+vim.api.nvim_set_keymap("n", "U", "u", { noremap = true })
+vim.api.nvim_set_keymap("n", "u", "", { noremap = true })

@@ -233,7 +233,7 @@ return {
         -- instead of relying on nvim autocmd events.
         window = {
           mappings = {
-            -- ["<C-b>"] = false,
+            ["<C-b>"] = false,
             ["<BS>"] = "navigate_up",
             ["."] = "set_root",
             ["H"] = "toggle_hidden",
@@ -258,7 +258,8 @@ return {
             ["<down>"] = "move_cursor_down",
             ["<C-n>"] = "move_cursor_down",
             ["<up>"] = "move_cursor_up",
-            ["<C-p>"] = "move_cursor_up",
+            ["<c-p>"] = "move_cursor_up",
+            ["<c-e>"] = "move_cursor_up",
           },
         },
 
