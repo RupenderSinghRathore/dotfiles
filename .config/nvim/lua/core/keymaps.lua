@@ -108,16 +108,22 @@ end, { desc = "Reload Neovim config" })
 
 vim.keymap.set("n", "<leader>nQ", "<cmd>q!<CR>", opts)
 
-vim.api.nvim_set_keymap("n", "e", "k", { noremap = true })
-vim.api.nvim_set_keymap("v", "e", "k", { noremap = true })
-vim.api.nvim_set_keymap("o", "e", "k", { noremap = true })
+vim.api.nvim_set_keymap("n", "e", "", { noremap = true })
+vim.api.nvim_set_keymap("v", "e", "", { noremap = true })
+vim.api.nvim_set_keymap("o", "e", "", { noremap = true })
+
+vim.keymap.set("n", "E", vim.lsp.buf.hover, { desc = "Show LSP hover information" })
+
+vim.api.nvim_set_keymap("n", "<C-e>", "<C-p>", { noremap = true })
+vim.api.nvim_set_keymap("v", "<C-e>", "<C-p>", { noremap = true })
+vim.api.nvim_set_keymap("o", "<C-e>", "<C-p>", { noremap = true })
 
 vim.api.nvim_set_keymap("n", "k", "n", { noremap = true })
 vim.api.nvim_set_keymap("n", "K", "N", { noremap = true })
 
-vim.api.nvim_set_keymap("n", "n", "j", { noremap = true })
-vim.api.nvim_set_keymap("v", "n", "j", { noremap = true })
-vim.api.nvim_set_keymap("o", "n", "j", { noremap = true })
+vim.api.nvim_set_keymap("n", "n", "", { noremap = true })
+vim.api.nvim_set_keymap("v", "n", "", { noremap = true })
+vim.api.nvim_set_keymap("o", "n", "", { noremap = true })
 
 -- remapping u and U
 vim.api.nvim_set_keymap("n", "U", "u", { noremap = true })

@@ -5,6 +5,8 @@ export PATH="$HOME/go/bin:$HOME/.cargo/bin:$HOME/.local/bin/:$PATH"
 export MANPAGER='nvim +Man!'
 typeset -U PATH # remove duplication from path
 
+# sets <C-e> to up in fzf
+export FZF_DEFAULT_OPTS='--bind=ctrl-e:up'
 
 # if [ -f ~/dotfiles/.config/zsh/zsh_tmux_setup.zsh ]; then
 #   source ~/dotfiles/.config/zsh/zsh_tmux_setup.zsh 
