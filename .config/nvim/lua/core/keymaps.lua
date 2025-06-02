@@ -6,9 +6,8 @@ vim.g.maplocalleader = " "
 local opts = { noremap = true, silent = false }
 
 -- Esc
-vim.keymap.set("i", "nn", "<Esc>", opts)
-vim.keymap.set("i", "NN", "<Esc>", opts)
--- vim.keymap.set("i", "<C-f>", "<Cmd>stopinsert<CR>", opts)
+-- vim.keymap.set("i", "nn", "<Esc>", opts)
+-- vim.keymap.set("i", "NN", "<Esc>", opts)
 
 -- save file
 vim.keymap.set("n", "<leader>ss", "<cmd>w<CR>", opts)
