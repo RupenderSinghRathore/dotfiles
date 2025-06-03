@@ -5,14 +5,16 @@
 
 (defsrc
   caps a s d f j k l ;
+  ralt
+ ;;lsft rsft
 )
 (defvar
-  tap-time 100
+  tap-time 0
   hold-time 200
 )
 
 (defalias
-  ;;escctrl (tap-hold 100 100 esc lctl)
+  escctrl (tap-hold 0 200 esc lctl)
   a (multi f24 (tap-hold $tap-time $hold-time a lmet))
   s (multi f24 (tap-hold $tap-time $hold-time s lalt))
   d (multi f24 (tap-hold $tap-time $hold-time d lsft))
@@ -24,5 +26,7 @@
 )
 
 (deflayer base
-  esc @a @s @d @f @j @k @l @;
+  @escctrl a s d f j k l ;
+  lalt
+  ;;bspc
 )

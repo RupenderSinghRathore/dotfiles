@@ -33,5 +33,5 @@ require("lazy").setup({
   require("plugins.snippets"),
   require("plugins.dev"),
   -- require("plugins.vim-be-good"),
-  require("plugins.hardtime"),
+  -- require("plugins.hardtime"),
 })

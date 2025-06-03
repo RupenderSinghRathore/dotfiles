@@ -12,6 +12,7 @@ local opts = { noremap = true, silent = false }
 -- save file
 vim.keymap.set("n", "<leader>ss", "<cmd>w<CR>", opts)
 vim.keymap.set("n", "<leader>sq", "<cmd>wq<CR>", opts)
+vim.keymap.set("n", "<leader>sQ", "<cmd>q!<CR>", opts)
 
 -- to Explorer
 vim.keymap.set("n", "<leader>pv", "<cmd>Ex<CR>", opts)
@@ -105,13 +106,14 @@ vim.keymap.set("n", "<leader><C-r>", function()
   vim.notify("Neovim config reloaded!", vim.log.levels.INFO)
 end, { desc = "Reload Neovim config" })
 
-vim.keymap.set("n", "<leader>nQ", "<cmd>q!<CR>", opts)
-
 vim.api.nvim_set_keymap("n", "e", "", { noremap = true })
 vim.api.nvim_set_keymap("v", "e", "", { noremap = true })
 vim.api.nvim_set_keymap("o", "e", "", { noremap = true })
 
 vim.keymap.set("n", "E", vim.lsp.buf.hover, { desc = "Show LSP hover information" })
+
+-- Scrolling in place
+vim.keymap.set({ "n", "v", "i" }, "<c-m>", "<c-e>", { desc = "scrolling up in place" })
 
 vim.api.nvim_set_keymap("n", "<C-e>", "<C-p>", { noremap = true })
 vim.api.nvim_set_keymap("v", "<C-e>", "<C-p>", { noremap = true })
