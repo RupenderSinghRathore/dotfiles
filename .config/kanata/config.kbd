@@ -6,6 +6,7 @@
 (defsrc
   caps a s d f j k l ;
   ralt
+  lctl
  ;;lsft rsft
 )
 (defvar
@@ -28,5 +29,6 @@
 (deflayer base
   @escctrl a s d f j k l ;
   lalt
+  caps
   ;;bspc
 )

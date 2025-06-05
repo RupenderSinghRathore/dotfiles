@@ -1,5 +1,4 @@
 export ZSH="$HOME/.oh-my-zsh"
-# export PATH="$PATH:/home/kami-sama/.local/bin"
 setopt IGNOREEOF
 export PATH="$HOME/go/bin:$HOME/.cargo/bin:$HOME/.local/bin/:$PATH"
 export MANPAGER='nvim +Man!'
@@ -86,7 +85,10 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git zsh-vi-mode zsh-autosuggestions zsh-syntax-highlighting)
+ZVM_CURSOR_STYLE_ENABLED=false
+
+# plugins=(git  zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
