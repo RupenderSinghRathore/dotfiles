@@ -142,8 +142,9 @@ return {
       -- see `:h neo-tree-custom-commands-global`
       commands = {},
       window = {
-        position = "left",
-        width = 25,
+        -- position = "left",
+        position = "current",
+        -- width = 25,
         mapping_options = {
           noremap = true,
           nowait = true,
@@ -235,9 +236,10 @@ return {
           },
         },
         follow_current_file = {
-          enabled = false, -- This will find and focus the file in the active buffer every time
+          -- enabled = false, -- This will find and focus the file in the active buffer every time
+          enabled = true,
           --               -- the current file is changed while the tree is open.
-          leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+          -- leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },
         group_empty_dirs = false, -- when true, empty folders will be grouped together
         hijack_netrw_behavior = "disabled", -- netrw disabled, opening a directory opens neo-tree
@@ -329,8 +331,9 @@ return {
     })
 
     vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
-    vim.keymap.set("n", "<C-b>", ":Neotree toggle position=left<CR>", { noremap = true, silent = true }) -- focus file explorer
-    vim.keymap.set("i", "<C-b>", "<Esc>:Neotree toggle position=left<CR>", { noremap = true, silent = true }) -- focus file explorer
+    -- vim.keymap.set("n", "<C-b>", ":Neotree toggle position=left<CR>", { noremap = true, silent = true }) -- focus file explorer
+    vim.keymap.set("n", "<C-b>", ":Neotree toggle<CR>", { noremap = true, silent = true }) -- focus file explorer
+    vim.keymap.set("i", "<C-b>", "<Esc>:Neotree<CR>", { noremap = true, silent = true }) -- focus file explorer
     vim.keymap.set("n", "<leader>ng", ":Neotree float git_status<CR>", { noremap = true, silent = true }) -- open git status window
     vim.api.nvim_create_autocmd("User", {
       pattern = "NeoTreeRootChanged",

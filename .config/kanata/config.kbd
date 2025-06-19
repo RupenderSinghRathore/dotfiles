@@ -4,7 +4,7 @@
 )
 
 (defsrc
-  caps a s d f j k l ;
+  caps a s d f j k l ; '
   ralt
   lctl
  ;;lsft rsft
@@ -16,6 +16,7 @@
 
 (defalias
   escctrl (tap-hold 0 200 esc lctl)
+  quotectrl (tap-hold 0 200 ' rctl)
   a (multi f24 (tap-hold $tap-time $hold-time a lmet))
   s (multi f24 (tap-hold $tap-time $hold-time s lalt))
   d (multi f24 (tap-hold $tap-time $hold-time d lsft))
@@ -27,7 +28,7 @@
 )
 
 (deflayer base
-  @escctrl a s d f j k l ;
+  @escctrl a s d f j k l ; @quotectrl
   lalt
   caps
   ;;bspc
