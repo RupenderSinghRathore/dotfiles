@@ -4,10 +4,9 @@
 )
 
 (defsrc
-  caps a s d f j k l ; '
+  caps a s d f g h j k l ; '
   ralt
   lctl
- ;;lsft rsft
 )
 (defvar
   tap-time 0
@@ -25,11 +24,11 @@
   k (multi f24 (tap-hold $tap-time $hold-time k rsft))
   l (multi f24 (tap-hold $tap-time $hold-time l lalt))
   ; (multi f24 (tap-hold $tap-time $hold-time ; rmet))
+  ;;num-layer (layer-while-held number-layer)
 )
 
 (deflayer base
-  @escctrl a s d f j k l ; @quotectrl
+  @escctrl a s d f g h j k l ; @quotectrl
   lalt
   caps
-  ;;bspc
 )
