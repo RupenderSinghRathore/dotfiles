@@ -33,7 +33,7 @@ return {
 
       local go_error_return = {
         ls.parser.parse_snippet(
-          "ee",
+          "@r",
           [[
 if err != nil {
     return err
@@ -43,7 +43,7 @@ if err != nil {
       }
       local go_error_log = {
         ls.parser.parse_snippet(
-          "el",
+          "@l",
           [[
 if err != nil {
     log.Fatal(err)

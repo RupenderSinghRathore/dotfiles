@@ -120,6 +120,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+mycd() {
+  local dir
+  dir=$(find ~/Documents ~/Downloads ~/Projects ~/lunaar ~/dotfiles ~/.config ~/Games -type d -name '.git' -prune -o -type d -print 2>/dev/null | fzf --prompt="Select directory: ")
+  if [ -n "$dir" ]; then
+    cd "$dir" || echo "error opening directory"
+  fi
+}
+
 alias load="source ~/.zshrc"
 alias n="nvim"
 alias t="tmux attach || tmux"
@@ -134,15 +143,4 @@ alias nier="DRI_PRIME=1 wine \"/home/kami-sama/Games/NieR Automata/NieR Automata
 alias nf="/home/kami-sama/open_file_with_nvim.sh"
 alias event="/home/kami-sama/dotfiles/.config/scripts/github_activity_less.sh"
 alias rain="terminal-rain --rain-color magenta --lightning-color white"
-
-
-#vi keybinds
-# bindkey -M viins 'ne' vi-cmd-mode
-
-mycd() {
-  local dir
-  dir=$(find Documents Downloads Projects lunaar dotfiles .config Games -type d -name '.git' -prune -o -type d -print 2>/dev/null | fzf --prompt="Select directory: ")
-  if [ -n "$dir" ]; then
-    cd "$dir" || echo "error opening directory"
-  fi
-}
+alias goal="~/.goal.sh"

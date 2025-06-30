@@ -34,6 +34,7 @@ return {
         -- Go
         "gofmt",
         "goimports",
+        "golines",
 
         -- CSS/SCSS
         "prettier",
@@ -84,6 +85,7 @@ return {
       -- Go
       formatting.gofmt,
       formatting.goimports,
+      formatting.golines,
 
       -- Other
       formatting.stylua,
@@ -103,7 +105,16 @@ return {
             group = augroup,
             buffer = bufnr,
             callback = function()
-              vim.lsp.buf.format({ async = false })
+              vim.lsp.buf.format({
+                {
+                  bufnr = bufnr,
+                  async = false,
+                  timeout_ms = 2000,
+                  filter = function(client) -- Filter to use only "null-ls"
+                    return client.name == "null-ls"
+                  end,
+                },
+              })
             end,
           })
         end
