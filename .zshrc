@@ -139,8 +139,10 @@ alias y="yazi"
 alias f="fastfetch"
 alias mysqlDisable="sudo systemctl disable mysqld"
 alias mysqlStart="sudo systemctl start mysqld"
-alias nier="DRI_PRIME=1 wine \"/home/kami-sama/Games/NieR Automata/NieR Automata/NieRAutomata.exe\""
 alias nf="/home/kami-sama/open_file_with_nvim.sh"
 alias event="/home/kami-sama/dotfiles/.config/scripts/github_activity_less.sh"
 alias rain="terminal-rain --rain-color magenta --lightning-color white"
 alias goal="~/.goal.sh"
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"

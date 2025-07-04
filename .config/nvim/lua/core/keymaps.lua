@@ -104,33 +104,23 @@ vim.keymap.set("n", "<leader><C-r>", function()
     vim.notify("Neovim config reloaded!", vim.log.levels.INFO)
 end, { desc = "Reload Neovim config" })
 
-vim.api.nvim_set_keymap("n", "e", "", { noremap = true })
-vim.api.nvim_set_keymap("v", "e", "", { noremap = true })
-vim.api.nvim_set_keymap("o", "e", "", { noremap = true })
-
 vim.keymap.set("n", "E", vim.lsp.buf.hover, { desc = "Show LSP hover information" })
 
 -- Scrolling in place
 vim.keymap.set({ "n", "v", "i" }, "<c-m>", "<c-e>", { desc = "scrolling up in place" })
 vim.keymap.set({ "n", "v", "i" }, "<c-p>", "<c-y>", { desc = "scrolling down in place" })
 
--- Vertical scroll and center
-vim.keymap.set({ "n", "v" }, "<C-u>", "<C-d>zz", opts)
-vim.keymap.set({ "n", "v" }, "<C-y>", "<C-u>zz", opts)
+vim.keymap.set({ "n", "v", "o" }, "<c-e>", "<c-p>", { noremap = true })
 
-vim.api.nvim_set_keymap("n", "<C-e>", "<C-p>", { noremap = true })
-vim.api.nvim_set_keymap("v", "<C-e>", "<C-p>", { noremap = true })
-vim.api.nvim_set_keymap("o", "<C-e>", "<C-p>", { noremap = true })
+vim.keymap.set("n", "k", "n", { noremap = true })
+vim.keymap.set("n", "K", "N", { noremap = true })
 
-vim.api.nvim_set_keymap("n", "k", "n", { noremap = true })
-vim.api.nvim_set_keymap("n", "K", "N", { noremap = true })
-
-vim.api.nvim_set_keymap("n", "n", "", { noremap = true })
-vim.api.nvim_set_keymap("v", "n", "", { noremap = true })
-vim.api.nvim_set_keymap("o", "n", "", { noremap = true })
+-- Unmap n and e
+vim.keymap.set({ "n", "v", "o" }, "e", "", { noremap = true })
+vim.keymap.set({ "n", "v", "o" }, "n", "", { noremap = true })
 
 -- remapping u and U
-vim.api.nvim_set_keymap("n", "U", "u", { noremap = true })
-vim.api.nvim_set_keymap("n", "u", "", { noremap = true })
+vim.keymap.set("n", "U", "u", { noremap = true })
+vim.keymap.set("n", "u", "", { noremap = true })
 
 vim.keymap.set("n", "<C-o>", "<Nop>", { noremap = true })
