@@ -5,7 +5,7 @@ export MANPAGER='nvim +Man!'
 typeset -U PATH # remove duplication from path
 
 # sets <C-e> to up in fzf
-export FZF_DEFAULT_OPTS='--bind=ctrl-e:up'
+# export FZF_DEFAULT_OPTS='--bind=ctrl-e:up'
 
 # if [ -f ~/dotfiles/.config/zsh/zsh_tmux_setup.zsh ]; then
 #   source ~/dotfiles/.config/zsh/zsh_tmux_setup.zsh 
@@ -85,7 +85,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-vi-mode zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git zsh-vi-mode  zsh-syntax-highlighting zsh-autosuggestions)
 ZVM_CURSOR_STYLE_ENABLED=false
 
 # plugins=(git  zsh-autosuggestions zsh-syntax-highlighting)
@@ -129,6 +129,9 @@ mycd() {
   fi
 }
 
+# Generated for envman. Do not edit.
+# [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
 alias load="source ~/.zshrc"
 alias n="nvim"
 alias t="tmux attach || tmux"
@@ -143,6 +146,4 @@ alias nf="/home/kami-sama/open_file_with_nvim.sh"
 alias event="/home/kami-sama/dotfiles/.config/scripts/github_activity_less.sh"
 alias rain="terminal-rain --rain-color magenta --lightning-color white"
 alias goal="~/.goal.sh"
-
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+alias dockerls="docker ps --format \"table {{.ID}}\t{{.Image}}\t{{.Ports}}\t{{.Names}}\t{{.Status}}\""

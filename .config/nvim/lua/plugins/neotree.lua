@@ -277,7 +277,6 @@ return {
             ["<C-n>"] = "move_cursor_down",
             ["<up>"] = "move_cursor_up",
             ["<c-p>"] = "move_cursor_up",
-            ["<c-e>"] = "move_cursor_up",
           },
         },
 
