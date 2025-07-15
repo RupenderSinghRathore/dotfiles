@@ -1,0 +1,15 @@
+command = "/bin/zsh"
+
+theme = "tokyonight"
+
+cursor-style = "block"
+
+font-family = "SauceCodePro Nerd Font Mono"
+
+font-size = 18
+
+keybind = "f11=toggle_fullscreen"
+
+background-opacity = 0.8
+
+keybind = "ctrl+v=paste_from_clipboard"
