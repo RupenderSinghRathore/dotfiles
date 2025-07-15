@@ -34,4 +34,5 @@ require("lazy").setup({
     require("plugins.dev"),
     -- require("plugins.vim-be-good"),
     -- require("plugins.hardtime"),
+    -- require("plugins.comfyline"),
 })

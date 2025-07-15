@@ -147,3 +147,5 @@ alias event="/home/kami-sama/dotfiles/.config/scripts/github_activity_less.sh"
 alias rain="terminal-rain --rain-color magenta --lightning-color white"
 alias goal="~/.goal.sh"
 alias dockerls="docker ps --format \"table {{.ID}}\t{{.Image}}\t{{.Ports}}\t{{.Names}}\t{{.Status}}\""
+alias p="echo \"Battery Percentage $(cat /sys/class/power_supply/BAT0/capacity)%\""
+
