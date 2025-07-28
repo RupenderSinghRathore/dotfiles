@@ -2,14 +2,14 @@
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
-[mgr]
+[manager]
 
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on  = "y"
 run = [ 'shell -- for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list', "yank" ]
 
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on  = "x"
 run = [ 'shell -- for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list', "yank --cut" ]
 
