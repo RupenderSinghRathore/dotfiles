@@ -77,7 +77,12 @@ return {
             formatting.black,
 
             -- C/C++
-            formatting.clang_format,
+            -- formatting.clang_format,
+            formatting.clang_format.with({
+                extra_args = {
+                    "--style={BasedOnStyle: LLVM, IndentWidth: 4, TabWidth: 4, UseTab: ForIndentation}",
+                },
+            }),
 
             -- Rust
             -- formatting.rustfmt,

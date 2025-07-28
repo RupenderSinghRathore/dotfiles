@@ -48,31 +48,40 @@ return {
       -- You can put your default mappings / updates / etc. in here
       --  All the info you're looking for is in `:help telescope.setup()`
       defaults = {
+        -- layout_config = {
+        --   preview_cutoff = 0, -- this is where it should be
+        -- },
         mappings = {
+
           i = {
-            ["<C-w>"] = require("telescope.actions").close,
+            ["<Esc>"] = require("telescope.actions").close,
             ["<C-d>"] = require("telescope.actions").delete_buffer,
             ["<C-p>"] = require("telescope.actions").move_selection_previous, -- move to prev result
             ["<C-j>"] = require("telescope.actions").move_selection_next, -- move to next result
             ["<C-l>"] = require("telescope.actions").select_default, -- open file
           },
           n = {
-            ["<C-w>"] = require("telescope.actions").close,
             ["<C-d>"] = require("telescope.actions").delete_buffer,
           },
         },
       },
       pickers = {
         find_files = {
-          file_ignore_patterns = { "node_modules", ".git", ".venv" },
+          file_ignore_patterns = { "node_modules", ".git/", ".venv" },
+          theme = "ivy",
+          layout_config = {
+            height = 100, -- set the height in lines
+            width = 100, -- set the width as a percentage (0.0 - 1.0)
+            preview_cutoff = 0,
+          },
           hidden = true,
         },
-      },
-      live_grep = {
-        file_ignore_patterns = { "node_modules", ".git", ".venv" },
-        additional_args = function(_)
-          return { "--hidden" }
-        end,
+        live_grep = {
+          file_ignore_patterns = { "node_modules", ".git", ".venv" },
+          additional_args = function(_)
+            return { "--hidden" }
+          end,
+        },
       },
       extensions = {
         ["ui-select"] = {
@@ -89,14 +98,16 @@ return {
     local builtin = require("telescope.builtin")
     vim.keymap.set("n", "<leader>nh", builtin.help_tags, { desc = "[S]earch [H]elp" })
     vim.keymap.set("n", "<leader>nk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-    vim.keymap.set("n", "<leader>nf", builtin.find_files, { desc = "[S]earch [F]iles" })
+
+    vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "[S]earch [F]iles" })
+
     vim.keymap.set("n", "<leader>nn", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
     vim.keymap.set("n", "<leader>nw", builtin.live_grep, { desc = "[S]earch by [G]rep" })
     vim.keymap.set("n", "<leader>nW", builtin.grep_string, { desc = "[S]earch current [W]ord" })
+    vim.keymap.set("n", "<leader>n.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     -- vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
     -- vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
-    -- vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-    vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+    vim.keymap.set("n", "<leader>e", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set("n", "<leader>/", function()
