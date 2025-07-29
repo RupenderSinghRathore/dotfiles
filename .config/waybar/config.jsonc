@@ -1,17 +1,23 @@
 {
   "position": "bottom",
-  "modules-left": ["hyprland/workspaces"],
-  "modules-right": ["clock" , "battery", "pulseaudio" ],
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-right": [
+    "clock",
+    "battery",
+    "pulseaudio"
+  ],
   "tray": {
-          "icon-size": 16,
-          "spacing": 4
-   },
-   "clock": {
-   "format": "{:%a %d %H:%M}",
-   "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-   }, 
-   "battery": {
-        "interval": 10,
+    "icon-size": 16,
+    "spacing": 4
+  },
+  "clock": {
+    "format": "{:%a %d %H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "battery": {
+    "interval": 10,
     "states": {
       "warning": 30,
       "critical": 20
@@ -23,7 +29,13 @@
     "format-plugged": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
     "format-alt": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {time}",
     "format-full": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
-    "format-icons": ["", "", "", "", ""],
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
     "tooltip-format": "{time}"
   },
   "network": {
@@ -34,11 +46,15 @@
     "tooltip-format-wifi": "Signal Strenght: {signalStrength}%"
   },
   "pulseaudio": {
-      "format": "{icon}  {volume}%",
-      "format-muted": "",
-      "format-icons": {
-          "default": ["", "", " "]
-      },
-      "on-click": "pavucontrol"
+    "format": "{icon}  {volume}%",
+    "format-muted": "",
+    "format-icons": {
+      "default": [
+        "",
+        "",
+        " "
+      ]
+    },
+    "on-click": "pavucontrol"
   }
 }

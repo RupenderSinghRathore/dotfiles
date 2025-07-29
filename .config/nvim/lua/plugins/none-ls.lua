@@ -69,7 +69,7 @@ return {
           "yaml",
           "markdown",
         },
-        extra_args = { "--tab-width", "2" },
+        extra_args = { "--tab-width", "4" },
       }),
 
       -- Python

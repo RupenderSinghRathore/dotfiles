@@ -91,7 +91,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-vi-mode  zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git zsh-syntax-highlighting zsh-vi-mode zsh-autosuggestions)
 ZVM_CURSOR_STYLE_ENABLED=false
 
 # plugins=(git  zsh-autosuggestions zsh-syntax-highlighting)
@@ -129,7 +129,8 @@ source $ZSH/oh-my-zsh.sh
 
 mycd() {
   local dir
-  dir=$(find ~/Documents ~/Downloads ~/Projects ~/lunaar ~/dotfiles ~/.config ~/Games -type d -name '.git' -prune -o -type d -print 2>/dev/null | fzf --prompt="Select directory: ")
+  search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads)
+  dir=$(find "${search_dirs[@]}" -type d \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' \) -prune -o -type d -print 2>/dev/null | fzf --prompt="Select directory: ")
   if [ -n "$dir" ]; then
     cd "$dir" || echo "error opening directory"
   fi
@@ -138,20 +139,20 @@ mycd() {
 # Generated for envman. Do not edit.
 # [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-alias load="source ~/.zshrc"
-alias n="nvim"
-alias t="tmux attach || tmux"
-alias kt="tmux kill-server"
-alias b="brightnessctl"
-# alias c="clear"
-alias y="yazi"
-alias f="fastfetch"
-alias mysqlDisable="sudo systemctl disable mysqld"
-alias mysqlStart="sudo systemctl start mysqld"
-alias nf="/home/kami-sama/open_file_with_nvim.sh"
-alias event="/home/kami-sama/dotfiles/.config/scripts/github_activity_less.sh"
-alias rain="terminal-rain --rain-color magenta --lightning-color white"
-alias goal="~/.goal.sh"
-alias dockerls="docker ps --format \"table {{.ID}}\t{{.Image}}\t{{.Ports}}\t{{.Names}}\t{{.Status}}\""
-alias p="echo \"Battery Percentage $(cat /sys/class/power_supply/BAT0/capacity)%\""
+alias load='source ~/.zshrc'
+alias n='nvim'
+alias t='tmux attach || tmux'
+alias kt='tmux kill-server'
+alias b='brightnessctl'
+# alias c='clear'
+alias y='yazi'
+alias f='fastfetch'
+alias mysqlDisable='sudo systemctl disable mysqld'
+alias mysqlStart='sudo systemctl start mysqld'
+alias nf='/home/kami-sama/open_file_with_nvim.sh'
+alias event='/home/kami-sama/dotfiles/.config/scripts/github_activity_less.sh'
+alias rain='terminal-rain --rain-color magenta --lightning-color white'
+alias goal='~/.goal.sh'
+alias dockerls='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Ports}}\t{{.Names}}\t{{.Status}}"'
+alias p='echo "Battery Percentage $(cat /sys/class/power_supply/BAT0/capacity)%"'
 alias archclean='sudo pacman -Rns $(pacman -Qdtq) 2>/dev/null || echo "System cleaned!"'
