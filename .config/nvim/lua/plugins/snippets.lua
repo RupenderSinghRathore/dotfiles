@@ -2,6 +2,7 @@ return {
   {
     "L3MON4D3/LuaSnip",
     event = "InsertEnter", -- load LuaSnip when you start inserting text
+    -- event = { "BufReadPre", "BufNewFile" },
     config = function()
       local ls = require("luasnip")
 

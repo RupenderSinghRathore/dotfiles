@@ -48,9 +48,9 @@ return {
       -- You can put your default mappings / updates / etc. in here
       --  All the info you're looking for is in `:help telescope.setup()`
       defaults = {
-        -- layout_config = {
-        --   preview_cutoff = 0, -- this is where it should be
-        -- },
+        layout_config = {
+          preview_cutoff = 0, -- this is where it should be
+        },
         mappings = {
 
           i = {
@@ -72,7 +72,7 @@ return {
           layout_config = {
             height = 100, -- set the height in lines
             width = 100, -- set the width as a percentage (0.0 - 1.0)
-            preview_cutoff = 0,
+            -- preview_cutoff = 0,
           },
           hidden = true,
         },
@@ -105,8 +105,8 @@ return {
     vim.keymap.set("n", "<leader>nw", builtin.live_grep, { desc = "[S]earch by [G]rep" })
     vim.keymap.set("n", "<leader>nW", builtin.grep_string, { desc = "[S]earch current [W]ord" })
     vim.keymap.set("n", "<leader>n.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-    -- vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-    -- vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
+    vim.keymap.set("n", "<leader>nd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
+    vim.keymap.set("n", "<leader>nr", builtin.resume, { desc = "[S]earch [R]esume" })
     vim.keymap.set("n", "<leader>e", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
     -- Slightly advanced example of overriding default behavior and theme

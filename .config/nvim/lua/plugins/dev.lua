@@ -1,28 +1,44 @@
--- lua/plugins/dev.lua OR your main plugins file
 return {
   {
     "folke/lazydev.nvim",
-    ft = "lua", -- Only load on Lua files
+    ft = "lua", -- only load on lua files
     opts = {
       library = {
-        -- See "Usage" at https://github.com/folke/lazydev.nvim/blob/main/README.md for more options
-        -- You can add paths to custom libraries here if needed
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
     },
   },
-  -- Potentially, your nvim-lspconfig and lua-language-server (configured via mason.nvim)
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   dependencies = {
-  --     "williamboman/mason.nvim", -- To manage LSP server installations
-  --     "williamboman/mason-lspconfig.nvim", -- To bridge mason and lspconfig
-  --     -- Other LSP-related plugins like nvim-cmp, etc.
-  --   },
-  --   -- Your nvim-lspconfig setup function will be called from here or your main lsp config file
-  --   config = function()
-  --     -- Place your LSP setup logic here or call a function that does.
-  --     -- Ensure lazydev is setup implicitly by being loaded, or explicitly if needed before lua_ls.
-  --     require("core.lsp").setup() -- Example: if your LSP setup is in lua/core/lsp.lua
-  --   end,
-  -- },
+  { -- optional cmp completion source for require statements and module annotations
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      opts.sources = opts.sources or {}
+      table.insert(opts.sources, {
+        name = "lazydev",
+        group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+      })
+    end,
+  },
+  { -- optional blink completion source for require statements and module annotations
+    "saghen/blink.cmp",
+    opts = {
+      sources = {
+        -- add lazydev to your completion providers
+        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+        providers = {
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
+          },
+        },
+      },
+      fuzzy = {
+        implementation = "lua", -- or "prefer_rust" if you build with Rust
+      },
+    },
+  },
+  -- { "folke/neodev.nvim", enabled = false }, -- make sure to uninstall or disable neodev.nvim
 }

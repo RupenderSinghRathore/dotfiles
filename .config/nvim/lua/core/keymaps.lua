@@ -17,8 +17,8 @@ vim.keymap.set({ "n", "v" }, "x", '"_x', opts)
 vim.keymap.set({ "n", "v" }, "c", '"_c', opts)
 
 -- Close the terminal
-vim.api.nvim_set_keymap("t", "<C-o>", [[<C-\><C-n><C-o>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "jj", [[<C-\><C-n>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<C-o>", [[<C-\><C-n><C-o>]], opts)
+vim.api.nvim_set_keymap("t", "jj", [[<C-\><C-n>]], opts)
 
 -- save file without auto-formatting
 vim.keymap.set("n", "<leader>ns", "<cmd>noautocmd w <CR>", opts)
@@ -42,5 +42,5 @@ vim.keymap.set("v", "p", '"_dP', opts)
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- remapping u and U
-vim.keymap.set("n", "U", "u", { noremap = true })
+vim.keymap.set("n", "U", ":undo<CR>", { noremap = true })
 vim.keymap.set("n", "u", "", { noremap = true })
