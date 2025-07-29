@@ -4,6 +4,10 @@ export PATH="$HOME/go/bin:$HOME/.cargo/bin:$HOME/.local/bin/:$PATH"
 export MANPAGER='nvim +Man!'
 typeset -U PATH # remove duplication from path
 
+export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_QPA_PLATFORMTHEME=qt6ct
+export QT_STYLE_OVERRIDE=Kvantum
+
 # sets <C-e> to up in fzf
 # export FZF_DEFAULT_OPTS='--bind=ctrl-e:up'
 
@@ -137,7 +141,7 @@ alias n="nvim"
 alias t="tmux attach || tmux"
 alias kt="tmux kill-server"
 alias b="brightnessctl"
-alias c="clear"
+# alias c="clear"
 alias y="yazi"
 alias f="fastfetch"
 alias mysqlDisable="sudo systemctl disable mysqld"
@@ -148,4 +152,4 @@ alias rain="terminal-rain --rain-color magenta --lightning-color white"
 alias goal="~/.goal.sh"
 alias dockerls="docker ps --format \"table {{.ID}}\t{{.Image}}\t{{.Ports}}\t{{.Names}}\t{{.Status}}\""
 alias p="echo \"Battery Percentage $(cat /sys/class/power_supply/BAT0/capacity)%\""
-
+alias archclean='sudo pacman -Rns $(pacman -Qdtq) 2>/dev/null || echo "System cleaned!"'

@@ -24,6 +24,8 @@ keymap = [
 	# Hopping
 	{ on = "k", run = "arrow -1", desc = "Move cursor up" },
 	{ on = "j", run = "arrow 1",  desc = "Move cursor down" },
+	{ on = "<C-p>", run = "arrow -1", desc = "Move cursor up" },
+	{ on = "<C-n>", run = "arrow 1",  desc = "Move cursor down" },
 
 	{ on = "<Up>",    run = "arrow -1", desc = "Move cursor up" },
 	{ on = "<Down>",  run = "arrow 1",  desc = "Move cursor down" },
@@ -175,6 +177,9 @@ keymap = [
 
 	{ on = "k", run = "arrow -1", desc = "Move cursor up" },
 	{ on = "j", run = "arrow 1",  desc = "Move cursor down" },
+    { on = "<C-p>", run = "arrow -1", desc = "Move cursor up" },
+	{ on = "<C-n>", run = "arrow 1",  desc = "Move cursor down" },
+
 
 	{ on = "<Up>",   run = "arrow -1", desc = "Move cursor up" },
 	{ on = "<Down>", run = "arrow 1",  desc = "Move cursor down" },
@@ -197,6 +202,9 @@ keymap = [
 
 	{ on = "k", run = "arrow -1", desc = "Move cursor up" },
 	{ on = "j", run = "arrow 1",  desc = "Move cursor down" },
+	{ on = "<C-p>", run = "arrow -1", desc = "Move cursor up" },
+	{ on = "<C-n>", run = "arrow 1",  desc = "Move cursor down" },
+
 	{ on = "h", run = "swipe -1", desc = "Swipe to the previous file" },
 	{ on = "l", run = "swipe 1",  desc = "Swipe to the next file" },
 
@@ -223,6 +231,9 @@ keymap = [
 
 	{ on = "k", run = "arrow -1", desc = "Move cursor up" },
 	{ on = "j", run = "arrow 1",  desc = "Move cursor down" },
+	{ on = "<C-p>", run = "arrow -1", desc = "Move cursor up" },
+	{ on = "<C-n>", run = "arrow 1",  desc = "Move cursor down" },
+
 
 	{ on = "<Up>",   run = "arrow -1", desc = "Move cursor up" },
 	{ on = "<Down>", run = "arrow 1",  desc = "Move cursor down" },
@@ -321,6 +332,8 @@ keymap = [
 
 	{ on = "k", run = "arrow -1", desc = "Move cursor up" },
 	{ on = "j", run = "arrow 1",  desc = "Move cursor down" },
+	{ on = "<C-p>", run = "arrow -1", desc = "Move cursor up" },
+	{ on = "<C-n>", run = "arrow 1",  desc = "Move cursor down" },
 
 	{ on = "<Up>",   run = "arrow -1", desc = "Move cursor up" },
 	{ on = "<Down>", run = "arrow 1",  desc = "Move cursor down" },
@@ -361,6 +374,8 @@ keymap = [
 	# Navigation
 	{ on = "k", run = "arrow -1", desc = "Move cursor up" },
 	{ on = "j", run = "arrow 1",  desc = "Move cursor down" },
+	{ on = "<C-p>", run = "arrow -1", desc = "Move cursor up" },
+	{ on = "<C-n>", run = "arrow 1",  desc = "Move cursor down" },
 
 	{ on = "<Up>",   run = "arrow -1", desc = "Move cursor up" },
 	{ on = "<Down>", run = "arrow 1",  desc = "Move cursor down" },
@@ -370,3 +385,8 @@ keymap = [
 
 {on = ["c", "y"], run = '''run --daemon 'echo -n {{ shell_quote(f.path) }} | wl-copy'''', desc = "Copy file path to system clipboard"}
 ]
+#
+# [keymap.normal]
+# "<C-p>" = "arrow -1"
+# "<C-n>" = "arrow 1"
+#
