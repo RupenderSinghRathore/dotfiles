@@ -25,7 +25,7 @@ export QT_STYLE_OVERRIDE=Kvantum
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
 eval "$(starship init zsh)"
-eval $(keychain --quiet --eval id_ed25519)
+# eval $(keychain --quiet --eval id_ed25519)
 
 
 export EDITOR='nvim'
