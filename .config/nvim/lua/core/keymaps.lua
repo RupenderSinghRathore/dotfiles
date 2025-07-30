@@ -46,4 +46,4 @@ vim.keymap.set("n", "U", ":undo<CR>", { noremap = true })
 vim.keymap.set("n", "u", "", { noremap = true })
 
 vim.keymap.set("n", "<leader>ge", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
--- vim.keymap.set("i", "{", "{}<Esc>i", { noremap = true })
+vim.keymap.set("i", "{", "{}<Esc>i<CR><Esc>O", { noremap = true })
