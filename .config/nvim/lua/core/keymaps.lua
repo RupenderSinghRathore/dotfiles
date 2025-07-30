@@ -15,6 +15,7 @@ vim.keymap.set("n", "<Esc>", ":<BS>", opts)
 
 vim.keymap.set({ "n", "v" }, "x", '"_x', opts)
 vim.keymap.set({ "n", "v" }, "c", '"_c', opts)
+vim.keymap.set({ "n", "v" }, "s", '"_s', opts)
 
 -- Close the terminal
 vim.api.nvim_set_keymap("t", "<C-o>", [[<C-\><C-n><C-o>]], opts)
@@ -46,4 +47,4 @@ vim.keymap.set("n", "U", ":undo<CR>", { noremap = true })
 vim.keymap.set("n", "u", "", { noremap = true })
 
 vim.keymap.set("n", "<leader>ge", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
-vim.keymap.set("i", "{", "{}<Esc>i<CR><Esc>O", { noremap = true })
+vim.keymap.set("i", "_{", "{}<Esc>i<CR><Esc>O", { noremap = true })

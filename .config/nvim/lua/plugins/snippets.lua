@@ -1,6 +1,7 @@
 return {
     {
         "L3MON4D3/LuaSnip",
+        ft = { "html", "tmpl" },
         event = "InsertEnter", -- load LuaSnip when you start inserting text
         -- event = { "BufReadPre", "BufNewFile" },
         config = function()
@@ -32,32 +33,9 @@ return {
                 ),
             }
 
-            --       local go_error_return = {
-            --         ls.parser.parse_snippet(
-            --           "@r",
-            --           [[
-            -- if err != nil {
-            --     return err
-            -- }
-            --           ]]
-            --         ),
-            --       }
-            --       local go_error_log = {
-            --         ls.parser.parse_snippet(
-            --           "@l",
-            --           [[
-            -- if err != nil {
-            --     log.Fatal(err)
-            -- }
-            --           ]]
-            --         ),
-            --       }
-
             -- Add an HTML snippet that expands the "!" trigger to full HTML boilerplate.
             ls.add_snippets("html", html_snippet)
             ls.add_snippets("tmpl", html_snippet)
-            -- ls.add_snippets("go", go_error_return)
-            -- ls.add_snippets("go", go_error_log)
 
             -- Ensure .tmpl files are treated as HTML
             vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
