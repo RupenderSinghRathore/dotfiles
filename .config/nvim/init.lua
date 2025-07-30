@@ -26,6 +26,7 @@ require("lazy").setup({
     require("plugins.codium"),
     require("plugins.copilot"),
     require("plugins.gitsigns"),
+    require("plugins.git-fugitive"),
     -- require("plugins.neotree"),
     -- require("plugins.alpha"),
     -- require("plugins.debugger"),
