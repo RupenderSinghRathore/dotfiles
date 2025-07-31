@@ -10,6 +10,7 @@ vim.keymap.set("n", "<leader>s", "<cmd>w<CR>", opts)
 
 -- to Explorer
 vim.keymap.set("n", "<leader>nv", "<cmd>Ex<CR>", opts)
+vim.keymap.set("n", "<leader>nq", "<cmd>q!<CR>", opts)
 
 vim.keymap.set("n", "<Esc>", ":<BS>", opts)
 
