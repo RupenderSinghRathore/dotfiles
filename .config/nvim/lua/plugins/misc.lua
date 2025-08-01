@@ -4,13 +4,13 @@ return {
     "folke/which-key.nvim",
     -- event = { "BufReadPre", "BufNewFile" },
   },
-  -- {
-  --   -- Autoclose parentheses, brackets, quotes, etc.
-  --   "windwp/nvim-autopairs",
-  --   event = "InsertEnter",
-  --   config = true,
-  --   opts = {},
-  -- },
+  {
+    -- Autoclose parentheses, brackets, quotes, etc.
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = true,
+    opts = {},
+  },
   -- {
   --   -- Highlight todo, notes, etc in comments
   --   "folke/todo-comments.nvim",
