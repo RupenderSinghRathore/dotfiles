@@ -49,6 +49,9 @@ return {
       --  All the info you're looking for is in `:help telescope.setup()`
       defaults = {
         layout_config = {
+          horizontal = {
+            preview_width = 0.5,
+          },
           preview_cutoff = 0, -- this is where it should be
         },
         mappings = {

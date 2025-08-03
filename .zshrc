@@ -157,3 +157,4 @@ alias dockerls='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Ports}}\t{{.Na
 alias p='echo "Battery Percentage $(cat /sys/class/power_supply/BAT0/capacity)%"'
 alias archclean='sudo pacman -Rns $(pacman -Qdtq) 2>/dev/null || echo "System cleaned!"'
 alias mpvtty='mpv --vo=drm'
+alias batterystat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | less'

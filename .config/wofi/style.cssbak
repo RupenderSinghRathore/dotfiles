@@ -1,0 +1,79 @@
+@define-color background #191724;
+@define-color surface #1f1d2e;
+@define-color overlay #26233a;
+@define-color text #e0def4;
+@define-color red #eb6f92;
+@define-color lavender #9ccfd8;
+@define-color mauve #c4a7e7;
+
+* {
+    all: unset;
+    font-family: "CodeNewRoman Nerd Font Mono", monospace;
+    font-size: 18px;
+}
+
+window {
+    padding: 20px;
+    border: 5px solid @mauve;
+    border-radius: 30px;
+    background-color: @background;
+}
+
+#inner-box {
+    margin: 2px;
+    padding: 5px;
+}
+
+#scroll {
+    margin: 0px;
+    padding: 30px;
+}
+
+#input {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    padding: 20px;
+    color: @text;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    background-color: @background;
+}
+
+#input image {
+    color: @red;
+    padding-right: 10px;
+}
+
+#text {
+    margin: 0;
+    padding: 0;
+    color: @text;
+    line-height: 1.2;
+}
+
+#entry {
+    margin: 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#entry arrow {
+    color: @lavender;
+}
+
+#entry:selected {
+    box-shadow: 1px 1px 5px rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    background-color: @surface;
+}
+
+#entry:selected #text {
+    color: @mauve;
+}
+
+#entry:drop(active) {
+    background-color: @lavender !important;
+}
