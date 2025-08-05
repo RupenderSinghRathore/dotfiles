@@ -13,17 +13,23 @@ vim.keymap.set("n", "<leader>nv", "<cmd>Ex<CR>", opts)
 vim.keymap.set("n", "<leader>nq", "<cmd>q!<CR>", opts)
 
 vim.keymap.set("n", "<Esc>", ":<BS>", opts)
+vim.keymap.set("n", "<leader>c", ":fclose<CR>", opts)
+
+vim.keymap.set("n", "<leader>o", "<cmd>e #<CR>", opts)
 
 vim.keymap.set({ "n", "v" }, "x", '"_x', opts)
 vim.keymap.set({ "n", "v" }, "c", '"_c', opts)
 vim.keymap.set({ "n", "v" }, "s", '"_s', opts)
 
 -- Close the terminal
+vim.keymap.set("n", "<leader>gl", "<cmd>term<CR>ilazygit && exit<CR>", opts)
 vim.api.nvim_set_keymap("t", "<C-o>", [[<C-\><C-n><C-o>]], opts)
 vim.api.nvim_set_keymap("t", "jj", [[<C-\><C-n>]], opts)
 
 -- save file without auto-formatting
 vim.keymap.set("n", "<leader>ns", "<cmd>noautocmd w <CR>", opts)
+vim.keymap.set("n", "<leader>ns", ":mksession!Session.vim<CR>", opts)
+vim.keymap.set("n", "<leader>nS", ":source Session.vim<CR>", opts)
 
 vim.keymap.set("n", "<leader>x", ":bdelete!<CR>", opts)   -- close buffer
 vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", opts) -- new buffer

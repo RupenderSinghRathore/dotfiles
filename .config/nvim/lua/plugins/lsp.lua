@@ -64,7 +64,7 @@ return {
         map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 
         -- Find references for the word under your cursor.
-        map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+        map("<leader>gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
         -- Jump to the implementation of the word under your cursor.
         --  Useful when your language has ways of declaring types without an actual implementation.
@@ -118,7 +118,8 @@ return {
             group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
             callback = function(event2)
               vim.lsp.buf.clear_references()
-              vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+              -- vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+              vim.api.nvim_clear_autocmds({ group = highlight_augroup, buffer = event2.buf })
             end,
           })
         end
@@ -153,26 +154,26 @@ return {
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 
     -- Create temporary Cargo.toml for standalone files
-    vim.api.nvim_create_autocmd("BufRead", {
-      pattern = "*.rs",
-      callback = function()
-        local cargo_toml = vim.fn.findfile("Cargo.toml", ".;")
-        if cargo_toml == "" then
-          vim.b.rust_standalone_file = true
-          -- Create minimal virtual manifest
-          -- require("lspconfig.configs").rust_analyzer.setup({
-          --   settings = {
-          --     ["rust-analyzer"] = {
-          --       standalone = true,
-          --       cargo = {
-          --         noSysroot = true,
-          --       },
-          --     },
-          --   },
-          -- })
-        end
-      end,
-    })
+    -- vim.api.nvim_create_autocmd("BufRead", {
+    --   pattern = "*.rs",
+    --   callback = function()
+    --     local cargo_toml = vim.fn.findfile("Cargo.toml", ".;")
+    --     if cargo_toml == "" then
+    --       vim.b.rust_standalone_file = true
+    --       -- Create minimal virtual manifest
+    --       -- require("lspconfig.configs").rust_analyzer.setup({
+    --       --   settings = {
+    --       --     ["rust-analyzer"] = {
+    --       --       standalone = true,
+    --       --       cargo = {
+    --       --         noSysroot = true,
+    --       --       },
+    --       --     },
+    --       --   },
+    --       -- })
+    --     end
+    --   end,
+    -- })
 
     local servers = {
       clangd = {},
@@ -233,16 +234,17 @@ return {
       sqlls = {},
       jsonls = {},
 
-      lua_ls = {
-        -- settings = {
-        --   Lua = {
-        --     diagnostics = {
-        --       globals = { "vim" },
-        --     },
-        --   },
-        -- },
-      },
+      lua_ls = {},
     }
+    vim.lsp.config("lua_ls", {
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim" },
+          },
+        },
+      },
+    })
 
     -- Ensure the servers and tools above are installed
     --  To check the current status of installed tools and/or manually install
@@ -275,15 +277,6 @@ return {
           server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
           require("lspconfig")[server_name].setup(server)
         end,
-      },
-    })
-    vim.lsp.config("lua_ls", {
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { "vim" },
-          },
-        },
       },
     })
   end,

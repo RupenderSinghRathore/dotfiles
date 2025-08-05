@@ -10,8 +10,10 @@ return {
         terminal_colors = true,
         on_colors = function(colors)
           colors.bg = "#16161E" -- Your desired darker hex color
+          -- colors.bg = "#181623"
           -- Specifically for 'night' style's dark background if it's different
           colors.bg_dark = "#16161E" -- Your desired darker hex color
+          -- colors.bg_dark = "#181623" -- Your desired darker hex color
         end,
       })
 
