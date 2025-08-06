@@ -14,7 +14,7 @@
 )
 
 (defalias
-  escctrl (tap-hold 0 200 esc lctl)
+  ;;escctrl (tap-hold 0 200 esc lctl)
   quotectrl (tap-hold 0 200 ' rctl)
   a (multi f24 (tap-hold $tap-time $hold-time a lmet))
   s (multi f24 (tap-hold $tap-time $hold-time s lalt))
@@ -28,7 +28,7 @@
 )
 
 (deflayer base
-  @escctrl a s d f g h j k l ; @quotectrl
+  lctl a s d f g h j k l ; @quotectrl
   lalt
   caps
 )

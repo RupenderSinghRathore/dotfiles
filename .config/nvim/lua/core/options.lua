@@ -51,20 +51,21 @@ vim.o.scroll = 10
 vim.o.winborder = "rounded"
 -- vim.o.rulerformat = "%-18(%l,%c%)%=%f"
 -- vim.o.rulerformat = "%-16(%l%)%=%t"
+vim.g.netrw_liststyle = 3
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "*",
-  callback = function()
-    vim.defer_fn(function()
-      vim.api.nvim_echo({}, false, {}) -- Clears the message area
-    end, 1000) -- Adjust delay if messages appear later
-  end,
+    pattern = "*",
+    callback = function()
+        vim.defer_fn(function()
+            vim.api.nvim_echo({}, false, {}) -- Clears the message area
+        end, 1000) -- Adjust delay if messages appear later
+    end,
 })
 vim.api.nvim_create_autocmd("TextYankPost", {
-  pattern = "*",
-  callback = function()
-    vim.defer_fn(function()
-      vim.api.nvim_echo({}, false, {})
-    end, 1500)
-  end,
+    pattern = "*",
+    callback = function()
+        vim.defer_fn(function()
+            vim.api.nvim_echo({}, false, {})
+        end, 1500)
+    end,
 })
