@@ -1,0 +1,6 @@
+window {
+    min-width: 1200px;
+    min-height: 400px;
+    padding: 20px;
+    background-color: red;
+}

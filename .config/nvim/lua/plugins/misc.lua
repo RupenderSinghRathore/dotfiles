@@ -43,14 +43,14 @@ return {
     --     dependencies = { "nvim-lua/plenary.nvim" },
     --     opts = { signs = false },
     -- },
-    -- {
-    --     -- High-performance color highlighter
-    --     "norcalli/nvim-colorizer.lua",
-    --     event = { "BufReadPre", "BufNewFile" },
-    --     config = function()
-    --         require("colorizer").setup()
-    --     end,
-    -- },
+    {
+        -- High-performance color highlighter
+        "norcalli/nvim-colorizer.lua",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            require("colorizer").setup()
+        end,
+    },
     -- {
     --   "mg979/vim-visual-multi",
     --   branch = "master",

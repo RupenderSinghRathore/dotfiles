@@ -52,6 +52,7 @@ vim.o.winborder = "rounded"
 -- vim.o.rulerformat = "%-18(%l,%c%)%=%f"
 -- vim.o.rulerformat = "%-16(%l%)%=%t"
 vim.g.netrw_liststyle = 3
+vim.opt.guicursor = "n-v-c-i-r-cr-o-sm:block"
 
 vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*",

@@ -1,0 +1,22 @@
+/*
+ * ROFI color theme
+ *
+ * Based on Rose Pine
+ * https://rosepinetheme.com/palette
+ */
+
+* {
+    rose:                        #ebbcba;
+    foam:                        #908caa;
+    iris:                        #c4a7e7;
+    pine:                        #31748f;
+    gold:                        #f6c177;
+    love:                        #eb6f92;
+
+    text-color:                  #e0def4;
+    input-text-color:            #85aef7;
+    background-color:            #19172485;
+    background-color-elements:   #1f1d2e85;
+    border-color:                #403d82;
+    active:                      #a485e7;
+}
