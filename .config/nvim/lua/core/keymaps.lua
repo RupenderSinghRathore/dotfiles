@@ -27,8 +27,8 @@ vim.api.nvim_set_keymap("t", "<C-o>", [[<C-\><C-n><C-o>]], opts)
 vim.api.nvim_set_keymap("t", "JJ", [[<C-\><C-n>]], opts)
 
 -- save file without auto-formatting
-vim.keymap.set("n", "<leader>ns", "<cmd>noautocmd w <CR>", opts)
-vim.keymap.set("n", "<leader>ns", ":mksession!Session.vim<CR>", opts)
+-- vim.keymap.set("n", "<leader>ns", "<cmd>noautocmd w <CR>", opts)
+vim.keymap.set("n", "<leader>ns", ":mksession!Session.vim<CR>:wq", opts)
 vim.keymap.set("n", "<leader>nS", ":source Session.vim<CR>", opts)
 
 vim.keymap.set("n", "<leader>x", ":bdelete!<CR>", opts) -- close buffer
@@ -54,7 +54,7 @@ vim.keymap.set("n", "U", ":undo<CR>", { noremap = true })
 vim.keymap.set("n", "u", "", { noremap = true })
 
 vim.keymap.set("n", "<CR>", "o<ESC>", { noremap = true })
-vim.keymap.set("n", "<BS>", "O<ESC>", { noremap = true })
+vim.keymap.set("n", "<C-h>", "O<ESC>", { noremap = true })
 
 vim.keymap.set("n", "<leader>ge", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
-vim.keymap.set("i", "_{", "{<CR>}<Esc>O", { noremap = true })
+vim.keymap.set("i", "{E", "{<CR>}<Esc>O", { noremap = true })

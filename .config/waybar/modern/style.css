@@ -1,222 +1,126 @@
-/* Solarized Dark Waybar Theme - Floating Style - https://github.com/arkboix/dotfiles
- * Updated color scheme using color0-15 format
- */
-
-@import "pywal.css";
+@import "mocha.css";
 
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free";
-    font-size: 14px;
-    min-height: 0;
-    transition-property: background-color;
-    transition-duration: 0.2s;
+  font-family: "MesloLGS Nerd Font Mono Bold";
+  font-size: 12px;
+  min-height: 0;
+  font-weight: bold;
 }
 
 window#waybar {
-    background-color: rgba(0, 43, 54, 0);
-    /* Transparent background */
-    color: @color4;
+  background: transparent;
+  background-color: @crust;
+  color: @overlay0;
+  transition-property: background-color;
+  transition-duration: 0.1s;
+  border-bottom: 1px solid @overlay1;
 }
 
-tooltip {
-    background-color: @color0;
-    border: 2px solid @color13;
-    border-radius: 8px;
+#window {
+  margin: 6px;
+  padding-left: 8;
+  padding-right: 8;
 }
 
-tooltip label {
-    color: @color5;
+button {
+  box-shadow: inset 0 -3px transparent;
+  border: none;
+  border-radius: 0;
 }
 
-/* Floating module style - common properties */
-#workspaces button,
-#mode,
-#clock,
-#cpu,
-#custom-scripts,
-#memory,
-#temperature,
-#battery,
-#network,
-#pulseaudio,
-#tray,
-#custom-media,
-#custom-power,
-#idle_inhibitor,
-#language,
-#backlight,
-#window,
-#disk {
-    margin: 5px 2px;
-    padding: 0 12px;
-    border-radius: 10px;
-    background-color: @color1;
-    color: @color5;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+button:hover {
+  background: inherit;
+  color: @mauve;
+  border-top: 2px solid @mauve;
 }
 
-/* Workspaces module */
 #workspaces button {
-    padding: 0 6px;
-    background-color: @color0;
-    color: @color4;
-    min-width: 30px;
+  padding: 0 4px;
+  font-size: 15px;
 }
 
-/* #workspaces button:hover { */
-/*     background-color: @color0; */
-/*     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3); */
-/* } */
+#workspaces button.focused {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: @rosewater;
+  border-top: 2px solid @rosewater;
+}
 
 #workspaces button.active {
-    background-color: @color0;
-    color: #f00213;
-    box-shadow: inset 0 0 0 2px @color8;
-    text-shadow: 0 0 5px @color8;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: @text;
+  border-bottom: 2px solid @text;
 }
 
 #workspaces button.urgent {
-    background-color: @color10;
-    color: @color7;
+  background-color: #eb4d4b;
 }
 
-/* Clock module, Scripts module and window title */
+#pulseaudio,
 #clock,
-#custom-scripts,
-#window {
-    background-color: @color8;
-    color: @color0;
-    font-weight: bold;
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#wireplumber,
+#tray,
+#network,
+#mode,
+#scratchpad {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
-/* System modules */
-#cpu {
-    background-color: @color15;
-    color: @color0;
+#clock {
+  color: @text;
+  font-size: 15px;
 }
 
-#memory {
-    background-color: @color8;
-    color: @color0;
+#clock.date {
+  color: @mauve;
 }
 
-#temperature {
-    background-color: @color9;
-    color: @color0;
-}
-
-#temperature.critical {
-    background-color: @color10;
-    color: @color7;
-    animation: blink 1s infinite alternate;
-}
-
-/* Battery module */
-#battery {
-    background-color: @color8;
-    color: @color0;
-}
-
-#battery.charging {
-    background-color: @color15;
-    color: @color0;
-}
-
-#battery.warning:not(.charging) {
-    background-color: @color8;
-    color: @color0;
-}
-
-#battery.critical:not(.charging) {
-    background-color: @color10;
-    color: @color7;
-    animation: blink 1s infinite alternate;
-}
-
-/* Network module */
-#network {
-    background-color: @color13;
-    color: @color0;
-}
-
-#network.disconnected {
-    background-color: @color10;
-    color: @color7;
-}
-
-/* Media modules */
 #pulseaudio {
-    background-color: @color8;
-    color: @color0;
+  color: @text;
+  font-size: 15px;
 }
 
-#pulseaudio.muted {
-    background-color: @color2;
-    color: @color5;
+#network {
+  color: @yellow;
 }
 
-#backlight {
-    background-color: @color8;
-    color: @color0;
-}
-
-/* Language module */
-#language {
-    background-color: @color9;
-    color: @color0;
-    min-width: 40px;
-}
-
-/* Custom modules */
-#custom-media {
-    background-color: @color12;
-    color: @color0;
-    min-width: 100px;
-}
-
-#custom-power {
-    background-color: @color10;
-    color: @color7;
-    margin-right: 6px;
-}
-
-/* System tray */
-#tray {
-    background-color: @color1;
-}
-
-#tray>.passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray>.needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: @color10;
-}
-
-/* Disk usage */
-#disk {
-    background-color: @color15;
-    color: @color0;
-}
-
-/* Animation for critical indicators */
-@keyframes blink {
-    to {
-        background-color: @color7;
-        color: @color10;
-    }
-}
-
-/* Idle inhibitor module */
 #idle_inhibitor {
-    background-color: @color2;
-    color: @color5;
+  margin-right: 12px;
+  color: #7cb342;
 }
 
 #idle_inhibitor.activated {
-    background-color: @color8;
-    color: @color0;
+  color: @red;
+}
+
+#battery {
+  color: @text;
+  font-size: 15px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+#custom-vpn {
+  color: @lavender;
+  border-radius: 15px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
