@@ -89,39 +89,62 @@
     "battery": {
         // "format": "{capacity}% {icon}",
         // "format": "{capacity}% <span size='13000' foreground='#a6e3a1'>{icon} </span>",
-        "format": "{capacity}% <span size='13000' >{icon}</span>",
-        "format-warning": "{capacity}% <span size='13000' foreground='#FFA500'>{icon}</span>",
-        "format-critical": "{capacity}% <span size='13000' foreground='#FF3131'>{icon}</span>",
-        "format-charging": "{capacity}% <span size='13000' foreground='#B1E3AD'></span>",
-        "format-plugged": "{capacity}% <span size='13000' foreground='#B1E3AD'></span>",
-        "format-full": "{capacity}% <span size='13000' foreground='#B1E3AD'></span>",
+        "format": "<span size='13000' >{icon} </span>{capacity}%",
+        "format-warning": "<span size='13000' foreground='#FFA500'>{icon} </span>{capacity}%",
+        "format-critical": "<span size='13000' foreground='#FF3131'>{icon} </span>{capacity}%",
+        "format-charging": "<span size='13000' foreground='#B1E3AD'></span> {capacity}% ",
+        "format-full": "<span size='13000' foreground='#B1E3AD'></span> {capacity}% ",
         // "format-discharging": "{icon}",
         // "format-charging": "{icon}",
         // "format-plugged": "",
         "format-icons": {
-            "charging": [
-                "󰢜",
-                "󰂆",
-                "󰂇",
-                "󰂈",
-                "󰢝",
-                "󰂉",
-                "󰢞",
-                "󰂊",
-                "󰂋",
-                "󰂅"
-            ],
+            // "charging": [
+            //     "󰢜",
+            //     "󰂆",
+            //     "󰂇",
+            //     "󰂈",
+            //     "󰢝",
+            //     "󰂉",
+            //     "󰢞",
+            //     "󰂊",
+            //     "󰂋",
+            //     "󰂅"
+            // ],
+            // "default": [
+            //     "󰁺",
+            //     "󰁻",
+            //     "󰁼",
+            //     "󰁽",
+            //     "󰁾",
+            //     "󰁿",
+            //     "󰂀",
+            //     "󰂁",
+            //     "󰂂",
+            //     "󰁹"
+            // ]
             "default": [
-                "󰁺",
-                "󰁻",
-                "󰁼",
-                "󰁽",
-                "󰁾",
-                "󰁿",
-                "󰂀",
-                "󰂁",
-                "󰂂",
-                "󰁹"
+                "", // Battery Empty (0%)
+                "", // Battery 1/4 (10-20%)
+                "", // Battery 1/4 (20-30%)
+                "", // Battery 1/2 (30-40%)
+                "", // Battery 1/2 (40-50%)
+                "", // Battery 3/4 (50-60%)
+                "", // Battery 3/4 (60-70%)
+                "", // Battery Full (70-80%)
+                "", // Battery Full (80-90%)
+                "" // Battery Full (90-100%)
+            ],
+            "charging": [
+                " ", // Charging, Empty (0%)
+                " ", // Charging, 1/4 (10-20%)
+                " ", // Charging, 1/4 (20-30%)
+                " ", // Charging, 1/2 (30-40%)
+                " ", // Charging, 1/2 (40-50%)
+                " ", // Charging, 3/4 (50-60%)
+                " ", // Charging, 3/4 (60-70%)
+                " ", // Charging, Full (70-80%)
+                " ", // Charging, Full (80-90%)
+                " " // Charging, Full (90-100%)
             ]
         },
         // "format-full": "󰂅",

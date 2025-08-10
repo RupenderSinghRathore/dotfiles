@@ -1,6 +1,6 @@
 return { -- Autocompletion
     "hrsh7th/nvim-cmp",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPre", "BufNewFile", "CmdlineEnter" },
     dependencies = {
         -- Snippet Engine & its associated nvim-cmp source
         {

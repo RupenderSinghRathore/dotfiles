@@ -7,7 +7,7 @@ return {
             require("tokyonight").setup({
                 style = "night",
                 transparent = false, -- Default is not transparent
-                terminal_colors = true,
+                -- terminal_colors = true,
                 on_colors = function(colors)
                     colors.bg = "#16161E" -- Your desired darker hex color
                     -- colors.bg = "#181623"
