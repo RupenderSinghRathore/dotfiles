@@ -7,6 +7,7 @@ local opts = { noremap = true, silent = false }
 
 -- save file
 vim.keymap.set("n", "<leader>s", "<cmd>w<CR>", opts)
+vim.keymap.set("n", "<leader>md", "<cmd>call mkdir(expand('%:h'), 'p')<CR>", opts)
 
 -- to Explorer
 vim.keymap.set("n", "<leader>nv", "<cmd>Ex<CR>", opts)
@@ -56,5 +57,8 @@ vim.keymap.set("n", "u", "", { noremap = true })
 vim.keymap.set("n", "<CR>", "o<ESC>", { noremap = true })
 vim.keymap.set("n", "<C-h>", "O<ESC>", { noremap = true })
 
+-- Snippets
 vim.keymap.set("n", "<leader>ge", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
 vim.keymap.set("i", "{E", "{<CR>}<Esc>O", { noremap = true })
+vim.keymap.set("i", "(E", "()<Esc>i", { noremap = true })
+vim.keymap.set("n", "fn", "<cmd>e #<CR>", { noremap = true })

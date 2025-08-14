@@ -24,7 +24,7 @@ return {
 
             -- vim.keymap.set("n", "<leader>c", "<cmd>Codeium Toggle<CR>", {noremap = true})
 
-            vim.cmd("silent! Codeium Toggle") -- Toggles off by default
+            -- vim.cmd("silent! Codeium Toggle") -- Toggles off by default
         end,
     },
 }

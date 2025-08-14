@@ -17,6 +17,6 @@
     input-text-color:            #85aef7;
     background-color:            #19172485;
     background-color-elements:   #1f1d2e85;
-    border-color:                #403d82;
+    border-color:                #2e1f3e;
     active:                      #a485e7;
 }

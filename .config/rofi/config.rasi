@@ -71,8 +71,8 @@ window {
     y-offset:                    0px;
     padding:                     0px;
     enabled:                     true;
-    border:                      2px solid;
-    border-radius:               12px;
+    // border:                      5px solid;
+    // border-radius:               12px;
     cursor:                      "default";
     border-color:                @border-color;
     background-color:            @background-color;
@@ -83,7 +83,7 @@ mainbox {
     enabled:                     true;
     spacing:                     10px;
     background-color:            transparent;
-    border-radius:               12px;
+    // border-radius:               12px;
     orientation:                 vertical;
     // children:                    [ "imagebox", "listview" ];
     // children:                    [ "inputbar", "listview", "mode-switcher" ];}
@@ -106,9 +106,9 @@ inputbar {
     enabled:                     true;
     spacing:                     10px;
     padding:                     15px;
-    border-radius:               12px;
-    border:                      2px 2px 2px 2px;
-    border-color:                @love;
+    // border-radius:               12px;
+    // border:                      2px 2px 2px 2px;
+    // border-color:                @love;
     background-color:            @background-color-elements;
     children:                    [ "textbox-prompt-colon", "entry" ];
 }
@@ -148,32 +148,32 @@ button selected {
 }
 
 // List-view
-listview {
-    enabled:                     true;
-    lines:                       8;
-    cycle:                       true;
-    dynamic:                     true;
-    scrollbar:                   false;
-    reverse:                     false;
-    fixed-height:                true;
-    border:                      0px solid;
-    fixed-columns:               true;
-    padding:                     10px;
-    spacing:                     5px;
-    background-color:            transparent;
-    cursor:                      "default";
-}
+// listview {
+//     enabled:                     true;
+    // lines:                       8;
+//     cycle:                       true;
+//     dynamic:                     true;
+//     scrollbar:                   false;
+//     reverse:                     false;
+//     fixed-height:                true;
+//     border:                      0px solid;
+//     fixed-columns:               true;
+//     padding:                     10px;
+//     spacing:                     5px;
+//     background-color:            transparent;
+//     cursor:                      "default";
+// }
 
 // List-view elements
-element {
-    enabled:                     true;
-    spacing:                     10px;
-    padding:                     10px;
-    border-radius:               12px;
-    background-color:            transparent;
-    text-color:                  @text-color;
-    cursor:                      pointer;
-}
+// element {
+//     enabled:                     true;
+//     spacing:                     10px;
+//     padding:                     10px;
+//     border-radius:               12px;
+//     background-color:            transparent;
+//     text-color:                  @text-color;
+//     cursor:                      pointer;
+// }
 element.normal.normal {
     background-color: transparent;
     text-color: @text-color;
@@ -194,19 +194,19 @@ element selected.active {
     background-color:            @active;
     text-color:                  inherit;
 }
-element-icon {
-    background-color:            transparent;
-    size:                        32px;
-    cursor:                      inherit;
-}
-element-text {
-    background-color:            transparent;
-    text-color:                  inherit;
-    cursor:                      inherit;
-    vertical-align:              0.5;
-    horizontal-align:            0.0;
-}
-
+// element-icon {
+//     background-color:            transparent;
+//     size:                        32px;
+//     cursor:                      inherit;
+// }
+// element-text {
+//     background-color:            transparent;
+//     text-color:                  inherit;
+//     cursor:                      inherit;
+//     vertical-align:              0.5;
+//     horizontal-align:            0.0;
+// }
+//
 // Message
 message {
     background-color:            transparent;
@@ -224,4 +224,46 @@ error-message {
     padding:                     10px;
     background-color:            transparent;
     text-color:                  @text-color;
+}
+
+// Alternative for bigger grid
+listview {
+    enabled:                     true;
+    columns:                     3;          /* 3 columns → adjust to 2 for 4 big apps */
+    lines:                       2;          /* 2 rows (3x2 = 6 apps total) */
+    cycle:                       false;
+    dynamic:                     false;
+    scrollbar:                   false;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    border:                      0px;
+    padding:                     20px;
+    spacing:                     30px;       /* space between tiles */
+    background-color:            transparent;
+    cursor:                      "default";
+}
+
+element {
+    orientation:                 vertical;   /* icon on top, text below */
+    spacing:                     10px;
+    padding:                     20px;
+    border-radius:               15px;
+    background-color:            transparent;
+    text-color:                  @text-color;
+    cursor:                      pointer;
+    horizontal-align:            0.5;        /* center content */
+}
+
+element-icon {
+    background-color:            transparent;
+    size:                        96px;       /* bigger app icon */
+    cursor:                      inherit;
+}
+
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    horizontal-align:            0.5;        /* center text */
 }

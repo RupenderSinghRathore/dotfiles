@@ -3,7 +3,6 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
         local conform = require("conform")
-
         conform.setup({
             formatters = {
                 ["markdown-toc"] = {
@@ -30,6 +29,7 @@ return {
                 c = { "clang_format" },
                 cpp = { "clang_format" },
                 sh = { "shfmt" },
+                java = { "astyle" },
                 -- javascript = { "biome-check" },
                 -- typescript = { "biome-check" },
                 -- javascriptreact = { "biome-check" },
@@ -61,15 +61,39 @@ return {
         })
 
         -- Configure individual formatters
+        -- conform.formatters.prettier = {
+        --     args = {
+        --         "--stdin-filepath",
+        --         "$FILENAME",
+        --         "--tab-width",
+        --         "4",
+        --         "--use-tabs",
+        --         "false",
+        --     },
+        -- }
         conform.formatters.prettier = {
-            args = {
-                "--stdin-filepath",
-                "$FILENAME",
-                "--tab-width",
-                "4",
-                "--use-tabs",
-                "false",
-            },
+            args = function(_, ctx)
+                local filename = ctx.filename
+                local parser = nil
+
+                if filename:match("%.rasi$") then
+                    parser = "css"
+                    -- Pretend file is CSS so Prettier doesn't complain
+                    filename = filename:gsub("%.rasi$", ".css")
+                end
+
+                return vim.tbl_filter(function(x)
+                    return x ~= nil
+                end, {
+                    "--stdin-filepath",
+                    filename,
+                    "--tab-width",
+                    "4",
+                    "--use-tabs",
+                    "false",
+                    parser and ("--parser=" .. parser) or nil,
+                })
+            end,
         }
         conform.formatters.shfmt = {
             prepend_args = { "-i", "4" },

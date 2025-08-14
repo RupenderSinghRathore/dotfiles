@@ -5,7 +5,16 @@ return {
     dependencies = {
         -- Automatically install LSPs and related tools to stdpath for Neovim
         { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
+        -- {
         "williamboman/mason-lspconfig.nvim",
+        --     opts = {
+        --         automatic_enable = {
+        --             exclude = {
+        --                 "jdtls",
+        --             },
+        --         },
+        --     },
+        -- },
         "WhoIsSethDaniel/mason-tool-installer.nvim",
 
         -- Useful status updates for LSP.
@@ -178,6 +187,16 @@ return {
 
         local servers = {
             clangd = {},
+            jdtls = {
+                cmd = {
+                    "jdtls",
+                    "-configuration",
+                    vim.fn.stdpath("cache") .. "/jdtls/config",
+                    "-data",
+                    vim.fn.stdpath("cache") .. "/jdtls/workspace",
+                },
+                root_dir = require("lspconfig").util.root_pattern(".git", "mvnw", "gradlew", "pom.xml", "build.gradle"),
+            },
             gopls = {
                 settings = {
                     gopls = {
@@ -280,6 +299,12 @@ return {
                 end,
             },
         })
+        -- vim.api.nvim_create_autocmd("FileType", {
+        --     pattern = "java",
+        --     callback = function(args)
+        --         require("jdtls").jdtls_setup()
+        --     end,
+        -- })
         -- require("lspconfig")["null-ls"].setup({
         --   capabilities = capabilities,
         -- })
