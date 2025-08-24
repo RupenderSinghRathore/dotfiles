@@ -35,14 +35,14 @@ return {
     --         })
     --     end,
     -- },
-    -- {
-    --     -- Highlight todo, notes, etc in comments
-    --     "folke/todo-comments.nvim",
-    --     event = { "BufReadPre", "BufNewFile" },
-    --     -- event = "VimEnter",
-    --     dependencies = { "nvim-lua/plenary.nvim" },
-    --     opts = { signs = false },
-    -- },
+    {
+        -- Highlight todo, notes, etc in comments
+        "folke/todo-comments.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        -- event = "VimEnter",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = { signs = false },
+    },
     {
         -- High-performance color highlighter
         "norcalli/nvim-colorizer.lua",

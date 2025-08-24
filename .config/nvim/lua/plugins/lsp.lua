@@ -74,7 +74,7 @@ return {
                 map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 
                 -- Find references for the word under your cursor.
-                map("<leader>gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+                map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
                 -- Jump to the implementation of the word under your cursor.
                 --  Useful when your language has ways of declaring types without an actual implementation.
@@ -188,14 +188,14 @@ return {
         local servers = {
             clangd = {},
             jdtls = {
-                cmd = {
-                    "jdtls",
-                    "-configuration",
-                    vim.fn.stdpath("cache") .. "/jdtls/config",
-                    "-data",
-                    vim.fn.stdpath("cache") .. "/jdtls/workspace",
-                },
-                root_dir = require("lspconfig").util.root_pattern(".git", "mvnw", "gradlew", "pom.xml", "build.gradle"),
+                -- cmd = {
+                --     "jdtls",
+                --     "-configuration",
+                --     vim.fn.stdpath("cache") .. "/jdtls/config",
+                --     "-data",
+                --     vim.fn.stdpath("cache") .. "/jdtls/workspace",
+                -- },
+                -- root_dir = require("lspconfig").util.root_pattern(".git", "mvnw", "gradlew", "pom.xml", "build.gradle"),
             },
             gopls = {
                 settings = {
@@ -220,6 +220,7 @@ return {
                 },
             },
             zls = {},
+            kotlin_language_server = {},
             pyright = {},
 
             rust_analyzer = {},
@@ -308,5 +309,10 @@ return {
         -- require("lspconfig")["null-ls"].setup({
         --   capabilities = capabilities,
         -- })
+        vim.filetype.add({
+            extension = {
+                tmpl = "html",
+            },
+        })
     end,
 }

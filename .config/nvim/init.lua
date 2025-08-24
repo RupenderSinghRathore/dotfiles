@@ -28,6 +28,8 @@ require("lazy").setup({
     require("plugins.gitsigns"),
     require("plugins.git-fugitive"),
     require("plugins.lualine"),
+    require("plugins.love"),
+    require("plugins.neotree"),
     -- require("plugins.debugger"),
     -- require("plugins.vim-be-good"),
     -- require("plugins.hardtime"),

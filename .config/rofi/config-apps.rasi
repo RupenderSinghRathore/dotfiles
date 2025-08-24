@@ -13,7 +13,7 @@ configuration {
 	normalize-match: true;
 	icon-theme: "Tela-circle";    
     show-icons: true;
-    font: "SauceCodePro Nerd Font 18";
+    font: "SauceCodePro Nerd Font 17";
 	// Matching setting
 	matching: "normal";
 	tokenize: true;
@@ -148,32 +148,32 @@ button selected {
 }
 
 // List-view
-listview {
-    enabled:                     true;
-    lines:                       6;
-    cycle:                       true;
-    dynamic:                     true;
-    scrollbar:                   false;
-    reverse:                     false;
-    fixed-height:                true;
-    border:                      0px solid;
-    fixed-columns:               true;
-    padding:                     10px;
-    spacing:                     20px;
-    background-color:            transparent;
-    cursor:                      "default";
-}
+// listview {
+//     enabled:                     true;
+    // lines:                       8;
+//     cycle:                       true;
+//     dynamic:                     true;
+//     scrollbar:                   false;
+//     reverse:                     false;
+//     fixed-height:                true;
+//     border:                      0px solid;
+//     fixed-columns:               true;
+//     padding:                     10px;
+//     spacing:                     5px;
+//     background-color:            transparent;
+//     cursor:                      "default";
+// }
 
 // List-view elements
-element {
-    enabled:                     true;
-    spacing:                     10px;
-    padding:                     10px;
-    border-radius:               12px;
-    background-color:            transparent;
-    text-color:                  @text-color;
-    cursor:                      pointer;
-}
+// element {
+//     enabled:                     true;
+//     spacing:                     10px;
+//     padding:                     10px;
+//     border-radius:               12px;
+//     background-color:            transparent;
+//     text-color:                  @text-color;
+//     cursor:                      pointer;
+// }
 element.normal.normal {
     background-color: transparent;
     text-color: @text-color;
@@ -187,26 +187,25 @@ element normal.active {
     text-color:                  inherit;
 }
 element selected.normal {
-    // background-color:            @background-color-elements;
-    background-color:            transparent;
+    background-color:            @background-color-elements;
     text-color:                  @love;
 }
 element selected.active {
     background-color:            @active;
     text-color:                  inherit;
 }
-element-icon {
-    background-color:            transparent;
-    size:                        32px;
-    cursor:                      inherit;
-}
-element-text {
-    background-color:            transparent;
-    text-color:                  inherit;
-    cursor:                      inherit;
-    vertical-align:              0.5;
-    horizontal-align:            0.0;
-}
+// element-icon {
+//     background-color:            transparent;
+//     size:                        32px;
+//     cursor:                      inherit;
+// }
+// element-text {
+//     background-color:            transparent;
+//     text-color:                  inherit;
+//     cursor:                      inherit;
+//     vertical-align:              0.5;
+//     horizontal-align:            0.0;
+// }
 //
 // Message
 message {
@@ -225,4 +224,46 @@ error-message {
     padding:                     10px;
     background-color:            transparent;
     text-color:                  @text-color;
+}
+
+// Alternative for bigger grid
+listview {
+    enabled:                     true;
+    columns:                     3;          /* 3 columns → adjust to 2 for 4 big apps */
+    lines:                       2;          /* 2 rows (3x2 = 6 apps total) */
+    cycle:                       false;
+    dynamic:                     false;
+    scrollbar:                   false;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    border:                      0px;
+    padding:                     20px;
+    spacing:                     30px;       /* space between tiles */
+    background-color:            transparent;
+    cursor:                      "default";
+}
+
+element {
+    orientation:                 vertical;   /* icon on top, text below */
+    spacing:                     10px;
+    padding:                     20px;
+    border-radius:               15px;
+    background-color:            transparent;
+    text-color:                  @text-color;
+    cursor:                      pointer;
+    horizontal-align:            0.5;        /* center content */
+}
+
+element-icon {
+    background-color:            transparent;
+    size:                        86px;       /* bigger app icon */
+    cursor:                      inherit;
+}
+
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    horizontal-align:            0.5;        /* center text */
 }

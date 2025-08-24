@@ -8,7 +8,10 @@ search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads)
 file=$(find "${search_dirs[@]}" \
     -type d \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' \) -prune \
     -o \
-    -type f \( ! -name '*.png' ! -name '*.pdf' ! -name '*.epub' ! -name '*.zip' \) -print |
-    fzf --prompt="Select file: ")
-# Open the selected file in Neovim if a file is selected
-[ -n "$file" ] && nvim "$file"
+    -type f \( ! -name '*.png' -a ! -name '*.pdf' -a ! -name '*.epub' -a ! -name '*.zip' \) -print \
+    | sed "s|^$HOME/||" \
+    | fzf --prompt="Select file: ")
+
+if [ -n "$file" ]; then
+    nvim "$HOME/$file"
+fi

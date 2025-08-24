@@ -21,11 +21,9 @@ return { -- Autocompletion
                 -- https://github.com/rafamadriz/friendly-snippets
                 {
                     "rafamadriz/friendly-snippets",
-                    -- config = function()
-                    --     require("luasnip.loaders.from_vscode").lazy_load({
-                    --         paths = { vim.fn.stdpath("config") .. "/snippets" },
-                    --     })
-                    -- end,
+                    config = function()
+                        require("luasnip.loaders.from_vscode").lazy_load({})
+                    end,
                 },
             },
         },

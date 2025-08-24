@@ -9,6 +9,10 @@ return {
         },
         config = function()
             require("codeium").setup({
+                vim.api.nvim_create_user_command("Ai", function()
+                    print("Codeium Enabled")
+                    vim.api.nvim_echo({}, false, {}) -- Clears the message area
+                end, { nargs = "*" }),
                 virtual_text = {
                     enabled = true, -- Enable virtual text for suggestions
                     key_bindings = {
@@ -22,7 +26,7 @@ return {
                 },
             })
 
-            -- vim.keymap.set("n", "<leader>c", "<cmd>Codeium Toggle<CR>", {noremap = true})
+            vim.keymap.set("n", "<leader>c", "<cmd>Codeium Toggle<CR>", { noremap = true })
 
             -- vim.cmd("silent! Codeium Toggle") -- Toggles off by default
         end,

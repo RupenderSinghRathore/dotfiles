@@ -130,9 +130,15 @@ source $ZSH/oh-my-zsh.sh
 mycd() {
   local dir
   search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads)
-  dir=$(find "${search_dirs[@]}" -type d \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' \) -prune -o -type d -print 2>/dev/null | fzf --prompt="Select directory: ")
+    dir=$(
+        find "${search_dirs[@]}" -type d \
+            \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name '.gradle' -o -name 'META-INF' \) -prune \
+            -o -type d -print 2>/dev/null \
+        | sed "s|^$HOME/||" \
+        | fzf --prompt="Select directory: "
+    )
   if [ -n "$dir" ]; then
-    cd "$dir" || echo "error opening directory"
+    cd "$HOME/$dir" || echo "error opening directory"
   fi
 }
 
@@ -155,6 +161,13 @@ alias rain='terminal-rain --rain-color magenta --lightning-color white'
 alias goal='~/.goal.sh'
 alias dockerls='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Ports}}\t{{.Names}}\t{{.Status}}"'
 alias p='echo "Battery Percentage $(cat /sys/class/power_supply/BAT0/capacity)%"'
-alias archclean='sudo pacman -Rns $(pacman -Qdtq) 2>/dev/null || echo "System cleaned!"'
+# alias archclean='sudo pacman -Rns $(pacman -Qdtq) 2>/dev/null || echo "System cleaned!"'
+alias archclean='yay -Yc'
 alias mpvtty='mpv --vo=drm'
 alias batterystat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | less'
+alias ktinit='/home/kami-sama/dotfiles/.config/scripts/kotlin_simple_project_setup.sh'
+alias ani='ani-cli -q best'
+alias anidub='ani-cli --dub -q best'
+alias gitlog='git log --graph --all --oneline'
+alias gotest='go test -v'
+alias anigirl='momoisay'

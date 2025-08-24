@@ -5,6 +5,11 @@ return {
         local conform = require("conform")
         conform.setup({
             formatters = {
+                -- ktlint = {
+                --     command = "ktlint",
+                --     args = { "--format", "$FILENAME" },
+                --     stdin = false, -- ktlint typically works with files, not stdin
+                -- },
                 ["markdown-toc"] = {
                     condition = function(_, ctx)
                         for _, line in ipairs(vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false)) do
@@ -26,16 +31,11 @@ return {
             formatters_by_ft = {
                 -- go = { "gopls", "golines", "goimports" },
                 go = { "goimports", "gofmt" },
-                c = { "clang_format" },
+                -- c = { "clang_format" },
                 cpp = { "clang_format" },
                 sh = { "shfmt" },
                 java = { "astyle" },
-                -- javascript = { "biome-check" },
-                -- typescript = { "biome-check" },
-                -- javascriptreact = { "biome-check" },
-                -- typescriptreact = { "biome-check" },
-                -- css = { "biome-check" },
-                -- html = { "biome-check" },
+                kt = { "ktlint" },
                 javascript = { "prettier" },
                 typescript = { "prettier" },
                 javascriptreact = { "prettier" },
