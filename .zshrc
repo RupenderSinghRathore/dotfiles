@@ -12,9 +12,8 @@ export QT_STYLE_OVERRIDE=Kvantum
 # export FZF_DEFAULT_OPTS='--bind=ctrl-e:up'
 
 # if [ -f ~/dotfiles/.config/zsh/zsh_tmux_setup.zsh ]; then
-#   source ~/dotfiles/.config/zsh/zsh_tmux_setup.zsh 
+#   source ~/dotfiles/.config/zsh/zsh_tmux_setup.zsh
 # fi
-
 
 # setopt ignoreeof
 # IGNOREEOF=10
@@ -27,9 +26,7 @@ export QT_STYLE_OVERRIDE=Kvantum
 eval "$(starship init zsh)"
 # eval $(keychain --quiet --eval id_ed25519)
 
-
 export EDITOR='nvim'
-
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -47,7 +44,7 @@ HYPHEN_INSENSITIVE="true"
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
-zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+zstyle ':omz:update' mode reminder # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
@@ -91,7 +88,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-vi-mode zsh-autosuggestions)
+plugins=(git web-search zsh-syntax-highlighting zsh-vi-mode zsh-autosuggestions)
 ZVM_CURSOR_STYLE_ENABLED=false
 
 # plugins=(git  zsh-autosuggestions zsh-syntax-highlighting)
@@ -128,18 +125,18 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 mycd() {
-  local dir
-  search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads)
+    local dir
+    search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads)
     dir=$(
         find "${search_dirs[@]}" -type d \
             \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name '.gradle' -o -name 'META-INF' \) -prune \
-            -o -type d -print 2>/dev/null \
-        | sed "s|^$HOME/||" \
-        | fzf --prompt="Select directory: "
+            -o -type d -print 2>/dev/null |
+            sed "s|^$HOME/||" |
+            fzf --prompt="Select directory: "
     )
-  if [ -n "$dir" ]; then
-    cd "$HOME/$dir" || echo "error opening directory"
-  fi
+    if [ -n "$dir" ]; then
+        cd "$HOME/$dir" || echo "error opening directory"
+    fi
 }
 
 # Generated for envman. Do not edit.
@@ -170,4 +167,4 @@ alias ani='ani-cli -q best'
 alias anidub='ani-cli --dub -q best'
 alias gitlog='git log --graph --all --oneline'
 alias gotest='go test -v'
-alias anigirl='momoisay'
+alias yt='youtube'

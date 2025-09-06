@@ -89,6 +89,21 @@ return {
                         -- preview_cutoff = 0,
                     },
                     hidden = true,
+                    mappings = {
+                        i = {
+                            ["<C-D>"] = function(prompt_bufnr)
+                                local entry = require("telescope.actions.state").get_selected_entry()
+                                local filepath = entry.path or entry.filename
+
+                                if filepath then
+                                    vim.fn.delete(filepath)
+                                    -- print("Deleted: " .. filepath)
+                                    -- require("telescope.actions").close(prompt_bufnr) -- close telescope after deleting
+                                    require("telescope.builtin").find_files()
+                                end
+                            end,
+                        },
+                    },
                 },
                 live_grep = {
                     file_ignore_patterns = file_ignore_patterns,
