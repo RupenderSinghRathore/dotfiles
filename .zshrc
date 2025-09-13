@@ -2,6 +2,8 @@ export ZSH="$HOME/.oh-my-zsh"
 setopt IGNOREEOF
 export PATH="$HOME/go/bin:$HOME/.cargo/bin:$HOME/.local/bin/:$PATH"
 export MANPAGER='nvim +Man!'
+export GTK_USE_PORTAL=1
+# export GTK_THEME=Sweet-Dark-v40
 typeset -U PATH # remove duplication from path
 
 export QT_QPA_PLATFORMTHEME=qt5ct

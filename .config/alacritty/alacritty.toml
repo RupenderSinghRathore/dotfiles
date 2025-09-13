@@ -1,7 +1,14 @@
 [general]
 import = [
     "~/.config/alacritty/themes/themes/rose_pine.toml"
+#     # "~/.config/alacritty/mytheme.toml"
 ]
+
+# [colors.primary]
+# background = '#181623'
+# background = '#16161E'
+# foreground = '#e0def4'
+
 
 [env]
 TERM = "xterm-256color"
@@ -15,8 +22,8 @@ opacity = 0.85
 [font] 
 size = 17
 
-[font.normal]
-family =  "SauceCodePro Nerd Font"
+# [font.normal]
+# family =  "SauceCodePro Nerd Font"
 
 [[keyboard.bindings]]
 key = "F11"

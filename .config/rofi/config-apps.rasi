@@ -13,7 +13,7 @@ configuration {
 	normalize-match: true;
 	icon-theme: "Tela-circle";    
     show-icons: true;
-    font: "SauceCodePro Nerd Font 17";
+    font: "SauceCodePro Nerd Font 15";
 	// Matching setting
 	matching: "normal";
 	tokenize: true;

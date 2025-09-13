@@ -1,0 +1,20 @@
+theme = "mytokyonight"
+[editor]
+line-number = "relative"
+scroll-lines = 1
+auto-pairs = false
+
+[editor.cursor-shape]
+insert = "block"
+normal = "block"
+select = "block"
+
+[editor.file-picker]
+hidden = true
+
+[editor.lsp]
+display-messages = true
+
+[keys.normal]
+
+[keys.insert]

@@ -89,7 +89,7 @@ return {
                     "--stdin-filepath",
                     filename,
                     "--tab-width",
-                    "4",
+                    "2",
                     "--use-tabs",
                     "false",
                     parser and ("--parser=" .. parser) or nil,

@@ -19,9 +19,11 @@ for f in "${files[@]}"; do
 done
 
 # Let user choose from Rofi
-chosen_short=$(printf '%s\n' "${display_list[@]}" |
-    rofi -dmenu -i -p "Select file:" \
-        -normal-window )
+chosen_short=$(
+    printf '%s\n' "${display_list[@]}" |
+        # rofi -dmenu -i -p -normal-window "Select file:"
+        rofi -normal-window -dmenu -i -p "Select file:" -theme "$HOME/dotfiles/.config/rofi/config-okular.rasi"
+)
 
 # Exit if no selection
 [ -z "$chosen_short" ] && exit 0

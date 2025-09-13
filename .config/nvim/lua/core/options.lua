@@ -76,3 +76,12 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.formatoptions:remove({ "r", "o" })
     end,
 })
+-- Create an autocmd for specific filetypes
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "html", "javascript", "typescript", "json" }, -- filetypes
+    callback = function()
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.tabstop = 2
+        vim.opt_local.softtabstop = 2
+    end,
+})
