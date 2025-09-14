@@ -51,7 +51,8 @@ return {
                 liquid = { "prettier" },
                 lua = { "stylua" },
                 python = { "black" },
-                markdown = { "prettier", "markdown-toc" },
+                -- markdown = { "prettier", "markdown-toc" },
+                markdown = { "prettier" },
                 -- ["markdown.mdx"] = { "prettier", "markdownlint", "markdown-toc" },
             },
             format_on_save = {
@@ -60,42 +61,21 @@ return {
                 timeout_ms = 1000,
             },
         })
-
         -- Configure individual formatters
         -- conform.formatters.prettier = {
         --     args = {
         --         "--stdin-filepath",
         --         "$FILENAME",
         --         "--tab-width",
-        --         "4",
+        --         "2",
         --         "--use-tabs",
         --         "false",
+        --         "--print-width",
+        --         "1000",
+        --         "--prose-wrap",
+        --         "never",
         --     },
         -- }
-        conform.formatters.prettier = {
-            args = function(_, ctx)
-                local filename = ctx.filename
-                local parser = nil
-
-                if filename:match("%.rasi$") then
-                    parser = "css"
-                    -- Pretend file is CSS so Prettier doesn't complain
-                    filename = filename:gsub("%.rasi$", ".css")
-                end
-
-                return vim.tbl_filter(function(x)
-                    return x ~= nil
-                end, {
-                    "--stdin-filepath",
-                    filename,
-                    "--tab-width",
-                    "2",
-                    "--use-tabs",
-                    "false",
-                    parser and ("--parser=" .. parser) or nil,
-                })
-            end,
-        }
         conform.formatters.shfmt = {
             prepend_args = { "-i", "4" },
         }

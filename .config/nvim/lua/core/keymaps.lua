@@ -8,7 +8,7 @@ local opts2 = { noremap = true, silent = true }
 
 -- save file
 vim.keymap.set("n", "<leader>s", "<cmd>w<CR>", opts)
-vim.keymap.set("n", "<leader>r", "<cmd>make<CR>", opts)
+vim.keymap.set("n", "<leader>r", "<cmd>w<CR><cmd>make<CR>", opts)
 vim.keymap.set("n", "<leader>S", "<cmd>wq<CR>", opts)
 vim.keymap.set("n", "<leader>md", "<cmd>call mkdir(expand('%:h'), 'p')<CR>", opts)
 
@@ -33,7 +33,7 @@ vim.api.nvim_set_keymap("t", "<C-q>", [[<C-\><C-n><cmd>bdelete!<CR>]], opts)
 
 -- save file without auto-formatting
 -- vim.keymap.set("n", "<leader>ns", "<cmd>noautocmd w <CR>", opts)
-vim.keymap.set("n", "<leader>ns", ":mksession!Session.vim<CR>:wq<CR>", opts)
+vim.keymap.set("n", "<leader>ns", ":mksession!Session.vim<CR>:wqa<CR>", opts)
 -- vim.keymap.set("n", "<leader>nS", ":source Session.vim<CR>", opts)
 
 vim.keymap.set("n", "<leader>x", ":bdelete!<CR>", opts2) -- close buffer
@@ -60,7 +60,7 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 -- vim.keymap.set("n", "u", "", { noremap = true })
 
 vim.keymap.set("n", "<CR>", "o<ESC>", { noremap = true })
-vim.keymap.set("n", "<C-h>", "O<ESC>", { noremap = true })
+vim.keymap.set("n", "<BS>", "O<ESC>", { noremap = true })
 
 -- Snippets
 vim.keymap.set("n", "<leader>ge", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")

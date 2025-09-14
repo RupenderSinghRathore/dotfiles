@@ -2,7 +2,7 @@ vim.wo.number = true -- Make line numbers default (default: false)
 vim.o.relativenumber = true -- Set relative numbered lines (default: false)
 vim.o.clipboard = "unnamedplus" -- Sync clipboard between OS and Neovim. (default: '')
 vim.o.wrap = false -- Display lines as one long line (default: true)
-vim.o.linebreak = true -- Companion to wrap, don't split words (default: false)
+vim.o.linebreak = false -- Companion to wrap, don't split words (default: false)
 vim.o.mouse = "" -- Enable mouse mode (default: '')
 vim.o.autoindent = true -- Copy indent from current line when starting new one (default: true)
 vim.o.ignorecase = true -- Case-insensitive searching UNLESS \C or capital in search (default: false)
@@ -40,6 +40,7 @@ vim.o.completeopt = "menuone,noselect" -- Set completeopt to have a better compl
 vim.opt.shortmess:append("c") -- Don't give |ins-completion-menu| messages (default: does not include 'c')
 vim.opt.iskeyword:append("-") -- Hyphenated words recognized by searches (default: does not include '-')
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- Don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode. (default: 'croql')
+vim.opt.textwidth = 0
 vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- Separate Vim plugins from Neovim in case Vim still in use (default: includes this path if Vim is installed)
 
 -- Tabline setup
@@ -55,33 +56,36 @@ vim.g.netrw_liststyle = 3
 vim.opt.guicursor = "n-v-c-i-r-cr-o-sm:block"
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = "*",
-    callback = function()
-        vim.defer_fn(function()
-            vim.api.nvim_echo({}, false, {}) -- Clears the message area
-        end, 1000) -- Adjust delay if messages appear later
-    end,
+  pattern = "*",
+  callback = function()
+    vim.defer_fn(function()
+      vim.api.nvim_echo({}, false, {}) -- Clears the message area
+    end, 1000) -- Adjust delay if messages appear later
+  end,
 })
 vim.api.nvim_create_autocmd("TextYankPost", {
-    pattern = "*",
-    callback = function()
-        vim.defer_fn(function()
-            vim.api.nvim_echo({}, false, {})
-        end, 1500)
-    end,
+  pattern = "*",
+  callback = function()
+    vim.defer_fn(function()
+      vim.api.nvim_echo({}, false, {})
+    end, 1500)
+  end,
 })
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "*",
-    callback = function()
-        vim.opt_local.formatoptions:remove({ "r", "o" })
-    end,
+  pattern = "*",
+  callback = function()
+    vim.opt_local.formatoptions:remove({ "r", "o" })
+  end,
 })
 -- Create an autocmd for specific filetypes
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "html", "javascript", "typescript", "json" }, -- filetypes
-    callback = function()
-        vim.opt_local.shiftwidth = 2
-        vim.opt_local.tabstop = 2
-        vim.opt_local.softtabstop = 2
-    end,
+  pattern = { "lua", "html", "css", "javascript", "typescript", "json" }, -- filetypes
+  callback = function()
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.tabstop = 2
+    vim.opt_local.softtabstop = 2
+    vim.opt_local.textwidth = 0
+    vim.opt_local.formatoptions:remove({ "t", "c", "r", "o", "a" })
+    vim.opt_local.linebreak = false
+  end,
 })
