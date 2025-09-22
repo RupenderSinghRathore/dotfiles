@@ -63,6 +63,5 @@ vim.keymap.set("n", "<CR>", "o<ESC>", { noremap = true })
 vim.keymap.set("n", "<BS>", "O<ESC>", { noremap = true })
 
 -- Snippets
-vim.keymap.set("n", "<leader>ge", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
 vim.keymap.set("i", "{E", "{<CR>}<Esc>O", { noremap = true })
 -- vim.keymap.set("i", "(E", "()<Esc>i", { noremap = true })

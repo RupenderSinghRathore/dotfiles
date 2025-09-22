@@ -31,6 +31,7 @@ require("lazy").setup({
   require("plugins.love"),
   require("plugins.neotree"),
 
+  -- require("plugins.markdowns"),
   -- require("plugins.debugger"),
   -- require("plugins.copilot"),
   -- require("plugins.vim-be-good"),

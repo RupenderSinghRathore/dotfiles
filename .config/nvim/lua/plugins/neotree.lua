@@ -21,6 +21,7 @@ return {
           ["r"] = "rename", -- (optional) rename
           ["q"] = "close_window", -- quit Neo-tree
           ["/"] = "fuzzy_finder_directory",
+          ["t"] = "",
         },
       },
       filesystem = {

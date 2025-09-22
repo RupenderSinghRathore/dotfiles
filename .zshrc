@@ -94,6 +94,9 @@ plugins=(git web-search zsh-syntax-highlighting zsh-vi-mode zsh-autosuggestions)
 ZVM_CURSOR_STYLE_ENABLED=false
 
 # plugins=(git  zsh-autosuggestions zsh-syntax-highlighting)
+ZSH_WEB_SEARCH_ENGINES=(
+    bigo "https://www.bigocalc.com/"
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -170,3 +173,7 @@ alias anidub='ani-cli --dub -q best'
 alias gitlog='git log --graph --all --oneline'
 alias gotest='go test -v'
 alias yt='youtube'
+alias chat='chatgpt'
+alias leetp='firefox "https://leetcode.com/problem-list/vrls0me5/"'
+alias yt-dow='yt-dlp --embed-chapters'
+alias gitp='firefox "https://github.com/RupenderSinghRathore"'

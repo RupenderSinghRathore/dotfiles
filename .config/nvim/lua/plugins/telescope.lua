@@ -58,6 +58,7 @@ return {
       "vgcore*",
       "run",
       ".cache",
+      "Hakurei_Shrine",
     }
     require("telescope").setup({
       -- You can put your default mappings / updates / etc. in here
@@ -91,7 +92,7 @@ return {
           hidden = true,
           mappings = {
             i = {
-              ["<C-D>"] = function(prompt_bufnr)
+              ["<C-Q>"] = function(prompt_bufnr)
                 local entry = require("telescope.actions.state").get_selected_entry()
                 local filepath = entry.path or entry.filename
 

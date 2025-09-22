@@ -25,4 +25,5 @@
 @define-color mantle #181825;
 /* @define-color crust #11111b; */
 /* @define-color crust #16161E; */
-@define-color crust rgba(22, 22, 30, 0.8);
+/* @define-color crust rgba(22, 22, 30, 0.8); */
+@define-color crust rgba(22, 22, 30, 0.9);
