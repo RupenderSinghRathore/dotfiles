@@ -1,15 +1,21 @@
-command = "/bin/zsh"
+# Dynamic theme colors
+config-file = ?"~/.config/omarchy/current/theme/ghostty.conf"
 
-theme = "tokyonight"
+# Font
+font-family = "CaskaydiaMono Nerd Font"
+font-style = Regular
+font-size = 9
 
+# Window
+window-padding-x = 14
+window-padding-y = 14
+confirm-close-surface=false
+resize-overlay = never
+
+# Cursor stlying
 cursor-style = "block"
+cursor-style-blink = false
+shell-integration-features = no-cursor
 
-font-family = "SauceCodePro Nerd Font Mono"
-
-font-size = 18
-
-keybind = "f11=toggle_fullscreen"
-
-background-opacity = 0.8
-
-keybind = "ctrl+v=paste_from_clipboard"
+# Keyboard bindings
+keybind = f11=toggle_fullscreen

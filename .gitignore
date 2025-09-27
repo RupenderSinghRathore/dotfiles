@@ -1,2 +1,4 @@
-/home/kami-sama/dotfiles/.config/alacritty/themes/images
+.config/alacritty/themes/images
 **/Session.vim
+colemak-dh
+.config/zsh/private-env

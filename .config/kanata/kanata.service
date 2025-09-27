@@ -6,7 +6,8 @@ After=local-fs.target
 [Service]
 Type=simple
 ExecStart=/usr/bin/kanata --cfg /etc/kanata/config.kbd
+Restart=no
 
 [Install]
-WantedBy=multi-user.target
-# WantedBy=sysinit.target
+WantedBy=sysinit.target
+#WantedBy=multi-user.target

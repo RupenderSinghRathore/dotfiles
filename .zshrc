@@ -1,14 +1,16 @@
+source ~/dotfiles/.config/zsh/private-env
+
 export ZSH="$HOME/.oh-my-zsh"
 setopt IGNOREEOF
 export PATH="$HOME/go/bin:$HOME/.cargo/bin:$HOME/.local/bin/:$PATH"
 export MANPAGER='nvim +Man!'
 export GTK_USE_PORTAL=1
-# export GTK_THEME=Sweet-Dark-v40
 typeset -U PATH # remove duplication from path
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_QPA_PLATFORMTHEME=qt6ct
 export QT_STYLE_OVERRIDE=Kvantum
+export DEBUGINFOD_URLS="https://debuginfod.archlinux.org"
 
 # sets <C-e> to up in fzf
 # export FZF_DEFAULT_OPTS='--bind=ctrl-e:up'
@@ -147,33 +149,6 @@ mycd() {
 # Generated for envman. Do not edit.
 # [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-alias load='source ~/.zshrc'
-alias n='nvim'
-alias t='tmux attach || tmux'
-alias kt='tmux kill-server'
-alias b='brightnessctl'
-# alias c='clear'
-alias y='yazi'
-alias f='fastfetch'
-alias mysqlDisable='sudo systemctl disable mysqld'
-alias mysqlStart='sudo systemctl start mysqld'
-alias nf='/home/kami-sama/dotfiles/.config/scripts/nvim_file_current_dir.sh'
-alias event='/home/kami-sama/dotfiles/.config/scripts/github_activity_less.sh'
-alias rain='terminal-rain --rain-color magenta --lightning-color white'
-alias goal='~/.goal.sh'
-alias dockerls='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Ports}}\t{{.Names}}\t{{.Status}}"'
-alias p='echo "Battery Percentage $(cat /sys/class/power_supply/BAT0/capacity)%"'
-# alias archclean='sudo pacman -Rns $(pacman -Qdtq) 2>/dev/null || echo "System cleaned!"'
-alias archclean='yay -Yc'
-alias mpvtty='mpv --vo=drm'
-alias batterystat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | less'
-alias ktinit='/home/kami-sama/dotfiles/.config/scripts/kotlin_simple_project_setup.sh'
-alias ani='ani-cli -q best'
-alias anidub='ani-cli --dub -q best'
-alias gitlog='git log --graph --all --oneline'
-alias gotest='go test -v'
-alias yt='youtube'
-alias chat='chatgpt'
-alias leetp='firefox "https://leetcode.com/problem-list/vrls0me5/"'
-alias yt-dow='yt-dlp --embed-chapters'
-alias gitp='firefox "https://github.com/RupenderSinghRathore"'
+source ~/dotfiles/.config/zsh/aliases
+
+. "$HOME/.local/share/../bin/env"

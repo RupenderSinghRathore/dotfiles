@@ -1,0 +1,68 @@
+# File system
+alias ls='eza -lh --group-directories-first --icons=auto'
+alias lsa='ls -a'
+alias lt='eza --tree --level=2 --long --icons --git'
+alias lta='lt -a'
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+alias cd="zd"
+zd() {
+    if [ $# -eq 0 ]; then
+        builtin cd ~ && return
+    elif [ -d "$1" ]; then
+        builtin cd "$1"
+    else
+        z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
+    fi
+}
+open() {
+    xdg-open "$@" >/dev/null 2>&1 &
+}
+
+# Directories
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Tools
+alias d='docker'
+alias r='rails'
+# n() { if [ "$#" -eq 0 ]; then nvim .; else nvim "$@"; fi; }
+
+# Git
+alias g='git'
+alias gcm='git commit -m'
+alias gcam='git commit -a -m'
+alias gcad='git commit -a --amend'
+
+# Miscellaneous
+alias load='source ~/.zshrc'
+alias n='nvim'
+alias t='tmux attach || tmux'
+alias kt='tmux kill-server'
+alias b='brightnessctl'
+# alias c='clear'
+alias y='yazi'
+alias f='fastfetch'
+alias mysqlDisable='sudo systemctl disable mysqld'
+alias mysqlStart='sudo systemctl start mysqld'
+alias nf='/home/kami-sama/dotfiles/.config/scripts/nvim_file_current_dir.sh'
+alias event='/home/kami-sama/dotfiles/.config/scripts/github_activity_less.sh'
+alias rain='terminal-rain --rain-color magenta --lightning-color white'
+alias goal='~/.goal.sh'
+alias dockerls='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Ports}}\t{{.Names}}\t{{.Status}}"'
+alias p='echo "Battery Percentage $(cat /sys/class/power_supply/BAT0/capacity)%"'
+# alias archclean='sudo pacman -Rns $(pacman -Qdtq) 2>/dev/null || echo "System cleaned!"'
+alias archclean='yay -Yc'
+alias mpvtty='mpv --vo=drm'
+alias batterystat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | less'
+alias ktinit='/home/kami-sama/dotfiles/.config/scripts/kotlin_simple_project_setup.sh'
+alias ani='ani-cli -q best'
+alias anidub='ani-cli --dub -q best'
+alias gitlog='git log --graph --all --oneline'
+alias gotest='go test -v'
+alias yt='youtube'
+alias chat='chatgpt'
+alias leetp='firefox "https://leetcode.com/problem-list/vrls0me5/"'
+alias yt-dow='yt-dlp --embed-chapters'
+alias gitp='firefox "https://github.com/RupenderSinghRathore"'
+alias fixfuckingdolphin='sudo pacman -S archlinux-xdg-menu && XDG_MENU_PREFIX=arch- kbuildsycoca6'
