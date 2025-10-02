@@ -67,6 +67,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
+    width:                       60%;
     x-offset:                    0px;
     y-offset:                    0px;
     padding:                     0px;
