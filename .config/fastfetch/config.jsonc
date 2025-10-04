@@ -9,7 +9,7 @@
         // "source": "~/.config/omarchy/branding/about.txt",
         // "color": { "1": "green" },
         "padding": {
-            "top": 1,
+            "top": 0,
             "right": 10,
             "left": 6
         }
@@ -72,12 +72,12 @@
             "keyColor": "blue",
             "text": "version=$(omarchy-version); echo \"Omarchy $version\""
         },
-        {
-            "type": "command",
-            "key": "│ ├󰘬",
-            "keyColor": "blue",
-            "text": "branch=$(omarchy-version-branch); echo \"$branch\""
-        },
+        // {
+        //     "type": "command",
+        //     "key": "│ ├󰘬",
+        //     "keyColor": "blue",
+        //     "text": "branch=$(omarchy-version-branch); echo \"$branch\""
+        // },
         {
             "type": "kernel",
             "key": "│ ├",

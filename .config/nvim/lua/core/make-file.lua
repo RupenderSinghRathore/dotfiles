@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "javascript",
   callback = function()
-    vim.opt_local.makeprg = ""
+    vim.opt_local.makeprg = "bun %"
     vim.keymap.set("i", "<C-p>", 'console.log("")<C-o>h<C-o>i', { buffer = true })
     -- vim.keymap.set("n", "<F1>", 'iconsole.log("")<Esc>hi', { buffer = true })
   end,
