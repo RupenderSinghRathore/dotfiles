@@ -1,4 +1,4 @@
-source ~/dotfiles/.config/zsh/private-env
+# source ~/dotfiles/.config/zsh/private-env
 
 export ZSH="$HOME/.oh-my-zsh"
 setopt IGNOREEOF
