@@ -2,7 +2,7 @@
 
 export ZSH="$HOME/.oh-my-zsh"
 setopt IGNOREEOF
-export PATH="$HOME/go/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.local/omarchy/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH"
 export MANPAGER='nvim +Man!'
 export GTK_USE_PORTAL=1
 typeset -U PATH # remove duplication from path
@@ -54,7 +54,7 @@ mycd() {
 # Generated for envman. Do not edit.
 # [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-. "$HOME/.local/share/../bin/env"
+# . "$HOME/.local/share/../bin/env"
 
 # - $ZSH_CUSTOM/aliases.zsh
 # - $ZSH_CUSTOM/macos.zsh
