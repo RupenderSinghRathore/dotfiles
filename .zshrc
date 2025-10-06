@@ -7,9 +7,9 @@ export MANPAGER='nvim +Man!'
 export GTK_USE_PORTAL=1
 typeset -U PATH # remove duplication from path
 
-export QT_QPA_PLATFORMTHEME=qt5ct
-export QT_QPA_PLATFORMTHEME=qt6ct
-export QT_STYLE_OVERRIDE=Kvantum
+# export QT_QPA_PLATFORMTHEME=qt5ct
+# export QT_QPA_PLATFORMTHEME=qt6ct
+# export QT_STYLE_OVERRIDE=Kvantum
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org"
 
 # setopt ignoreeof
