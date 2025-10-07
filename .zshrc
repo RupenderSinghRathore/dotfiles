@@ -50,6 +50,12 @@ mycd() {
         cd "$HOME/$dir" || echo "error opening directory"
     fi
 }
+makec() {
+    ./make.sh "$@"
+}
+npipe() {
+    nvim $(which $1)
+}
 
 # Generated for envman. Do not edit.
 # [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
