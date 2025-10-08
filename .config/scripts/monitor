@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Check if HDMI-A-1 is connected
+if hyprctl monitors all | grep -q "HDMI-A-1"; then
+    hyprctl keyword monitor "HDMI-A-1,preferred,auto,1"
+    hyprctl keyword monitor "eDP-1,disable"
+    hyprctl keyword input:sensitivity -0.8
+    notify-send "HDMI detected — switching to external display"
+    echo "monitor=HDMI-A-1,preferred,auto,1" >/home/kami-sama/dotfiles/.config/hypr/monitors.conf
+    echo "monitor=eDP-1,disable" >>/home/kami-sama/dotfiles/.config/hypr/monitors.conf
+    echo "input {" >>/home/kami-sama/dotfiles/.config/hypr/monitors.conf
+    echo "sensitivity = -0.8" >>/home/kami-sama/dotfiles/.config/hypr/monitors.conf
+    echo "}" >>/home/kami-sama/dotfiles/.config/hypr/monitors.conf
+else
+    hyprctl keyword monitor "eDP-1,preferred,auto,1.333333"
+    hyprctl keyword monitor "HDMI-A-1,disable"
+    hyprctl keyword input:sensitivity 0
+    echo "monitor=,preferred,auto,1.333333" >/home/kami-sama/dotfiles/.config/hypr/monitors.conf
+    echo "monitor=HDMI-A-1,disable" >>/home/kami-sama/dotfiles/.config/hypr/monitors.conf
+fi

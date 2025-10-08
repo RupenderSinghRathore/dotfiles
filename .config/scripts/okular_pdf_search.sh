@@ -3,7 +3,7 @@
 search_dirs=("$HOME/Downloads" "$HOME/Documents")
 
 # Find files
-mapfile -t files < <(find "${search_dirs[@]}" -type f \( -iname '*.pdf' -o -iname '*.epub' -o -iname '*.pptx' \) -print 2>/dev/null)
+mapfile -t files < <(find "${search_dirs[@]}" -type f \( -iname '*.pdf' -o -iname '*.epub' -o -iname '*.pptx' -o -iname '*.docx' \) -print 2>/dev/null)
 
 # Exit if no files found
 [ ${#files[@]} -eq 0 ] && exit 0
