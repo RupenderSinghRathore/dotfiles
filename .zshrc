@@ -2,6 +2,7 @@
 
 export ZSH="$HOME/.oh-my-zsh"
 setopt IGNOREEOF
+setopt autocd
 export PATH="$HOME/.local/bin:$HOME/.local/omarchy/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH"
 export MANPAGER='nvim +Man!'
 export GTK_USE_PORTAL=1

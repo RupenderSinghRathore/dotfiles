@@ -15,7 +15,7 @@
 
 (defalias
   ;;escctrl (tap-hold 0 $hold-time esc lctl)
-  quotectrl (tap-hold 0 $hold-time ' rctl)
+  quotectrl (tap-hold 0 $hold-time ' lctl)
 )
 
 (deflayer base
