@@ -30,6 +30,7 @@ require("lazy").setup({
   require("plugins.lualine"),
   require("plugins.love"),
   require("plugins.neotree"),
+  require("plugins.image"),
 
   -- require("plugins.markdowns"),
   -- require("plugins.debugger"),

@@ -1,5 +1,6 @@
 /* @import "/home/kami-sama/.config/omarchy/current/theme/waybar.css"; */
-@import "/home/kami-sama/.local/omarchy/themes/tokyo-night/waybar.css";
+/* @import "/home/kami-sama/.local/omarchy/themes/tokyo-night/waybar.css"; */
+@import "/home/kami-sama/.local/omarchy/themes/catppuccin/waybar.css";
 
 * {
   background-color: @background;
