@@ -43,6 +43,8 @@ return {
         typescriptreact = { "prettier" },
         css = { "prettier" },
         html = { "prettier" },
+        htmldjango = { "djlint" },
+        -- htmldjango = { "prettier" },
         tmpl = { "prettier" },
 
         svelte = { "prettier" },

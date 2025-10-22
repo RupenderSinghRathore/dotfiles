@@ -79,7 +79,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 -- Create an autocmd for specific filetypes
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "lua", "html", "css", "javascript", "typescript", "json" }, -- filetypes
+  pattern = { "lua", "html", "htmldjango", "css", "javascript", "typescript", "json" }, -- filetypes
   callback = function()
     vim.opt_local.shiftwidth = 2
     vim.opt_local.tabstop = 2

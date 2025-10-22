@@ -47,6 +47,7 @@ return {
     local file_ignore_patterns = {
       "node_modules",
       ".git/",
+      "env/",
       ".venv",
       ".gradle/",
       ".db",
@@ -59,6 +60,8 @@ return {
       "run",
       ".cache",
       "Hakurei_Shrine",
+      "Session.vim",
+      "package",
     }
     require("telescope").setup({
       -- You can put your default mappings / updates / etc. in here

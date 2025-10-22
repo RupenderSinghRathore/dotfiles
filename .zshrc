@@ -30,6 +30,7 @@ HYPHEN_INSENSITIVE="true" # Case-sensitive completion must be off. _ and - will 
 zstyle ':omz:update' mode reminder # just remind me to update when it's time
 
 plugins=(git web-search zsh-syntax-highlighting zsh-vi-mode zsh-autosuggestions)
+
 ZVM_CURSOR_STYLE_ENABLED=false
 ZSH_WEB_SEARCH_ENGINES=(
     bigo "https://www.bigocalc.com/"
@@ -42,7 +43,7 @@ mycd() {
     search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads)
     dir=$(
         find "${search_dirs[@]}" -type d \
-            \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name '.gradle' -o -name 'META-INF' \) -prune \
+            \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name '.gradle' -o -name 'META-INF' -o -name 'env' \) -prune \
             -o -type d -print 2>/dev/null |
             sed "s|^$HOME/||" |
             fzf --prompt="Select directory: "
@@ -66,4 +67,5 @@ npipe() {
 # - $ZSH_CUSTOM/aliases.zsh
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
+
 source ~/dotfiles/.config/zsh/aliases

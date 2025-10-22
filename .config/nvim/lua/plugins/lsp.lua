@@ -187,6 +187,7 @@ return {
 
     local servers = {
       clangd = {},
+      marksman = {},
       jdtls = {
         -- cmd = {
         --     "jdtls",

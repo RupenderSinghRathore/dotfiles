@@ -8,14 +8,14 @@ DIRS=(
 # if [[ $# -eq 1 ]]; then
 #     selected="$1"
 # else
-    selected=$(
-        find "${DIRS[@]}" -type d \
-            \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name '.gradle' -o -name 'META-INF' \) -prune \
-            -o -type d -print 2>/dev/null \
-        | sed "s|^$HOME/||" \
-        | fzf --prompt="New Tmux Session: "
-    )
-    [[ $selected ]] && selected="$HOME/$selected"
+selected=$(
+    find "${DIRS[@]}" -type d \
+        \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name '.gradle' -o -name 'META-INF' -o -name 'env' -o -name 'venv' \) -prune \
+        -o -type d -print 2>/dev/null |
+        sed "s|^$HOME/||" |
+        fzf --prompt="New Tmux Session: "
+)
+[[ $selected ]] && selected="$HOME/$selected"
 # fi
 
 [[ ! $selected ]] && exit 0
@@ -27,4 +27,3 @@ if ! tmux has-session -t "$selected_name"; then
 fi
 
 tmux switch-client -t "$selected_name"
-
