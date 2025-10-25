@@ -52,6 +52,15 @@ mycd() {
         cd "$HOME/$dir" || echo "error opening directory"
     fi
 }
+web-dow() {
+    wget --mirror \
+        --convert-links \
+        --adjust-extension \
+        --page-requisites \
+        --no-parent \
+        -U "Mozilla/5.0 (compatible; MyOfflineBot/1.0)" \
+        ${1}
+}
 makec() {
     ./make.sh "$@"
 }

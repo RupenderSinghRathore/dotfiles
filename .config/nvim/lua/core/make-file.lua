@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "c",
   callback = function()
-    vim.opt_local.makeprg = "gcc % -o run"
+    vim.opt_local.makeprg = "clangc % -o run"
     -- vim.opt_local.makeprg = "gcc % -o run"
     vim.keymap.set("n", "<F1>", ":!./run<CR>", { buffer = true })
     vim.keymap.set("i", "<C-p>", 'printf("\\n");<Esc>hhhhi', { buffer = true })
