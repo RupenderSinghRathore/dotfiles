@@ -29,7 +29,8 @@ return {
         },
       },
       formatters_by_ft = {
-        go = { "gopls", "golines", "goimports" },
+        go = { "gofmt", "golines", "goimports" },
+        rust = { "rustfmt" },
         c = { "clang_format" },
         cpp = { "clang_format" },
         sh = { "shfmt" },

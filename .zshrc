@@ -6,6 +6,7 @@ setopt autocd
 export PATH="$HOME/.local/bin:$HOME/.local/omarchy/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH"
 export MANPAGER='nvim +Man!'
 export GTK_USE_PORTAL=1
+export RUST_BACKTRACE=1
 typeset -U PATH # remove duplication from path
 
 # export QT_QPA_PLATFORMTHEME=qt5ct
@@ -43,7 +44,7 @@ mycd() {
     search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads)
     dir=$(
         find "${search_dirs[@]}" -type d \
-            \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name '.gradle' -o -name 'META-INF' -o -name 'env' \) -prune \
+            \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name '.gradle' -o -name 'META-INF' -o -name 'env' -o -name 'target' \) -prune \
             -o -type d -print 2>/dev/null |
             sed "s|^$HOME/||" |
             fzf --prompt="Select directory: "

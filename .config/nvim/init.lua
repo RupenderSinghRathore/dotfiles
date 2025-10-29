@@ -1,6 +1,6 @@
 require("core.options")
 require("core.keymaps")
-require("core.make-file")
+-- require("core.make-file")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -19,6 +19,7 @@ require("lazy").setup({
   require("plugins.telescope"),
   require("plugins.lsp"),
   require("plugins.autocompletion"),
+  require("plugins.snippets"),
   require("plugins.indent-blankline"),
   require("plugins.comment"),
   require("plugins.auto-tag"),

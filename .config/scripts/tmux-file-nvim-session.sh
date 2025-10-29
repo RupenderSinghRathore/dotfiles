@@ -5,7 +5,7 @@ search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads)
 
 # Search for files in the specified directories, optionally excluding certain subdirectories (e.g., .git)
 file=$(find "${search_dirs[@]}" \
-    -type d \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name 'env' -o -name 'venv' \) -prune \
+    -type d \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name 'env' -o -name 'venv' -o -name 'target' \) -prune \
     -o \
     -type f \( ! -name '*.png' -a ! -name '*.pdf' -a ! -name '*.epub' -a ! -name '*.zip' \) -print |
     sed "s|^$HOME/||" |

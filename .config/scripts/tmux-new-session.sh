@@ -1,7 +1,7 @@
 #!/bin/bash
 
 search_dirs=(Documents Downloads Projects lunaar dotfiles Games)
-dir=$(find "${search_dirs[@]}" -type d -name '.git' -o -name 'env' -prune -o -type d -print 2>/dev/null | fzf --prompt="Select directory: ")
+dir=$(find "${search_dirs[@]}" -type d -name '.git' -o -name 'env' -o -name 'target' -prune -o -type d -print 2>/dev/null | fzf --prompt="Select directory: ")
 
 if [ -n "$dir" ]; then
     session_name=$(basename "$dir")

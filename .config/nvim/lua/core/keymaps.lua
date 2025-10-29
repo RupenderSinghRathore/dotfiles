@@ -28,7 +28,8 @@ vim.keymap.set({ "n", "v" }, "s", '"_s', opts)
 -- Close the terminal
 -- vim.keymap.set("n", "<leader>ng", "<cmd>term<CR>ilazygit && exit<CR>", opts)
 vim.api.nvim_set_keymap("t", "<C-o>", [[<C-\><C-n><C-o>]], opts)
-vim.api.nvim_set_keymap("t", "JJ", [[<C-\><C-n>]], opts)
+-- vim.api.nvim_set_keymap("t", "JJ", [[<C-\><C-n>]], opts)
+vim.api.nvim_set_keymap("t", "<C-k>", [[<C-\><C-n>]], opts)
 vim.api.nvim_set_keymap("t", "<C-q>", [[<C-\><C-n><cmd>bdelete!<CR>]], opts)
 
 -- save file without auto-formatting
