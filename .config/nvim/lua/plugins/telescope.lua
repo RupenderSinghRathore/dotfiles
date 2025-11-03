@@ -47,6 +47,8 @@ return {
     local file_ignore_patterns = {
       "node_modules",
       ".git/",
+      "target/",
+      "Cargo.lock",
       "env/",
       ".venv",
       ".gradle/",
@@ -57,7 +59,8 @@ return {
       ".png",
       ".jpg",
       "vgcore*",
-      "run",
+      -- "run",
+      "bin",
       ".cache",
       "Hakurei_Shrine",
       "Session.vim",

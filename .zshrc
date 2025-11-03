@@ -31,6 +31,7 @@ HYPHEN_INSENSITIVE="true" # Case-sensitive completion must be off. _ and - will 
 zstyle ':omz:update' mode reminder # just remind me to update when it's time
 
 plugins=(git web-search zsh-syntax-highlighting zsh-vi-mode zsh-autosuggestions)
+# plugins=(git web-search zsh-syntax-highlighting zsh-autosuggestions)
 
 ZVM_CURSOR_STYLE_ENABLED=false
 ZSH_WEB_SEARCH_ENGINES=(
@@ -44,7 +45,7 @@ mycd() {
     search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads)
     dir=$(
         find "${search_dirs[@]}" -type d \
-            \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name '.gradle' -o -name 'META-INF' -o -name 'env' -o -name 'target' \) -prune \
+            \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name 'env' -o -name 'venv' -o -name '.gradle' -o -name 'META-INF' -o -name 'target' -o -name '.cache' -o -name 'utils' \) -prune \
             -o -type d -print 2>/dev/null |
             sed "s|^$HOME/||" |
             fzf --prompt="Select directory: "
@@ -65,6 +66,10 @@ web-dow() {
 makec() {
     ./make.sh "$@"
 }
+rustp() {
+    cargo new ${1} && cd ${1} || return 1
+    nvim ./src/main.rc
+}
 npipe() {
     nvim $(which $1)
 }
@@ -77,5 +82,11 @@ npipe() {
 # - $ZSH_CUSTOM/aliases.zsh
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
+
+# bindkey -v
+# bindkey -a '^H' backward-kill-word # vi command mode
+# bindkey -v '^H' backward-kill-word
+# bindkey '^H' backward-kill-word
+# bindkey '^?' backward-kill-word
 
 source ~/dotfiles/.config/zsh/aliases

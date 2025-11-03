@@ -32,7 +32,9 @@ require("lazy").setup({
   require("plugins.love"),
   require("plugins.neotree"),
   require("plugins.image"),
+  require("plugins.dap"),
 
+  -- require("plugins.rustaceanvim"),
   -- require("plugins.markdowns"),
   -- require("plugins.debugger"),
   -- require("plugins.copilot"),

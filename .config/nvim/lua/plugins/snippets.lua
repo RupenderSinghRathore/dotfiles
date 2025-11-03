@@ -26,10 +26,28 @@ return {
       -- local conds = require("luasnip.extras.conditions")
       -- local conds_expand = require("luasnip.extras.conditions.expand")
 
+      -- vim.keymap.del("i", "<C-e>", { buffer = true })
+      pcall(vim.keymap.del, "i", "<C-E>", { buffer = true })
       -- Rust
       vim.api.nvim_create_autocmd("FileType", {
+
         pattern = "rust",
         callback = function()
+          vim.lsp.enable("rust_analyzer")
+          vim.diagnostic.config({
+            -- virtual_text = {
+            --   severity = { min = vim.diagnostic.severity.WARN }, -- Only errors
+            -- },
+            signs = {
+              severity = { min = vim.diagnostic.severity.ERROR }, -- Only errors
+            },
+            underline = {
+              severity = { min = vim.diagnostic.severity.WARN }, -- Only errors
+            },
+            -- underline = true,
+            -- update_in_insert = false, -- Don't update diagnostics in insert mode
+          })
+
           -- buid commands
           vim.keymap.set("n", "<leader>r", "<cmd>!cargo run<CR>", { buffer = true })
           vim.keymap.set("n", "<F2>", "<cmd>term<CR>icargo run<CR>", { buffer = true })
@@ -37,11 +55,13 @@ return {
           vim.keymap.set("n", "<F3>", ":!cargo check<CR>", { buffer = true })
 
           -- snippets
-          vim.keymap.set("i", "<C-p>", function()
+          vim.keymap.set("i", "<C-e>p", function()
             ls.snip_expand(s("log", {
               t('println!("'),
-              i(1, "message"),
-              t('");'),
+              i(1, ""),
+              t('"'),
+              i(2, ""),
+              t(");"),
             }))
           end, { buffer = true, desc = "Insert println snippet" })
         end,
@@ -49,21 +69,36 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "go",
         callback = function()
+          local dirname = vim.fn.expand("%:p:h")
+          -- vim.keymap.set("n", "<leader>r", "<cmd>!go run " .. dirname .. "<CR>", { buffer = true })
           vim.keymap.set("n", "<leader>r", "<cmd>!go run %<CR>", { buffer = true })
-          vim.keymap.set("i", "<C-p>", function()
+
+          vim.keymap.set("i", "<C-e>p", function()
             ls.snip_expand(s("log", {
               t('fmt.Printf("'),
-              i(1, "message"),
-              t('\\n",'),
+              i(1, ""),
+              t('\\n"'),
               i(2, ""),
               t(")"),
             }))
           end, { buffer = true, desc = "Insert println snippet" })
-          vim.keymap.set("i", "<C-e>", function()
+
+          -- vim.keymap.del("i", "<C-s>")
+          vim.keymap.set("i", "<C-e>h", function()
+            ls.snip_expand(s("Handler func", {
+              t({ "func (app *application) " }),
+              i(1, ""),
+              t({ "(w http.ResponseWriter, r *http.Request) {", "\t" }),
+              i(2, ""),
+              t({ "", "}" }),
+            }))
+          end, { buffer = true, desc = "http handlerfunc signature" })
+
+          vim.keymap.set("i", "<C-e>e", function()
             ls.snip_expand(s("Errorhandling", {
-              t({ "if err != nil {", "\t" }), -- line 1 + indent
-              i(1, "// TODO: handle error"), -- insert node
-              t({ "", "}" }), -- empty line + closing brace
+              t({ "if err != nil {", "\t" }),
+              i(1, ""),
+              t({ "", "}" }),
             }))
           end, { buffer = true, desc = "Insert Go error handling block" })
         end,
@@ -79,20 +114,19 @@ return {
             "<cmd>!clang -fsanitize=address -g -Iinclude -Wall % -o run && ./run<CR>",
             { buffer = true }
           )
-          -- vim.opt_local.makeprg = "gcc % -o run"
-          vim.keymap.set("n", "<F1>", ":!./run<CR>", { buffer = true })
-          vim.keymap.set("i", "<C-p>", function()
+          vim.keymap.set("n", "<F2>", "<cmd>term<CR>imakec<CR>", { buffer = true })
+          vim.keymap.set("i", "<C-e>p", function()
             ls.snip_expand(s("log", {
               t('printf("'),
-              i(1, "message"),
-              t('\\n",'),
+              i(1, ""),
+              t('\\n"'),
               i(2, ""),
               t(");"),
             }))
           end, { buffer = true, desc = "Insert println snippet" })
           vim.keymap.set(
             "i",
-            "<C-e>",
+            "<C-e>e",
             'if (ok == -1) {<CR>}<Esc>Oprintf("error: %s\\n", strerror(errno));<CR>return -1;'
           )
         end,
@@ -108,14 +142,30 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "htmldjango",
         callback = function()
-          vim.keymap.set("i", "<C-p>", "{{% block  %}}{{% endblock %}}<Esc>Fk;la")
+          vim.keymap.set("i", "<C-e>e", "{{% block  %}}{{% endblock %}}<Esc>Fk;la")
         end,
       })
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "java",
         callback = function()
           local classname = vim.fn.expand("%:t:r")
+          local filename = classname .. ".java"
           vim.keymap.set("n", "<leader>r", "<cmd>!javac % && java " .. classname .. "<CR>", { buffer = true })
+          vim.keymap.set(
+            "n",
+            "<F2>",
+            "<cmd>term<CR>ijavac " .. filename .. " && java " .. classname .. "<CR>",
+            { buffer = true }
+          )
+          vim.keymap.set("i", "<C-e>p", function()
+            ls.snip_expand(s("log", {
+              t('System.out.printf("'),
+              i(1, ""),
+              t('\\n"'),
+              i(2, ""),
+              t(");"),
+            }))
+          end, { buffer = true, desc = "Insert println snippet" })
         end,
       })
       vim.api.nvim_create_autocmd("FileType", {
@@ -123,10 +173,10 @@ return {
         callback = function()
           vim.keymap.set("n", "<leader>r", "<cmd>!node %<CR>", { buffer = true })
 
-          vim.keymap.set("i", "<C-p>", function()
+          vim.keymap.set("i", "<C-e>p", function()
             ls.snip_expand(s("log", {
               t("console.log(`"),
-              i(1, "message"),
+              i(1, ""),
               t("`);"),
             }))
           end, { buffer = true, desc = "Insert logging snippet" })

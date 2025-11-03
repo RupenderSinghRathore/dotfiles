@@ -40,6 +40,12 @@ vim.keymap.set("n", "<leader>ns", ":mksession!Session.vim<CR>:wqa<CR>", opts)
 vim.keymap.set("n", "<leader>x", ":bdelete!<CR>", opts2) -- close buffer
 vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", opts) -- new buffer
 
+-- Resize windows with arrow keys
+vim.keymap.set("n", "<C-Up>", "<C-w>+", { desc = "Increase window height" })
+vim.keymap.set("n", "<C-Down>", "<C-w>-", { desc = "Decrease window height" })
+vim.keymap.set("n", "<C-Left>", "<C-w><", { desc = "Decrease window width" })
+vim.keymap.set("n", "<C-Right>", "<C-w>>", { desc = "Increase window width" })
+
 -- Tabs
 vim.keymap.set("n", "<leader>tn", ":tabnew ", opts) -- open new tab
 -- vim.keymap.set("n", "tx", ":tabclose ", opts)       -- close current tab

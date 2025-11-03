@@ -51,6 +51,24 @@ return {
     -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
     -- and elegantly composed help section, `:help lsp-vs-treesitter`
 
+    require("fidget").setup({
+      notification = {
+        window = {
+          winblend = 0, -- Disable transparency (prevents black blocks)
+          -- border = "rounded", -- Optional: adds a nice border
+        },
+      },
+      progress = {
+        display = {
+          render_limit = 5, -- Show max 5 progress items
+          done_ttl = 2, -- Keep done messages for 2s
+          progress_icon = {
+            pattern = "dots", -- dots, dots_negative, or other patterns
+          },
+        },
+      },
+    })
+
     --  This function gets run when an LSP attaches to a particular buffer.
     --    That is to say, every time a new file is opened that is associated with
     --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -163,28 +181,6 @@ return {
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 
-    -- Create temporary Cargo.toml for standalone files
-    -- vim.api.nvim_create_autocmd("BufRead", {
-    --   pattern = "*.rs",
-    --   callback = function()
-    --     local cargo_toml = vim.fn.findfile("Cargo.toml", ".;")
-    --     if cargo_toml == "" then
-    --       vim.b.rust_standalone_file = true
-    --       -- Create minimal virtual manifest
-    --       -- require("lspconfig.configs").rust_analyzer.setup({
-    --       --   settings = {
-    --       --     ["rust-analyzer"] = {
-    --       --       standalone = true,
-    --       --       cargo = {
-    --       --         noSysroot = true,
-    --       --       },
-    --       --     },
-    --       --   },
-    --       -- })
-    --     end
-    --   end,
-    -- })
-
     local servers = {
       clangd = {},
       marksman = {},
@@ -199,32 +195,32 @@ return {
         -- root_dir = require("lspconfig").util.root_pattern(".git", "mvnw", "gradlew", "pom.xml", "build.gradle"),
       },
       gopls = {
-        settings = {
-          gopls = {
-            completeUnimported = true,
-            usePlaceholders = true,
-            analyses = {
-              unusedparams = true,
-              shadow = true,
-            },
-            -- staticcheck = true,
-            -- gofumpt = true,
-            hints = {
-              assignVariableTypes = true,
-              compositeLiteralFields = true,
-              constantValues = true,
-              functionTypeParameters = true,
-              parameterNames = true,
-              rangeVariableTypes = true,
-            },
-          },
-        },
+        -- settings = {
+        --   gopls = {
+        --     completeUnimported = true,
+        --     usePlaceholders = true,
+        --     analyses = {
+        --       unusedparams = true,
+        --       shadow = true,
+        --     },
+        --     -- staticcheck = true,
+        --     -- gofumpt = true,
+        --     hints = {
+        --       assignVariableTypes = true,
+        --       compositeLiteralFields = true,
+        --       constantValues = true,
+        --       functionTypeParameters = true,
+        --       parameterNames = true,
+        --       rangeVariableTypes = true,
+        --     },
+        --   },
+        -- },
       },
       zls = {},
       kotlin_language_server = {},
       pyright = {},
 
-      rust_analyzer = {},
+      -- rust_analyzer = {},
       --
       -- Some languages (like typescript) have entire language plugins that can be useful:
       -- https://github.com/pmizio/typescript-tools.nvim
@@ -301,18 +297,43 @@ return {
         end,
       },
     })
-    -- vim.api.nvim_create_autocmd("FileType", {
-    --     pattern = "java",
-    --     callback = function(args)
-    --         require("jdtls").jdtls_setup()
-    --     end,
-    -- })
-    -- require("lspconfig")["null-ls"].setup({
-    --   capabilities = capabilities,
-    -- })
     vim.filetype.add({
       extension = {
         tmpl = "html",
+      },
+    })
+    -- vim.diagnostic.config({ virtual_text = false, underline = true })
+    -- vim.diagnostic.config({
+    --   virtual_text = false,
+    --   underline = {
+    --     severity = { min = vim.diagnostic.severity.WARN }, -- Only errors
+    --   },
+    -- })
+    vim.lsp.config("rust_analyzer", {
+      cmd = { "rustup", "run", "stable", "rust-analyzer" },
+      settings = {
+        ["rust-analyzer"] = {
+          checkOnSave = true, -- Enable automatic checking
+          check = {
+            -- command = "clippy", -- Use clippy for more helpful lints
+            -- OR use "check" for faster checks without lints:
+            command = "check",
+          },
+          diagnostics = {
+            enable = true,
+            experimental = {
+              enable = true, -- Enable experimental diagnostics
+            },
+          },
+          -- Make it more responsive
+          cargo = {
+            allFeatures = true,
+            loadOutDirsFromCheck = true,
+          },
+          procMacro = {
+            enable = true,
+          },
+        },
       },
     })
   end,
