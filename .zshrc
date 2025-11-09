@@ -53,6 +53,7 @@ mycd() {
     if [ -n "$dir" ]; then
         cd "$HOME/$dir" || echo "error opening directory"
     fi
+    clear
 }
 web-dow() {
     wget --mirror \

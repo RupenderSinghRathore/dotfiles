@@ -25,7 +25,7 @@ require("lazy").setup({
   require("plugins.auto-tag"),
   require("plugins.misc"),
   require("plugins.formatting"),
-  require("plugins.codium"),
+  -- require("plugins.codium"),
   require("plugins.gitsigns"),
   require("plugins.git-fugitive"),
   require("plugins.lualine"),
@@ -33,6 +33,7 @@ require("lazy").setup({
   require("plugins.neotree"),
   require("plugins.image"),
   require("plugins.dap"),
+  require("plugins.copilot"),
 
   -- require("plugins.rustaceanvim"),
   -- require("plugins.markdowns"),
