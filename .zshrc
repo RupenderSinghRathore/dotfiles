@@ -22,6 +22,7 @@ export DEBUGINFOD_URLS="https://debuginfod.archlinux.org"
 eval "$(starship init zsh)"
 
 export EDITOR='nvim'
+export SUDO_EDITOR="nvim"
 
 # CASE_SENSITIVE="true"
 HYPHEN_INSENSITIVE="true" # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -73,6 +74,14 @@ rustp() {
 }
 npipe() {
     nvim $(which $1)
+}
+ntui() {
+    wifi=$(nmcli -t -f SSID,SIGNAL dev wifi list | fzf --bind 'ctrl-r:reload(nmcli -t -f SSID,SIGNAL dev wifi list)' --with-nth=1,2 --delimiter=:)
+    if [[ -n $wifi ]]; then
+        ssid="${wifi%%:*}"
+        nmcli dev wifi connect "$ssid" --ask
+    fi
+    omarchy-show-done
 }
 
 # Generated for envman. Do not edit.
