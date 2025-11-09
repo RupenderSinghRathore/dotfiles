@@ -10,7 +10,7 @@
         // "source": "~/.config/omarchy/branding/about.txt",
         // "color": { "1": "green" },
         "padding": {
-            "top": 0,
+            "top": 1,
             "right": 10,
             "left": 6
         }
@@ -71,7 +71,7 @@
             "type": "command",
             "key": "\ue900 OS",
             "keyColor": "blue",
-            "text": "version=$(omarchy-version); echo \"Omarchy $version\""
+            "text": "version=$(omarchy-version); echo \"Arch Linux\""
         },
         // {
         //     "type": "command",

@@ -25,13 +25,14 @@ return {
 
       --- You can override specific highlight groups
       on_colors = function(colors)
-        colors.bg_highlight = "#3E404F"
+        colors.bg_highlight = "#4b1561"
 
         colors.bg_statusline = colors.none -- or "NONE"
       end,
 
       on_highlights = function(hl, c)
-        hl.Visual = { bg = c.bg_highlight, bold = true }
+        -- hl.CursorLine = { bg = c.bg_highlight, blend = 20 } -- 20% transparent
+        hl.Visual = { bg = c.bg_highlight, bold = false }
       end,
     },
     config = function(_, opts)

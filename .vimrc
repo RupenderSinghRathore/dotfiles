@@ -78,7 +78,7 @@ set smartindent                " Smarter auto-indenting
 set backspace=indent,eol,start " Allow backspace over indent, EOL, and start
 set pumheight=10               " Popup menu height
 set conceallevel=0             " Show concealed text in markdown
-set signcolumn=yes             " Always show sign column
+" set signcolumn=yes             " Always show sign column
 set fileencoding=utf-8         " Use UTF-8 encoding
 set cmdheight=1                " Command line height
 set breakindent                " Indent wrapped lines visually
