@@ -54,6 +54,7 @@ vim.o.winborder = "rounded"
 -- vim.o.rulerformat = "%-16(%l%)%=%t"
 vim.g.netrw_liststyle = 3
 vim.opt.guicursor = "n-v-c-i-r-cr-o-sm:block"
+vim.g.db_ui_expand_tables_by_default = 1
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = "*",

@@ -1,5 +1,9 @@
 @import "~/dotfiles/.config/rofi/colors.rasi"
 
+* {
+    background-color-elements:   #2f1d4eaf;
+}
+
 // General Configurations
 configuration {
 	modi: "drun,run,filebrowser,window";
@@ -76,7 +80,8 @@ window {
     // border-radius:               12px;
     cursor:                      "default";
     // border-color:                @border-color;
-    background-color:            @background-color;
+    // background-color:            @background-color;
+    background-color:            #19172499;
 }
 
 // Main box

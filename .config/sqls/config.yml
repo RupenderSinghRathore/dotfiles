@@ -1,0 +1,4 @@
+sqls:
+  connections:
+    - driver: "postgresql"
+      dataSourceName: "host=localhost port=5432 user=kami-sama password= dbname=kami-sama sslmode=disable"

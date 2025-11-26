@@ -34,6 +34,7 @@ require("lazy").setup({
   require("plugins.image"),
   require("plugins.dap"),
   require("plugins.copilot"),
+  require("plugins.database"),
 
   -- require("plugins.rustaceanvim"),
   -- require("plugins.markdowns"),

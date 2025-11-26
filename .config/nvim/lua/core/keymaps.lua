@@ -19,7 +19,7 @@ vim.keymap.set("n", "<leader>nq", "<cmd>q!<CR>", opts)
 vim.keymap.set("n", "<Esc>", ":<BS>", opts)
 -- vim.keymap.set("n", "<leader>c", ":fclose<CR>", opts)
 
-vim.keymap.set("n", "<leader>o", "<cmd>e #<CR>", opts)
+-- vim.keymap.set("n", "<leader>o", "<cmd>e #<CR>", opts)
 
 vim.keymap.set({ "n", "v" }, "x", '"_x', opts)
 vim.keymap.set({ "n", "v" }, "c", '"_c', opts)
@@ -49,9 +49,9 @@ vim.keymap.set("n", "<C-Right>", "<C-w>>", { desc = "Increase window width" })
 -- Tabs
 vim.keymap.set("n", "<leader>tn", ":tabnew ", opts) -- open new tab
 -- vim.keymap.set("n", "tx", ":tabclose ", opts)       -- close current tab
-vim.keymap.set("n", "tn", "<cmd>e #<CR>", { noremap = true })
-vim.keymap.set("n", "tN", ":tabn<CR>", opts) --  go to next tab
-vim.keymap.set("n", "tp", ":tabp<CR>", opts) --  go to previous tab
+vim.keymap.set("n", "<leader>j", "<cmd>e #<CR>", { noremap = true, desc = "switch buffer" })
+vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts) --  go to next tab
+vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts) --  go to previous tab
 
 -- Toggle line wrapping
 vim.keymap.set("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
@@ -70,5 +70,5 @@ vim.keymap.set("n", "<CR>", "o<ESC>", { noremap = true })
 vim.keymap.set("n", "<C-h>", "O<ESC>", { noremap = true })
 
 -- Snippets
-vim.keymap.set("i", "{E", "{<CR>}<Esc>O", { noremap = true })
+vim.keymap.set("i", "{K", "{<CR>}<Esc>O", { noremap = true })
 -- vim.keymap.set("i", "(E", "()<Esc>i", { noremap = true })

@@ -42,9 +42,8 @@ ZSH_WEB_SEARCH_ENGINES=(
 source $ZSH/oh-my-zsh.sh
 
 mycd() {
-    local dir
-    search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads)
-    dir=$(
+    local search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads)
+    local dir=$(
         find "${search_dirs[@]}" -type d \
             \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name 'env' -o -name 'venv' -o -name '.gradle' -o -name 'META-INF' -o -name 'target' -o -name '.cache' -o -name 'utils' \) -prune \
             -o -type d -print 2>/dev/null |
@@ -52,9 +51,9 @@ mycd() {
             fzf --prompt="Select directory: "
     )
     if [ -n "$dir" ]; then
-        cd "$HOME/$dir" || echo "error opening directory"
+        echo $dir
+        cd "$HOME/$dir" && clear || echo "error opening directory"
     fi
-    clear
 }
 web-dow() {
     wget --mirror \
@@ -75,13 +74,8 @@ rustp() {
 npipe() {
     nvim $(which $1)
 }
-ntui() {
-    wifi=$(nmcli -t -f SSID,SIGNAL dev wifi list | fzf --bind 'ctrl-r:reload(nmcli -t -f SSID,SIGNAL dev wifi list)' --with-nth=1,2 --delimiter=:)
-    if [[ -n $wifi ]]; then
-        ssid="${wifi%%:*}"
-        nmcli dev wifi connect "$ssid" --ask
-    fi
-    omarchy-show-done
+mdc() {
+    mkdir -p "$1" && cd "$1"
 }
 
 # Generated for envman. Do not edit.

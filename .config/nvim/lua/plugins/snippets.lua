@@ -26,7 +26,7 @@ return {
       -- local conds = require("luasnip.extras.conditions")
       -- local conds_expand = require("luasnip.extras.conditions.expand")
 
-      -- vim.keymap.del("i", "<C-e>", { buffer = true })
+      -- vim.keymap.del("i", "<C-k>", { buffer = true })
       pcall(vim.keymap.del, "i", "<C-E>", { buffer = true })
       -- Rust
       vim.api.nvim_create_autocmd("FileType", {
@@ -51,11 +51,11 @@ return {
           -- buid commands
           vim.keymap.set("n", "<leader>r", "<cmd>!cargo run<CR>", { buffer = true })
           vim.keymap.set("n", "<F2>", "<cmd>term<CR>icargo run<CR>", { buffer = true })
-          vim.keymap.set("n", "<F1>", ":!rustc % -o run && ./run<CR>", { buffer = true })
+          vim.keymap.set("n", "<F1>", ":!rustc % -o run && ./run && rm run<CR>", { buffer = true })
           vim.keymap.set("n", "<F3>", ":!cargo check<CR>", { buffer = true })
 
           -- snippets
-          vim.keymap.set("i", "<C-e>p", function()
+          vim.keymap.set("i", "<C-k>p", function()
             ls.snip_expand(s("log", {
               t('println!("'),
               i(1, ""),
@@ -72,8 +72,9 @@ return {
           local dirname = vim.fn.expand("%:p:h")
           -- vim.keymap.set("n", "<leader>r", "<cmd>!go run " .. dirname .. "<CR>", { buffer = true })
           vim.keymap.set("n", "<leader>r", "<cmd>!go run %<CR>", { buffer = true })
+          vim.keymap.set("n", "<F2>", "<cmd>term<CR>igo run ./cmd<CR>", { buffer = true })
 
-          vim.keymap.set("i", "<C-e>p", function()
+          vim.keymap.set("i", "<C-k>p", function()
             ls.snip_expand(s("log", {
               t('fmt.Printf("'),
               i(1, ""),
@@ -84,7 +85,7 @@ return {
           end, { buffer = true, desc = "Insert println snippet" })
 
           -- vim.keymap.del("i", "<C-s>")
-          vim.keymap.set("i", "<C-e>h", function()
+          vim.keymap.set("i", "<C-k>h", function()
             ls.snip_expand(s("Handler func", {
               t({ "func (app *application) " }),
               i(1, ""),
@@ -94,7 +95,7 @@ return {
             }))
           end, { buffer = true, desc = "http handlerfunc signature" })
 
-          vim.keymap.set("i", "<C-e>e", function()
+          vim.keymap.set("i", "<C-k>e", function()
             ls.snip_expand(s("Errorhandling", {
               t({ "if err != nil {", "\t" }),
               i(1, ""),
@@ -115,7 +116,7 @@ return {
             { buffer = true }
           )
           vim.keymap.set("n", "<F2>", "<cmd>term<CR>imakec<CR>", { buffer = true })
-          vim.keymap.set("i", "<C-e>p", function()
+          vim.keymap.set("i", "<C-k>p", function()
             ls.snip_expand(s("log", {
               t('printf("'),
               i(1, ""),
@@ -126,7 +127,7 @@ return {
           end, { buffer = true, desc = "Insert println snippet" })
           vim.keymap.set(
             "i",
-            "<C-e>e",
+            "<C-k>e",
             'if (ok == -1) {<CR>}<Esc>Oprintf("error: %s\\n", strerror(errno));<CR>return -1;'
           )
         end,
@@ -142,7 +143,7 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "htmldjango",
         callback = function()
-          vim.keymap.set("i", "<C-e>e", "{{% block  %}}{{% endblock %}}<Esc>Fk;la")
+          vim.keymap.set("i", "<C-k>e", "{{% block  %}}{{% endblock %}}<Esc>Fk;la")
         end,
       })
       vim.api.nvim_create_autocmd("FileType", {
@@ -157,7 +158,7 @@ return {
             "<cmd>term<CR>ijavac " .. filename .. " && java " .. classname .. "<CR>",
             { buffer = true }
           )
-          vim.keymap.set("i", "<C-e>p", function()
+          vim.keymap.set("i", "<C-k>p", function()
             ls.snip_expand(s("log", {
               t('System.out.printf("'),
               i(1, ""),
@@ -173,7 +174,7 @@ return {
         callback = function()
           vim.keymap.set("n", "<leader>r", "<cmd>!node %<CR>", { buffer = true })
 
-          vim.keymap.set("i", "<C-e>p", function()
+          vim.keymap.set("i", "<C-k>p", function()
             ls.snip_expand(s("log", {
               t("console.log(`"),
               i(1, ""),

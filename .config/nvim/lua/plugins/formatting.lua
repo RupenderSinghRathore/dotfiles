@@ -31,6 +31,7 @@ return {
       formatters_by_ft = {
         go = { "gofmt", "golines", "goimports" },
         rust = { "rustfmt" },
+        sql = { "pg_format" },
         c = { "clang_format" },
         cpp = { "clang_format" },
         sh = { "shfmt" },
@@ -83,7 +84,6 @@ return {
     conform.formatters.shfmt = {
       prepend_args = { "-i", "4" },
     }
-
     vim.keymap.set({ "n", "v" }, "<leader>nf", function()
       conform.format({
         lsp_fallback = true,

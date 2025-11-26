@@ -1,33 +1,31 @@
 return {
+  -- 1. Core DAP – load only when you press a debug key
   {
     "mfussenegger/nvim-dap",
-    dependencies = { "rcarriga/nvim-dap-ui", "nvim-neotest/nvim-nio", "leoluz/nvim-dap-go" },
-    -- dependencies = { "rcarriga/nvim-dap-ui" },
+    lazy = true,
+    keys = {
+      -- All your existing <leader>d… keys trigger loading instantly
+      { "<leader>dt", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", desc = "Toggle Breakpoint" },
+      { "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", desc = "Continue" },
+      { "<leader>dd", "<cmd>lua require'dap'.disconnect()<cr>", desc = "Disconnect" },
+      { "<leader>dq", "<cmd>lua require'dap'.terminate()<cr>", desc = "Terminate" },
+      { "<leader>dn", "<cmd>lua require'dap'.step_over()<cr>", desc = "Step Over" },
+      { "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", desc = "Step Into" },
+      { "<leader>du", "<cmd>lua require'dap'.step_out()<cr>", desc = "Step Out" },
+      { "<leader>dh", "<cmd>lua require'dap'.run_to_cursor()<cr>", desc = "Run until Cursor" },
+      { "<leader>dr", "<cmd>lua require'dap'.repl.open()<cr>", desc = "Open REPL" },
+      { "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", desc = "Run Last" },
+    },
     config = function()
       local dap = require("dap")
-      local dapui = require("dapui")
 
-      require("dap-go").setup()
-      require("dapui").setup()
-
-      dap.listeners.before.attach.dapui_config = function()
-        dapui.open()
-      end
-      dap.listeners.before.launch.dapui_config = function()
-        dapui.open()
-      end
-      dap.listeners.before.event_terminated.dapui_config = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited.dapui_config = function()
-        dapui.close()
-      end
-
+      -- gdb adapter (C/C++/Rust) – unchanged
       dap.adapters.gdb = {
         type = "executable",
         command = "gdb",
         args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
       }
+
       dap.configurations.c = {
         {
           name = "Launch",
@@ -36,7 +34,6 @@ return {
           program = function()
             return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
           end,
-          args = {}, -- provide arguments if needed
           cwd = "${workspaceFolder}",
           stopAtBeginningOfMainSubprogram = false,
         },
@@ -48,8 +45,7 @@ return {
             return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
           end,
           pid = function()
-            local name = vim.fn.input("Executable name (filter): ")
-            return require("dap.utils").pick_process({ filter = name })
+            return require("dap.utils").pick_process({ filter = vim.fn.input("Executable name (filter): ") })
           end,
           cwd = "${workspaceFolder}",
         },
@@ -66,43 +62,54 @@ return {
       }
       dap.configurations.cpp = dap.configurations.c
       dap.configurations.rust = dap.configurations.c
-
-      -- Keymaps for general debugging
-
-      vim.keymap.set("n", "<leader>dt", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
-      vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Continue" })
-      -- vim.keymap.set("n", "<leader>dn", dap.next, { desc = "Next" })
-
-      vim.keymap.set("n", "<leader>dd", dap.disconnect, { desc = "Disconnect" })
-      vim.keymap.set("n", "<leader>dq", dap.terminate, { desc = "Terminate" })
-      -- Add these extra keymaps:
-
-      -- Stepping Controls
-      vim.keymap.set("n", "<leader>dn", dap.step_over, { desc = "Step Over" })
-      vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "Step Into" })
-      vim.keymap.set("n", "<leader>du", dap.step_out, { desc = "Step Out" })
-      vim.keymap.set("n", "<leader>dh", dap.run_to_cursor, { desc = "Run untill Cursor" }) -- Run until the line your cursor is on
-
-      vim.keymap.set("n", "<Leader>dr", function()
-        require("dap").repl.open()
-      end)
-      vim.keymap.set("n", "<Leader>dl", function()
-        require("dap").run_last()
-      end)
-      vim.keymap.set({ "n", "v" }, "<Leader>dh", function()
-        require("dap.ui.widgets").hover()
-      end)
-      vim.keymap.set({ "n", "v" }, "<Leader>dp", function()
-        require("dap.ui.widgets").preview()
-      end)
-      vim.keymap.set("n", "<Leader>df", function()
-        local widgets = require("dap.ui.widgets")
-        widgets.centered_float(widgets.frames)
-      end)
-      vim.keymap.set("n", "<Leader>ds", function()
-        local widgets = require("dap.ui.widgets")
-        widgets.centered_float(widgets.scopes)
-      end)
     end,
+  },
+
+  -- 2. dap-ui – loads only when you open it (or when dap starts)
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+    keys = {
+      {
+        "<leader>du",
+        function()
+          require("dapui").toggle()
+        end,
+        desc = "Dap UI Toggle",
+      },
+    },
+    config = function()
+      local dap, dapui = require("dap"), require("dapui")
+      dapui.setup()
+
+      dap.listeners.before.attach.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.launch.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated.dapui_config = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited.dapui_config = function()
+        dapui.close()
+      end
+    end,
+  },
+
+  -- 3. Go support – loads only on Go files (or when you use dap-go commands)
+  {
+    "leoluz/nvim-dap-go",
+    ft = "go",
+    dependencies = "mfussenegger/nvim-dap",
+    config = function()
+      require("dap-go").setup()
+    end,
+  },
+
+  -- 4. nvim-nio (required by dap-ui) – stays lazy
+  {
+    "nvim-neotest/nvim-nio",
+    lazy = true,
   },
 }

@@ -1,6 +1,7 @@
 return {
   "nvim-telescope/telescope.nvim",
-  event = "VimEnter",
+  -- event = "VimEnter",
+  -- key
   branch = "0.1.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -59,10 +60,10 @@ return {
       ".png",
       ".jpg",
       "vgcore*",
-      -- "run",
-      "bin",
+      "run_",
+      "bin_",
       ".cache",
-      "Hakurei_Shrine",
+      -- "Hakurei_Shrine",
       "Session.vim",
       "package",
     }

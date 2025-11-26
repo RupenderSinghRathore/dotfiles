@@ -2,6 +2,8 @@ return {
   -- Main LSP Configuration
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
+  lazy = true,
+  -- event = "VeryLazy",
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
@@ -249,7 +251,8 @@ return {
       cssls = {},
       tailwindcss = {},
       -- dockerls = {},
-      sqlls = {},
+      -- sqlls = {},
+      -- sqls = {},
       jsonls = {},
 
       lua_ls = {},
