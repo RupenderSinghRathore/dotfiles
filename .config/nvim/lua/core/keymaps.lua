@@ -66,7 +66,7 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 -- vim.keymap.set("n", "U", ":undo<CR>", { noremap = true })
 -- vim.keymap.set("n", "u", "", { noremap = true })
 
-vim.keymap.set("n", "<CR>", "o<ESC>", { noremap = true })
+-- vim.keymap.set("n", "<CR>", "o<ESC>", { noremap = true })
 vim.keymap.set("n", "<C-h>", "O<ESC>", { noremap = true })
 
 -- Snippets

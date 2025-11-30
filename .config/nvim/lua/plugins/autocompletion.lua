@@ -196,8 +196,8 @@ return {
         callback = function()
           cmp.setup.buffer({
             sources = cmp.config.sources({
-              { name = "luasnip", priority = 1000 },
               { name = "vim-dadbod-completion" },
+              { name = "luasnip" },
               { name = "nvim_lsp" },
               { name = "buffer" },
             }),

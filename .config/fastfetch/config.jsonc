@@ -1,9 +1,10 @@
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
     "logo": {
-        // "type": "kitty-icat",
-        "type": "sixel",
-        "source": "/home/kami-sama/Pictures/Wallpapers/wallhaven-2elery.jpg",
+        "type": "kitty-icat",
+        // "type": "sixel",
+        // "source": "/home/kami-sama/Pictures/Wallpapers/wallhaven-2elery.jpg",
+        "source": "/home/kami-sama/Pictures/fastfetch/anime-anime-girls-Genshin-Impact-hat-pink-hair-blue-eyes-2258374-wallhere.com.png",
         "width": 28,
         // "height": 51,
         // "type": "file",
@@ -16,6 +17,7 @@
         }
     },
     "modules": [
+        "break",
         "break",
         {
             "type": "custom",

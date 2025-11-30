@@ -5,7 +5,9 @@ setopt IGNOREEOF
 setopt autocd
 export PATH="$HOME/.local/bin:$HOME/.local/omarchy/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH"
 export MANPAGER='nvim +Man!'
-export GTK_USE_PORTAL=1
+export GTK_USE_PORTAL=0
+export QT_QPA_PLATFORMTHEME=gtk3
+export GTK_THEME=catppuccin-mocha-rosewater-standard+default
 export RUST_BACKTRACE=1
 typeset -U PATH # remove duplication from path
 
@@ -31,8 +33,8 @@ HYPHEN_INSENSITIVE="true" # Case-sensitive completion must be off. _ and - will 
 # zstyle ':omz:update' mode auto      # update automatically without asking
 zstyle ':omz:update' mode reminder # just remind me to update when it's time
 
-plugins=(git web-search zsh-syntax-highlighting zsh-vi-mode zsh-autosuggestions)
-# plugins=(git web-search zsh-syntax-highlighting zsh-autosuggestions)
+# plugins=(git web-search zsh-syntax-highlighting zsh-vi-mode zsh-autosuggestions)
+plugins=(git web-search zsh-syntax-highlighting zsh-autosuggestions)
 
 ZVM_CURSOR_STYLE_ENABLED=false
 ZSH_WEB_SEARCH_ENGINES=(
@@ -77,6 +79,9 @@ npipe() {
 mdc() {
     mkdir -p "$1" && cd "$1"
 }
+top-bar-toggle() {
+    mv ~/dotfiles/.config/DankMaterialShell/settings.json ~/dotfiles/.config/DankMaterialShell/temp && mv ~/dotfiles/.config/DankMaterialShell/toggle.json ~/dotfiles/.config/DankMaterialShell/settings.json && mv ~/dotfiles/.config/DankMaterialShell/temp ~/dotfiles/.config/DankMaterialShell/toggle.json && dms restart
+}
 
 # Generated for envman. Do not edit.
 # [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
@@ -93,4 +98,6 @@ mdc() {
 # bindkey '^H' backward-kill-word
 # bindkey '^?' backward-kill-word
 
+precmd() {print -Pn "\e]0;%~\a"}
+DISABLE_AUTO_TITLE="true"
 source ~/dotfiles/.config/zsh/aliases

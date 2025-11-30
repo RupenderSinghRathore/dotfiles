@@ -1,3 +1,33 @@
+workspace "1" {}
+workspace "2" {}
+workspace "3" {}
+workspace "4" {}
+// workspace "5" {}
+environment {
+    DMS_NOTIFICATION_LAYER "overlay"
+    XDG_MENU_PREFIX "arch-"
+    QT_AUTO_SCREEN_SCALE_FACTOR "1" 
+    QT_QPA_PLATFORMTHEME "qt5ct"
+    // QT_QPA_PLATFORMTHEME "gtk3"
+
+    GDK_SCALE "1"
+    GDK_BACKEND "wayland,x11,*"
+
+    GTK_USE_PORTAL "0"
+
+    QT_QPA_PLATFORM "wayland"
+    QT_QPA_PLATFORM "wayland;xcb"
+}
+debug {
+    honor-xdg-activation-with-invalid-serial // switch focus
+}
+cursor {
+    // xcursor-theme "breeze_cursors"
+    // xcursor-size 48
+
+    hide-when-typing
+    hide-after-inactive-ms 2000
+}
 input {
     mod-key "Alt"
     keyboard {
@@ -6,7 +36,7 @@ input {
             // variant "colemak_dh"
             // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
         }
-        numlock
+        // numlock
     }
 
     touchpad {
@@ -20,13 +50,12 @@ input {
     trackpoint {
     }
 
-    // Uncomment this to make the mouse warp to the center of newly focused windows.
     warp-mouse-to-focus
-
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
     focus-follows-mouse max-scroll-amount="100%"
+    // focus-urgent-window
 }
  
 output "eDP-1" {
@@ -36,24 +65,28 @@ output "eDP-1" {
 }
 
 layout {
-    gaps 3
+    gaps 0
 
     center-focused-column "never"
 
-    blur {
-        on
-        passes 3 // number of times to apply the blur effect
-        radius 2.0 // radius of the blur effect
-        noise 0 //add grain to the blur
-    }
+    // blur {
+    //     on
+    //     passes 3 // number of times to apply the blur effect
+    //     radius 2.0 // radius of the blur effect
+    //     noise 0 //add grain to the blur
+    // }
     preset-column-widths {
-        proportion 0.33333
+        // proportion 0.33333
         proportion 0.5
-        proportion 0.66667
+        proportion 1.0
+        // proportion 0.66667
     }
 
     // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
-    // preset-window-heights { }
+    preset-window-heights {
+        proportion 0.5
+        proportion 1.0
+    }
 
     // You can change the default width of the new windows.
     default-column-width { proportion 1.0; }
@@ -74,7 +107,7 @@ layout {
     // You can change how the focus ring looks.
     focus-ring {
         // Uncomment this line to disable the focus ring.
-        // off
+        off
 
         // How many logical pixels the ring extends out from the windows.
         width 1
@@ -187,7 +220,11 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 // spawn-at-startup "waybar"
+spawn-at-startup "swayidle"
 spawn-sh-at-startup "/home/kami-sama/.config/hypr/scripts/battery_saver_simpler.sh"
+// spawn-sh-at-startup "gsettings set org.gnome.desktop.interface gtk-theme 'catppuccin-mocha-blue-standard+default' "
+spawn-sh-at-startup "sleep 5 && gsettings set org.gnome.desktop.interface gtk-theme 'catppuccin-mocha-blue-standard+default' "
+
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -201,6 +238,10 @@ prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 animations {
+    workspace-switch {
+        // spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+        spring damping-ratio=1.0 stiffness=1000000 epsilon=0.1
+    }
 }
 
 window-rule {
@@ -210,12 +251,68 @@ window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
 }
+window-rule {
+    open-maximized true
+}
+window-rule {
+    match title="Choose Directory"
+    default-column-width { proportion 0.70; }
+    default-window-height { fixed 600; }
+    open-floating true
+    geometry-corner-radius 12.0
+    clip-to-geometry true
+    focus-ring {
+        on
+        width 2
+        active-color "#7fc8ff"
+        // inactive-color "#505050"
+        urgent-color "#9b0000"
+    }
+}
+window-rule {
+    match app-id="zen"
+    // open-fullscreen true
+    open-on-workspace "1"
+}
+window-rule {
+    match app-id="kitty"
+    open-on-workspace "2"
+}
+window-rule {
+    match app-id="org.kde.dolphin"
+    opacity 0.85
+    open-on-workspace "3"
+}
+window-rule {
+    match app-id="mpv"
+    open-on-workspace "3"
+}
+window-rule {
+    match app-id="spotify"
+    open-on-workspace "4"
+}
+window-rule {
+    match app-id="org.kde.okular"
+    open-on-workspace "3"
+}
+window-rule {
+    match app-id="popup"
+    default-column-width { proportion 0.60; }
+    default-window-height { fixed 500; }
+    open-floating true
+}
+window-rule {
+    match app-id="Omarchy"
+    default-column-width { proportion 0.75; }
+    default-window-height { fixed 600; }
+    open-floating true
+}
 
-// Open the Firefox picture-in-picture player as floating by default.
+// Open the firefox picture-in-picture player as floating by default.
 // window-rule {
     // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+    // - host firefox (app-id is "firefox")
+    // - Flatpak firefox (app-id is "org.mozilla.firefox")
     // match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     // open-floating true
 // }
@@ -235,7 +332,7 @@ window-rule {
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
 window-rule {
-    geometry-corner-radius 10
+    geometry-corner-radius 0
     clip-to-geometry true
 }
 
@@ -243,15 +340,15 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Application
-    Mod+K hotkey-overlay-title="Open a Terminal: foot" { spawn "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus" "foot"; }
+    Mod+K hotkey-overlay-title="Open a Terminal: kitty" { spawn "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus" "kitty"; }
     Mod+N hotkey-overlay-title="Open dolphin" { spawn "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus" "dolphin"; }
-    Mod+M hotkey-overlay-title="Open spotify" { spawn "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus" "spotify"; }
+    Mod+M hotkey-overlay-title="Open spotify" { spawn "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus" "spotify-launcher"; }
     Mod+O hotkey-overlay-title="Open okular" { spawn "/home/kami-sama/.local/omarchy/bin/niri-focus" "okular"; }
-    Mod+T hotkey-overlay-title="Open firefox" { spawn "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus" "firefox"; }
-    Mod+E hotkey-overlay-title="Open mpv" { spawn "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus" "mpv"; }
+    Mod+E hotkey-overlay-title="Open zen" { spawn "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus" "zen"; }
+    Mod+T hotkey-overlay-title="Open mpv" { spawn "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus" "mpv"; }
     // Mod+Space hotkey-overlay-title="Open a Terminal: rofi" { spawn "rofi" "-show" "drun" "-theme" "/home/kami-sama/dotfiles/.config/rofi/config-apps.rasi"; }
 
-    SUPER+Shift+K hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
+    SUPER+Shift+K hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
 
     // Spotify controls
     Mod+S allow-when-locked=true { spawn-sh "playerctl --player=spotify,ncspot play-pause"; }
@@ -260,14 +357,21 @@ binds {
     Mod+Right allow-when-locked=true { spawn-sh "playerctl --player=spotify,ncspot next"; }
     Mod+Left allow-when-locked=true { spawn-sh "playerctl --player=spotify,ncspot previous"; }
 
+    // Floating windows 
+    Mod+B hotkey-overlay-title="Bluetooth" { spawn-sh "alacritty --class popup -e /usr/bin/bluetui"; }
+    // SUPER+I hotkey-overlay-title="Wifi" { spawn "nmgui"; }
+
     // scripts
     Mod+Shift+O hotkey-overlay-title="Open pdf" { spawn-sh "/home/kami-sama/dotfiles/.config/scripts/okular_pdf_search.sh"; }
+    Mod+Shift+M hotkey-overlay-title="Open pdf" { spawn-sh "/home/kami-sama/dotfiles/.config/scripts/mpv-vid-search.sh"; }
     Mod+I hotkey-overlay-title="Install" { spawn-sh "/home/kami-sama/.local/omarchy/bin/omarchy-menu install"; }
     Mod+R hotkey-overlay-title="Remove" { spawn-sh "/home/kami-sama/.local/omarchy/bin/omarchy-menu remove"; }
-    Mod+Escape hotkey-overlay-title="System" { spawn-sh "/home/kami-sama/.local/omarchy/bin/omarchy-menu system"; }
-    Mod+Shift+K hotkey-overlay-title="All Mappings" { spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-menu-keybinds"; }
+    Mod+Ctrl+S hotkey-overlay-title="Share" { spawn-sh "/home/kami-sama/.local/omarchy/bin/omarchy-menu share"; }
+    Mod+Ctrl+L hotkey-overlay-title="Toggle locking" { spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-toggle-idle"; }
+    // Mod+Escape hotkey-overlay-title="System" { spawn-sh "/home/kami-sama/.local/omarchy/bin/omarchy-menu system"; }
+    // Mod+Shift+K hotkey-overlay-title="All Mappings" { spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-menu-keybinds"; }
 
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
@@ -282,6 +386,9 @@ binds {
     SUPER+J     { focus-window-down; }
     SUPER+K     { focus-window-up; }
     SUPER+L     { focus-column-right; }
+
+    // Mod+Comma  { focus-column-left; }
+    // Mod+Period  { focus-column-right; }
 
     SUPER+Ctrl+H     { move-column-left; }
     SUPER+Ctrl+J     { move-window-down; }
@@ -337,21 +444,25 @@ binds {
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
     Mod+9 { focus-workspace 9; }
-    Mod+Ctrl+1 { move-column-to-workspace 1; }
-    Mod+Ctrl+2 { move-column-to-workspace 2; }
-    Mod+Ctrl+3 { move-column-to-workspace 3; }
-    Mod+Ctrl+4 { move-column-to-workspace 4; }
-    Mod+Ctrl+5 { move-column-to-workspace 5; }
-    Mod+Ctrl+6 { move-column-to-workspace 6; }
-    Mod+Ctrl+7 { move-column-to-workspace 7; }
-    Mod+Ctrl+8 { move-column-to-workspace 8; }
-    Mod+Ctrl+9 { move-column-to-workspace 9; }
+    Mod+Ctrl+1 { move-window-to-workspace 1; }
+    // Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-window-to-workspace 2; }
+    Mod+Ctrl+3 { move-window-to-workspace 3; }
+    Mod+Ctrl+4 { move-window-to-workspace 4; }
+    Mod+Ctrl+5 { move-window-to-workspace 5; }
+    Mod+Ctrl+6 { move-window-to-workspace 6; }
+    Mod+Ctrl+7 { move-window-to-workspace 7; }
+    Mod+Ctrl+8 { move-window-to-workspace 8; }
+    Mod+Ctrl+9 { move-window-to-workspace 9; }
+
+    // Mod+Shift+S { split-column; }
+
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
 
     // Switches focus between the current and the previous workspace.
-    // Mod+Tab { focus-workspace-previous; }
+    SUPER+Tab { focus-workspace-previous; }
 
     // The following binds move the focused window in and out of a column.
     // If the window is alone, they will consume it into the nearby column to the side.
@@ -360,16 +471,19 @@ binds {
     Mod+BracketRight { consume-or-expel-window-right; }
 
     // Consume one window from the right to the bottom of the focused column.
-    // Mod+Comma  { consume-window-into-column; }
+    Mod+Comma  { consume-window-into-column; }
+    // Mod+Shift+Comma hotkey-overlay-title="Settings" { 
     // Expel the bottom window from the focused column to the right.
-    // Mod+Period { expel-window-from-column; }
+    Mod+Period { expel-window-from-column; }
 
-    SUPER+R { switch-preset-column-width; }
+    // SUPER+R { switch-preset-column-width; }
+    Mod+Return { switch-preset-column-width; }
     // Cycling through the presets in reverse order is also possible.
-    // Mod+R { switch-preset-column-width-back; }
-    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+Return { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
     Mod+F { maximize-column; }
+    // Mod+F { maximize-window-to-edges; }
+
     Mod+Shift+F { fullscreen-window; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
@@ -415,7 +529,20 @@ binds {
 
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
+    Shift+Print { screenshot-window; }
+
+    Mod+Print hotkey-overlay-title="Color picker" { spawn-sh "pkill hyprpicker || hyprpicker -a"; }
+
+    SUPER+Print hotkey-overlay-title="Screen record display" { spawn-sh "/home/kami-sama/.local/omarchy/bin/omarchy-cmd-screenrecord output"; }
+    SUPER+Ctrl+Print hotkey-overlay-title="Screen record a region (audio)" { spawn-sh "/home/kami-sama/.local/omarchy/bin/omarchy-cmd-screenrecord output audio"; }
+    SUPER+Shift+Print hotkey-overlay-title="Screen record a region" { spawn-sh "/home/kami-sama/.local/omarchy/bin/omarchy-cmd-screenrecord region audio"; }
+    SUPER+Ctrl+Shift+Print hotkey-overlay-title="Screen record display (no audio)" { spawn-sh "omarchy-cmd-screenrecord region"; }
+    
+// bindd = SUPER, PRINT, Screen record display, exec, omarchy-cmd-screenrecord output
+// bindd = SUPER SHIFT, PRINT, Screen record a region, exec, omarchy-cmd-screenrecord region 
+// bindd = CTRL SUPER, PRINT, Screen record a region with audio, exec, omarchy-cmd-screenrecord region audio
+// bindd = CTRL SUPER SHIFT, PRINT, Screen record display with audio, exec, omarchy-cmd-screenrecord output audio
+
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
@@ -452,8 +579,19 @@ binds {
         spawn "dms" "ipc" "call" "settings" "toggle"; 
     }
 
+    Mod+Escape hotkey-overlay-title="Power" { 
+        spawn "dms" "ipc" "call" "powermenu" "toggle"; 
+    }
+
+    SUPER+Space hotkey-overlay-title="Control Centre" { 
+        spawn "dms" "ipc" "call" "control-center" "toggle"; 
+    }
+
     SUPER+N hotkey-overlay-title="Notification Center" {
         spawn "dms" "ipc" "call" "notifications" "toggle"; 
+    }
+    SUPER+Comma hotkey-overlay-title="Notification Center" {
+        spawn "dms" "ipc" "call" "notifications" "dismiss"; 
     }
 
     Mod+Shift+Y hotkey-overlay-title="Browse Wallpapers" {
@@ -464,13 +602,16 @@ binds {
       spawn "dms" "ipc" "call" "notepad" "toggle";  
     }
     
-    Mod+Ctrl+L hotkey-overlay-title="Lock Screen" { 
+    SUPER+Shift+L hotkey-overlay-title="Lock Screen" { 
         spawn "dms" "ipc" "call" "lock" "lock"; 
     }
 
     Ctrl+Alt+Delete hotkey-overlay-title="Task Manager" { 
         spawn "dms" "ipc" "call" "processlist" "toggle"; 
     }    
+    Mod+J allow-when-locked=true {
+        spawn "dms" "ipc" "call" "bar" "toggle";
+    }
 
     // Audio
     XF86AudioRaiseVolume allow-when-locked=true {

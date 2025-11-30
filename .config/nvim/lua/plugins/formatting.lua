@@ -36,7 +36,7 @@ return {
         cpp = { "clang_format" },
         sh = { "shfmt" },
         zsh = { "shfmt" },
-        conf = { "shfmt" },
+        -- conf = { "shfmt" },
         java = { "astyle" },
         kt = { "ktlint" },
         javascript = { "prettier" },

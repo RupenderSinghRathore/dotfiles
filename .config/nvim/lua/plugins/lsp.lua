@@ -218,6 +218,7 @@ return {
         --   },
         -- },
       },
+      qmlls = {},
       zls = {},
       kotlin_language_server = {},
       pyright = {},
