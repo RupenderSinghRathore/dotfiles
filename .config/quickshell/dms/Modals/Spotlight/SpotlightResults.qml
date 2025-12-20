@@ -118,17 +118,19 @@ Rectangle {
 
                 property int currentIndex: appLauncher ? appLauncher.selectedIndex : -1
                 property int columns: appLauncher ? appLauncher.gridColumns : 4
-                property bool adaptiveColumns: false
+                property bool adaptiveColumns: true
                 property int minCellWidth: 120
                 property int maxCellWidth: 160
                 property int cellPadding: 8
                 property real iconSizeRatio: 0.55
-                property int maxIconSize: 48
-                property int minIconSize: 32
+                // property int maxIconSize: 48
+                // property int minIconSize: 32
+                property int maxIconSize: 72
+                property int minIconSize: 48
                 property bool hoverUpdatesSelection: false
                 property bool keyboardNavigationActive: appLauncher ? appLauncher.keyboardNavigationActive : false
                 property int baseCellWidth: adaptiveColumns ? Math.max(minCellWidth, Math.min(maxCellWidth, width / columns)) : (width - Theme.spacingS * 2) / columns
-                property int baseCellHeight: baseCellWidth + 20
+                property int baseCellHeight: baseCellWidth + 30
                 property int actualColumns: adaptiveColumns ? Math.floor(width / cellWidth) : columns
                 property int remainingSpace: width - (actualColumns * cellWidth)
 

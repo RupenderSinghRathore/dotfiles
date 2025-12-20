@@ -220,6 +220,7 @@ return {
       },
       qmlls = {},
       zls = {},
+
       kotlin_language_server = {},
       pyright = {},
 
@@ -248,6 +249,7 @@ return {
           },
         },
       },
+      htmx = {},
       html = { filetypes = { "html", "twig", "hbs" } },
       cssls = {},
       tailwindcss = {},
@@ -338,6 +340,28 @@ return {
             enable = true,
           },
         },
+      },
+    })
+    vim.lsp.config("htmx", {
+      handlers = {
+        ["textDocument/hover"] = function(err, result, ctx, config)
+          -- 1. Filter out empty/nil results
+          if not result or not result.contents then
+            return
+          end
+
+          -- 2. Filter out empty tables or strings (common "useless" responses)
+          local contents = result.contents
+          if type(contents) == "table" and #contents == 0 then
+            return
+          end
+          if type(contents) == "string" and contents == "" then
+            return
+          end
+
+          -- 3. If the result is valid, pass it to the default handler
+          vim.lsp.handlers["textDocument/hover"](err, result, ctx, config)
+        end,
       },
     })
   end,

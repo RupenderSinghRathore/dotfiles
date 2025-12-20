@@ -9,6 +9,7 @@ DankModal {
     id: root
 
     layerNamespace: "dms:power-menu"
+    backgroundColor: Theme.withAlpha(Theme.surfaceContainer, 0.85)
 
     property int selectedIndex: 0
     property int selectedRow: 0
@@ -25,14 +26,14 @@ DankModal {
     function openCentered() {
         parentBounds = Qt.rect(0, 0, 0, 0)
         parentScreen = null
-        backgroundOpacity = 0.5
+        backgroundOpacity = 0.9
         open()
     }
 
     function openFromControlCenter(bounds, targetScreen) {
         parentBounds = bounds
         parentScreen = targetScreen
-        backgroundOpacity = 0
+        backgroundOpacity = 0.7
         keepPopoutsOpen = true
         open()
         keepPopoutsOpen = false
@@ -177,8 +178,11 @@ DankModal {
     }
 
     shouldBeVisible: false
+    // width: SettingsData.powerMenuGridLayout
+    //     ? Math.min(550, gridColumns * 180 + Theme.spacingS * (gridColumns - 1) + Theme.spacingL * 2)
+    //     : 400
     width: SettingsData.powerMenuGridLayout
-        ? Math.min(550, gridColumns * 180 + Theme.spacingS * (gridColumns - 1) + Theme.spacingL * 2)
+        ? Math.min(950, gridColumns * 360 + Theme.spacingS * (gridColumns - 1) + Theme.spacingL * 2)
         : 400
     height: contentLoader.item ? contentLoader.item.implicitHeight : 300
     enableShadow: true
@@ -387,6 +391,8 @@ DankModal {
     content: Component {
         Item {
             anchors.fill: parent
+            anchors.margins: Theme.spacingXL // Use XL for a very noticeable gap
+            readonly property int padding: Theme.spacingXL
             implicitHeight: SettingsData.powerMenuGridLayout
                 ? buttonGrid.implicitHeight + Theme.spacingL * 2
                 : buttonColumn.implicitHeight + Theme.spacingL * 2
@@ -395,10 +401,13 @@ DankModal {
                 id: buttonGrid
                 visible: SettingsData.powerMenuGridLayout
                 anchors.centerIn: parent
+
                 columns: root.gridColumns
                 columnSpacing: Theme.spacingS
                 rowSpacing: Theme.spacingS
 
+                horizontalItemAlignment: Grid.AlignHCenter
+                verticalItemAlignment: Grid.AlignVCenter
                 Repeater {
                     model: root.visibleActions
 
@@ -411,14 +420,15 @@ DankModal {
                         readonly property bool showWarning: modelData === "reboot" || modelData === "poweroff"
 
                         width: (root.width - Theme.spacingL * 2 - Theme.spacingS * (root.gridColumns - 1)) / root.gridColumns
-                        height: 100
+                        height: 200
                         radius: Theme.cornerRadius
                         color: {
                             if (isSelected)
                                 return Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.12)
                             if (mouseArea.containsMouse)
                                 return Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.08)
-                            return Qt.rgba(Theme.surfaceVariant.r, Theme.surfaceVariant.g, Theme.surfaceVariant.b, 0.08)
+                            // return Qt.rgba(Theme.surfaceVariant.r, Theme.surfaceVariant.g, Theme.surfaceVariant.b, 0.08)
+                            return "transparent"
                         }
                         border.color: isSelected ? Theme.primary : "transparent"
                         border.width: isSelected ? 2 : 0

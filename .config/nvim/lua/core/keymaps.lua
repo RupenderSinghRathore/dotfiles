@@ -54,7 +54,7 @@ vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts) --  go to next tab
 vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts) --  go to previous tab
 
 -- Toggle line wrapping
-vim.keymap.set("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
+vim.keymap.set("n", "<leader>lw", "<cmd>set wrap! linebreak! nolist! <CR>", opts)
 
 -- Keep last yanked when pasting
 vim.keymap.set("v", "p", '"_dP', opts)

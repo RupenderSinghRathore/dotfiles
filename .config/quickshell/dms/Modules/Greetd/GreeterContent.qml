@@ -159,9 +159,9 @@ Item {
         layer.effect: MultiEffect {
             autoPaddingEnabled: false
             blurEnabled: true
-            blur: 0.8
+            blur: 0.32
             blurMax: 32
-            blurMultiplier: 1
+            blurMultiplier: 2
         }
 
         Behavior on opacity {

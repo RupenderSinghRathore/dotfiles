@@ -1,0 +1,101 @@
+workspace "1" {}
+workspace "2" {}
+workspace "3" {}
+workspace "4" {}
+// workspace "5" {}
+
+debug {
+    honor-xdg-activation-with-invalid-serial // switch focus
+}
+window-rule {
+    // This regular expression is intentionally made as specific as possible,
+    // since this is the default config, and we want no false positives.
+    // You can get away with just app-id="wezterm" if you want.
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
+}
+window-rule {
+    open-maximized true
+}
+window-rule {
+    match title="Choose Directory"
+    default-column-width { proportion 0.70; }
+    default-window-height { fixed 600; }
+    open-floating true
+    geometry-corner-radius 12.0
+    clip-to-geometry true
+    focus-ring {
+        on
+        width 2
+        active-color "#7fc8ff"
+        // inactive-color "#505050"
+        urgent-color "#9b0000"
+    }
+}
+window-rule {
+    match app-id="zen"
+    // open-fullscreen true
+    open-on-workspace "1"
+}
+window-rule {
+    match app-id="kitty"
+    open-on-workspace "2"
+}
+window-rule {
+    match app-id="org.kde.dolphin"
+    opacity 0.85
+    open-on-workspace "3"
+}
+window-rule {
+    match app-id="mpv"
+    open-on-workspace "3"
+}
+window-rule {
+    match app-id="spotify"
+    open-on-workspace "4"
+}
+window-rule {
+    match app-id="org.kde.okular"
+    open-on-workspace "3"
+}
+window-rule {
+    match app-id="popup"
+    default-column-width { proportion 0.60; }
+    default-window-height { fixed 500; }
+    open-floating true
+}
+window-rule {
+    match app-id="Omarchy"
+    default-column-width { proportion 0.75; }
+    default-window-height { fixed 600; }
+    open-floating true
+}
+
+// Open the firefox picture-in-picture player as floating by default.
+// window-rule {
+    // This app-id regular expression will work for both:
+    // - host firefox (app-id is "firefox")
+    // - Flatpak firefox (app-id is "org.mozilla.firefox")
+    // match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    // open-floating true
+// }
+
+// Example: block out two password managers from screen capture.
+// (This example rule is commented out with a "/-" in front.)
+/-window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+    block-out-from "screen-capture"
+
+    // Use this instead if you want them visible on third-party screenshot tools.
+    // block-out-from "screencast"
+}
+
+// Example: enable rounded corners for all windows.
+// (This example rule is commented out with a "/-" in front.)
+window-rule {
+    geometry-corner-radius 0
+    clip-to-geometry true
+}
+

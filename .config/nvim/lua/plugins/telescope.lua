@@ -54,7 +54,7 @@ return {
       ".venv",
       ".gradle/",
       ".db",
-      ".class",
+      ".class_",
       "META-INF",
       ".module",
       ".png",

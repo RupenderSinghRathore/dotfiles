@@ -964,12 +964,12 @@ window-rule {
         writeConfigProcess.configContent = configContent
         writeConfigProcess.configPath = configPath
         writeConfigProcess.command = ["sh", "-c", `mkdir -p "${niriDmsDir}" && cat > "${configPath}" << 'EOF'\n${configContent}\nEOF`]
-        writeConfigProcess.running = true
+        // writeConfigProcess.running = true
 
         writeAlttabProcess.alttabContent = alttabContent
         writeAlttabProcess.alttabPath = alttabPath
         writeAlttabProcess.command = ["sh", "-c", `mkdir -p "${niriDmsDir}" && cat > "${alttabPath}" << 'EOF'\n${alttabContent}\nEOF`]
-        writeAlttabProcess.running = true
+        // writeAlttabProcess.running = true
 
         configGenerationPending = false
     }
@@ -984,7 +984,7 @@ window-rule {
 
         writeBindsProcess.bindsPath = bindsPath
         writeBindsProcess.command = ["sh", "-c", `mkdir -p "${niriDmsDir}" && cp --no-preserve=mode "${sourceBindsPath}" "${bindsPath}"`]
-        writeBindsProcess.running = true
+        // writeBindsProcess.running = true
     }
 
     function generateNiriBlurrule() {
@@ -997,7 +997,7 @@ window-rule {
 
         writeBindsProcess.bindsPath = blurrulePath
         writeBindsProcess.command = ["sh", "-c", `mkdir -p "${niriDmsDir}" && cp --no-preserve=mode "${sourceBlurrulePath}" "${blurrulePath}"`]
-        writeBindsProcess.running = true
+        // writeBindsProcess.running = true
     }
 
     IpcHandler {

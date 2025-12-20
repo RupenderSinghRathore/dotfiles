@@ -72,7 +72,8 @@ return {
           local dirname = vim.fn.expand("%:p:h")
           -- vim.keymap.set("n", "<leader>r", "<cmd>!go run " .. dirname .. "<CR>", { buffer = true })
           vim.keymap.set("n", "<leader>r", "<cmd>!go run %<CR>", { buffer = true })
-          vim.keymap.set("n", "<F2>", "<cmd>term<CR>igo run ./cmd<CR>", { buffer = true })
+          vim.keymap.set("n", "<leader><F1>", "<cmd>!go run .<CR>", { buffer = true })
+          vim.keymap.set("n", "<leader><F2>", "<cmd>term<CR>igo run ./cmd<CR>", { buffer = true })
 
           vim.keymap.set("i", "<c-k>p", function()
             ls.snip_expand(s("log", {
@@ -186,7 +187,8 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "markdown",
         callback = function()
-          vim.keymap.set("n", "<leader>r", "<cmd>!zen-browser %<CR>", { buffer = true })
+          vim.keymap.set("n", "<leader>r", "<cmd>!zen %<CR>", { buffer = true })
+          -- vim.keymap.set("n", "<leader>r", "<cmd>RenderMarkdown toggle<CR>", { buffer = true })
           -- vim.keymap.set("n", "<leader>r", "<cmd>RenderMarkdown toggle<CR>", { buffer = true })
         end,
       })

@@ -35,9 +35,11 @@ require("lazy").setup({
   require("plugins.dap"),
   require("plugins.copilot"),
   require("plugins.database"),
+  require("plugins.hover"),
+  -- require("plugins.folding"),
 
-  -- require("plugins.rustaceanvim"),
   -- require("plugins.markdowns"),
+  -- require("plugins.rustaceanvim"),
   -- require("plugins.debugger"),
   -- require("plugins.copilot"),
   -- require("plugins.vim-be-good"),
