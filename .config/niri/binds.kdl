@@ -20,7 +20,8 @@ binds {
     Mod+Left allow-when-locked=true { spawn-sh "playerctl --player=spotify,ncspot previous"; }
 
     // Floating windows 
-    Mod+B hotkey-overlay-title="Bluetooth" { spawn-sh "alacritty --class popup -e /usr/bin/bluetui"; }
+    // Mod+B hotkey-overlay-title="Bluetooth" { spawn-sh "alacritty --class popup -e /usr/bin/bluetui"; }
+    Mod+B hotkey-overlay-title="Bluetooth" { spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-toggle-app \"alacritty --class popup -e /usr/bin/bluetui\" "; }
     // SUPER+I hotkey-overlay-title="Wifi" { spawn "nmgui"; }
 
     // scripts

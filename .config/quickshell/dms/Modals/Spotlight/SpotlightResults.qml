@@ -118,6 +118,7 @@ Rectangle {
 
                 property int currentIndex: appLauncher ? appLauncher.selectedIndex : -1
                 property int columns: appLauncher ? appLauncher.gridColumns : 4
+                // property bool adaptiveColumns: false
                 property bool adaptiveColumns: true
                 property int minCellWidth: 120
                 property int maxCellWidth: 160

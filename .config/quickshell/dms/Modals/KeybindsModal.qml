@@ -37,6 +37,13 @@ DankModal {
     Shortcut { sequence: "Ctrl+k"; onActivated: root.scrollUp() }
     Shortcut { sequence: "Up";     onActivated: root.scrollUp() }
     Shortcut { sequence: "Esc"; onActivated: root.close() }
+    Shortcut { sequence: "Ctrl+["; onActivated: root.close() }
+    Shortcut { sequence: "Ctrl+["; context: Qt.WindowShortcut; onActivated: root.close() }
+    // Replace your existing Esc and Ctrl+[ shortcuts with this:
+    // Shortcut { 
+    //     sequences: ["Esc", "Ctrl+q"] 
+    //     onActivated: root.close() 
+    // }
 
     content: Component {
         Item {

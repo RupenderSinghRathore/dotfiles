@@ -33,6 +33,8 @@ Rectangle {
     signal itemRightClicked(int index, var modelData, real mouseX, real mouseY)
     signal keyboardNavigationReset()
 
+    border.width: currentIndex === index ? 2 : 0
+    border.color: Theme.primary
     width: cellWidth - cellPadding
     height: cellHeight - cellPadding
     radius: Theme.cornerRadius
