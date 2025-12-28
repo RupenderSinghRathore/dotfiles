@@ -146,6 +146,12 @@ layout {
         // bottom 64
     }
 }
+gestures {
+    // This disables all hot corners across all monitors
+    hot-corners {
+        off
+    }
+}
 animations {
     workspace-switch {
         // spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001

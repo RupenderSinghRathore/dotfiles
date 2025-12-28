@@ -125,7 +125,8 @@ binds {
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
 
     // Switches focus between the current and the previous workspace.
-    SUPER+Tab { focus-workspace-previous; }
+    Mod+Tab { focus-workspace-previous; }
+    // Mod+Tab { next-window; }
 
     // The following binds move the focused window in and out of a column.
     // If the window is alone, they will consume it into the nearby column to the side.
@@ -309,4 +310,17 @@ binds {
     XF86MonBrightnessDown allow-when-locked=true {
        spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
     }  
+}
+recent-windows {
+    binds {
+        Super+grave         { next-window; }
+        Super+Shift+grave   { previous-window; }
+        Super+Tab         { next-window     filter="app-id"; }
+        Super+Shift+Tab   { previous-window filter="app-id"; }
+
+        // Mod+Tab         { next-window; }
+        // Mod+Shift+Tab   { previous-window; }
+        // Mod+grave       { next-window     filter="app-id"; }
+        // Mod+Shift+grave { previous-window filter="app-id"; }
+    }
 }

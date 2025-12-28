@@ -35,6 +35,7 @@ window-rule {
 window-rule {
     match app-id="zen"
     // open-fullscreen true
+    // opacity 0.85
     open-on-workspace "1"
 }
 window-rule {
@@ -98,4 +99,22 @@ window-rule {
     geometry-corner-radius 0
     clip-to-geometry true
 }
+recent-windows {
+    // off
+    debounce-ms 750
 
+    open-delay-ms 150
+
+    highlight {
+        active-color "#999999ff"
+        urgent-color "#ff9999ff"
+        padding 30
+        corner-radius 0
+    }
+
+    previews {
+        max-height 480
+        max-scale 0.5
+    }
+
+}

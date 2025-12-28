@@ -172,7 +172,7 @@ Item {
             autoPaddingEnabled: false
             blurEnabled: true
             blur: 0.8
-            blurMax: 32
+            blurMax: 64
             blurMultiplier: 1
         }
 
