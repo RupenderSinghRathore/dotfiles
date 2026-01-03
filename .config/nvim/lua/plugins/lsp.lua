@@ -230,8 +230,8 @@ return {
       -- https://github.com/pmizio/typescript-tools.nvim
       --
       -- But for many setups, the LSP (`tsserver`) will work just fine
-      -- ts_ls = {}, -- tsserver is deprecated
-      tsserver = {},
+      ts_ls = {}, -- tsserver is deprecated
+      -- tsserver = {},
 
       pylsp = {
         settings = {
@@ -249,10 +249,11 @@ return {
           },
         },
       },
+      templ = {},
       htmx = {},
-      html = { filetypes = { "html", "twig", "hbs" } },
+      html = { filetypes = { "html", "css", "javascript" } },
       cssls = {},
-      tailwindcss = {},
+      -- tailwindcss = {},
       -- dockerls = {},
       -- sqlls = {},
       -- sqls = {},
@@ -281,11 +282,11 @@ return {
     -- You can add other tools here that you want Mason to install
     -- for you, so that they are available from within Neovim.
     local ensure_installed = vim.tbl_keys(servers or {})
-    for i, server in ipairs(ensure_installed) do
-      if server == "tsserver" then
-        ensure_installed[i] = "typescript-language-server"
-      end
-    end
+    -- for i, server in ipairs(ensure_installed) do
+    --   if server == "tsserver" then
+    --     ensure_installed[i] = "typescript-language-server"
+    --   end
+    -- end
     vim.list_extend(ensure_installed, {
       "stylua", -- used to format lua code
     })
@@ -343,6 +344,7 @@ return {
       },
     })
     vim.lsp.config("htmx", {
+      filetypes = { "html" },
       handlers = {
         ["textDocument/hover"] = function(err, result, ctx, config)
           -- 1. Filter out empty/nil results

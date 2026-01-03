@@ -1,6 +1,6 @@
 return {
   "lewis6991/hover.nvim",
-  ft = "html",
+  ft = { "html", "templ" },
   config = function()
     require("hover").setup({
       init = function()
@@ -20,14 +20,20 @@ return {
     })
 
     -- Setup keymaps
-    vim.keymap.set("n", "K", require("hover").hover, { desc = "hover.nvim" })
-    -- vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
-    vim.keymap.set("n", "gK", function()
-      require("hover").hover_select({})
-    end, { desc = "hover.nvim (select)" })
+    vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
+    -- vim.keymap.set("n", "gK", function()
+    --   require("hover").hover_select({})
+    -- end, { desc = "hover.nvim (select)" })
 
     -- Mouse support
     -- vim.keymap.set("n", "<MouseMove>", require("hover").mouse, { desc = "hover.nvim (mouse)" })
     -- vim.o.mousemoveevent = true
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = { "html", "templ" },
+      callback = function(event)
+        -- vim.keymap.set("n", "K", require("hover").hover, { desc = "hover.nvim" })
+        -- set_hover_keymaps(event.buf)
+      end,
+    })
   end,
 }

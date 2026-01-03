@@ -60,7 +60,7 @@ return {
       ".png",
       ".jpg",
       "vgcore*",
-      "run_",
+      "run$",
       "bin_",
       ".cache",
       -- "Hakurei_Shrine",

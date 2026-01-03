@@ -1297,7 +1297,7 @@ Item {
     Timer {
         id: placeholderDelay
 
-        interval: 4000
+        interval: 300
         onTriggered: root.pamState = ""
     }
 

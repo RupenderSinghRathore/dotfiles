@@ -38,6 +38,7 @@ return {
         zsh = { "shfmt" },
         -- conf = { "shfmt" },
         java = { "astyle" },
+        templ = { "templ" },
         kt = { "ktlint" },
         javascript = { "prettier" },
         typescript = { "prettier" },

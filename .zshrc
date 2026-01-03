@@ -46,9 +46,11 @@ source $ZSH/oh-my-zsh.sh
 mycd() {
     local search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads)
     local dir=$(
-        find "${search_dirs[@]}" -type d \
-            \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name 'env' -o -name 'venv' -o -name '.gradle' -o -name 'META-INF' -o -name 'target' -o -name '.cache' -o -name 'utils' -o -name 'random stuff' \) -prune \
-            -o -type d -print 2>/dev/null |
+        find "${search_dirs[@]}" -maxdepth 2 -type d \
+            \
+            \( -name '.git' -o -name '.cache' \) -prune \
+            -o -type d -print 2>/dev/null | # \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name 'env' -o -name 'venv' -o -name '.gradle' -o -name 'META-INF' -o -name 'target' -o -name '.cache' -o -name 'utils' -o -name 'random stuff' \) -prune \
+            awk '!seen[$0]++' |  # <--- This line removes duplicates
             sed "s|^$HOME/||" |
             fzf --prompt="Select directory: "
     )

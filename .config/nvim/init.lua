@@ -35,7 +35,7 @@ require("lazy").setup({
   require("plugins.dap"),
   require("plugins.copilot"),
   require("plugins.database"),
-  require("plugins.hover"),
+  -- require("plugins.hover"),
   -- require("plugins.folding"),
 
   -- require("plugins.markdowns"),
