@@ -1,28 +1,32 @@
 return {
   "kevinhwang91/nvim-ufo",
+  -- event = { "BufReadPre", "BufNewFile" },
   dependencies = "kevinhwang91/promise-async",
   config = function()
-    vim.o.foldcolumn = "1" -- Show fold column
-    vim.o.foldlevel = 99 -- High to avoid auto-folding everything
-    vim.o.foldlevelstart = 99
+    local ufo = require("ufo")
     vim.o.foldenable = true
-
-    require("ufo").setup({
+    vim.o.foldcolumn = "0" -- Show fold column
+    vim.o.foldlevel = 99
+    vim.o.foldlevelstart = 99
+    -- vim.o.foldmethod = "expr"
+    -- vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+    --
+    ufo.setup({
       provider_selector = function(bufnr, filetype, buftype)
-        return { "treesitter", "indent" } -- Prefer Tree-sitter, fallback to indent
+        return { "lsp", "indent" }
       end,
     })
-
-    vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-    vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
-    vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
-    vim.keymap.set("n", "zm", require("ufo").closeFoldsWith)
+    --
+    vim.keymap.set("n", "zR", ufo.openAllFolds)
+    vim.keymap.set("n", "zM", ufo.closeAllFolds)
+    -- vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
+    -- vim.keymap.set("n", "zm", require("ufo").closeFoldsWith)
     vim.keymap.set("n", "<leader>z", "za")
-    vim.keymap.set("n", "K", function() -- Peek folded lines under cursor (like VS Code hover)
-      local winid = require("ufo").peekFoldedLinesUnderCursor()
+    vim.keymap.set("n", "zk", function() -- Peek folded lines under cursor (like VS Code hover)
+      local winid = ufo.peekFoldedLinesUnderCursor()
       if not winid then
         vim.lsp.buf.hover()
       end
-    end)
+    end, { desc = "Peek fold" })
   end,
 }

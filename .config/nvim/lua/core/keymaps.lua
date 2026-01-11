@@ -15,6 +15,7 @@ vim.keymap.set("n", "<leader>md", "<cmd>call mkdir(expand('%:h'), 'p')<CR>", opt
 -- to Explorer
 vim.keymap.set("n", "<leader>nv", "<cmd>Ex<CR>", opts)
 vim.keymap.set("n", "<leader>nq", "<cmd>q!<CR>", opts)
+-- vim.keymap.set("n", "<leader>te", ":e %:h/", opts)
 
 vim.keymap.set("n", "<Esc>", ":<BS>", opts)
 -- vim.keymap.set("n", "<leader>c", ":fclose<CR>", opts)

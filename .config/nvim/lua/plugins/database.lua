@@ -36,5 +36,20 @@ return {
         vim.bo.buflisted = false
       end,
     })
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = { "sql", "mysql", "plsql" },
+      callback = function()
+        vim.keymap.set("n", "<leader>k", function()
+          -- Get the word under the cursor (table name)
+          print "hello"
+          local table_name = vim.fn.expand("<cword>")
+
+          -- Run the Dadbod command.
+          -- Note: This assumes you are connected to a DB via Dadbod UI
+          -- For Postgres use '\d', for MySQL use 'DESCRIBE'
+          vim.cmd("DB \\d " .. table_name)
+        end, { buffer = true, desc = "Dadbod: Describe table/view" })
+      end,
+    })
   end,
 }

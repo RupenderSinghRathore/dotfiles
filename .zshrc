@@ -6,6 +6,7 @@ setopt autocd
 export PATH="$HOME/.local/bin:$HOME/.local/omarchy/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH"
 export MANPAGER='nvim +Man!'
 export GTK_USE_PORTAL=0
+export GREENLIGHT_DB_DSN='postgres://greenlight:touka@localhost/greenlight?sslmode=disable'
 # export QT_QPA_PLATFORMTHEME=gtk3
 # export GTK_THEME=catppuccin-mocha-rosewater-standard+default
 export RUST_BACKTRACE=1

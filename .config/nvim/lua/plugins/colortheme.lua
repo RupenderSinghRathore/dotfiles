@@ -16,13 +16,11 @@ return {
         sidebars = "transparent",
       },
       -- sidebars = { "qf", "help", "terminal", "packer" },
-      day_brightness = 0.3,
-      hide_inactive_statusline = false,
+      -- hide_inactive_statusline = true,
       dim_inactive = false,
       lualine_bold = false,
 
-      cache = true,
-
+      -- cache = true,
       --- You can override specific highlight groups
       on_colors = function(colors)
         colors.bg_highlight = "#4b1561"
@@ -33,6 +31,7 @@ return {
       on_highlights = function(hl, c)
         -- hl.CursorLine = { bg = c.bg_highlight, blend = 20 } -- 20% transparent
         hl.Visual = { bg = c.bg_highlight, bold = false }
+        hl.Folded = { bg = "NONE" }
       end,
     },
     config = function(_, opts)

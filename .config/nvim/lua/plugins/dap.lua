@@ -10,6 +10,19 @@ return {
       require("dap-go").setup()
       require("dapui").setup()
 
+      table.insert(dap.configurations.go, {
+        type = "go",
+        name = "Debug Package (Prompts for Args)",
+        request = "launch",
+        mode = "debug",
+        program = "${workspaceFolder}/cmd/app", -- Debugs the whole package at root
+        args = function()
+          -- This will prompt you for args every time you launch
+          local input = vim.fn.input("Args: ")
+          return vim.split(input, " ")
+        end,
+      })
+
       dap.listeners.before.attach.dapui_config = function()
         dapui.open()
       end
@@ -83,26 +96,35 @@ return {
       vim.keymap.set("n", "<leader>du", dap.step_out, { desc = "Step Out" })
       vim.keymap.set("n", "<leader>dh", dap.run_to_cursor, { desc = "Run untill Cursor" }) -- Run until the line your cursor is on
 
+      vim.keymap.set("n", "<leader>dU", function()
+        require("dapui").toggle()
+      end, { desc = "Toggle Debug UI" })
+
       vim.keymap.set("n", "<Leader>dr", function()
         require("dap").repl.open()
-      end)
+      end, { desc = "open repl" })
+
       vim.keymap.set("n", "<Leader>dl", function()
         require("dap").run_last()
-      end)
+      end, { desc = "run last test" })
+
       vim.keymap.set({ "n", "v" }, "<Leader>dh", function()
         require("dap.ui.widgets").hover()
-      end)
+      end, { desc = "hover dap ui widget" })
+
       vim.keymap.set({ "n", "v" }, "<Leader>dp", function()
         require("dap.ui.widgets").preview()
-      end)
+      end, { desc = "preview dap ui widgets" })
+
       vim.keymap.set("n", "<Leader>df", function()
         local widgets = require("dap.ui.widgets")
         widgets.centered_float(widgets.frames)
-      end)
+      end, { desc = "centered_float" })
+
       vim.keymap.set("n", "<Leader>ds", function()
         local widgets = require("dap.ui.widgets")
         widgets.centered_float(widgets.scopes)
-      end)
+      end, { desc = "centered variables pane" })
     end,
   },
 }

@@ -43,12 +43,6 @@ vim.opt.formatoptions:remove({ "c", "r", "o" }) -- Don't insert the current comm
 vim.opt.textwidth = 0
 vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- Separate Vim plugins from Neovim in case Vim still in use (default: includes this path if Vim is installed)
 
--- for folding
-vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.o.foldenable = true
-vim.o.foldlevelstart = 99
-
 -- Tabline setup
 --vim.o.showtabline = 0 -- Always hides tabs
 vim.o.showtabline = 1
