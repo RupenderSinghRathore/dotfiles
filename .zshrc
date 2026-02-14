@@ -1,5 +1,3 @@
-# source ~/dotfiles/.config/zsh/private-env
-
 export ZSH="$HOME/.oh-my-zsh"
 setopt IGNOREEOF
 setopt autocd
@@ -9,7 +7,7 @@ export GTK_USE_PORTAL=0
 export GREENLIGHT_DB_DSN='postgres://greenlight:touka@localhost/greenlight?sslmode=disable'
 # export QT_QPA_PLATFORMTHEME=gtk3
 # export GTK_THEME=catppuccin-mocha-rosewater-standard+default
-export RUST_BACKTRACE=1
+# export RUST_BACKTRACE=1
 typeset -U PATH # remove duplication from path
 
 # export QT_QPA_PLATFORMTHEME=qt5ct
@@ -37,6 +35,7 @@ zstyle ':omz:update' mode reminder # just remind me to update when it's time
 plugins=(git web-search zsh-syntax-highlighting zsh-vi-mode zsh-autosuggestions)
 # plugins=(git web-search zsh-syntax-highlighting zsh-autosuggestions)
 
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZVM_CURSOR_STYLE_ENABLED=false
 ZSH_WEB_SEARCH_ENGINES=(
     bigo "https://www.bigocalc.com/"
@@ -45,7 +44,7 @@ ZSH_WEB_SEARCH_ENGINES=(
 source $ZSH/oh-my-zsh.sh
 
 mycd() {
-    local search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads)
+    local search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads ~/lunaar/languages/go)
     local dir=$(
         find "${search_dirs[@]}" -maxdepth 2 -type d \
             \
@@ -53,7 +52,7 @@ mycd() {
             -o -type d -print 2>/dev/null | # \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name 'env' -o -name 'venv' -o -name '.gradle' -o -name 'META-INF' -o -name 'target' -o -name '.cache' -o -name 'utils' -o -name 'random stuff' \) -prune \
             awk '!seen[$0]++' |  # <--- This line removes duplicates
             sed "s|^$HOME/||" |
-            fzf --prompt="Select directory: "
+            fzf --height 40% --reverse --prompt="Select directory: "
     )
     if [ -n "$dir" ]; then
         echo $dir
@@ -104,3 +103,4 @@ top-bar-toggle() {
 precmd() {print -Pn "\e]0;%~\a"}
 DISABLE_AUTO_TITLE="true"
 source ~/dotfiles/.config/zsh/aliases
+source ~/dotfiles/.config/zsh/api-keys.sh

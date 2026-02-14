@@ -1,5 +1,6 @@
 require("core.options")
 require("core.keymaps")
+require("core.tabs")
 -- require("core.make-file")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -30,16 +31,18 @@ require("lazy").setup({
   require("plugins.git-fugitive"),
   require("plugins.lualine"),
   require("plugins.love"),
-  require("plugins.oil"),
+  require("plugins.yazi"),
+  -- require("plugins.oil"),
   -- require("plugins.neotree"),
   require("plugins.image"),
   require("plugins.dap"),
   require("plugins.copilot"),
   require("plugins.database"),
   require("plugins.folding"),
+  require("plugins.leetcode"),
   -- require("plugins.hover"),
 
-  -- require("plugins.markdowns"),
+  require("plugins.markdowns"),
   -- require("plugins.rustaceanvim"),
   -- require("plugins.debugger"),
   -- require("plugins.copilot"),

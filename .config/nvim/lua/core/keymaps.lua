@@ -2,6 +2,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- vim.keymap.set("n", "EN", "Iif err := <ESC>A; err != nil {<CR><ESC>mzo}<ESC>`zi", { noremap = true, silent = true })
+
 -- For conciseness
 local opts = { noremap = true, silent = false }
 local opts2 = { noremap = true, silent = true }
@@ -48,11 +50,11 @@ vim.keymap.set("n", "<C-Left>", "<C-w><", { desc = "Decrease window width" })
 vim.keymap.set("n", "<C-Right>", "<C-w>>", { desc = "Increase window width" })
 
 -- Tabs
-vim.keymap.set("n", "<leader>tn", ":tabnew ", opts) -- open new tab
+-- vim.keymap.set("n", "<leader>tn", ":tabnew ", opts) -- open new tab
 -- vim.keymap.set("n", "tx", ":tabclose ", opts)       -- close current tab
 vim.keymap.set("n", "<leader>j", "<cmd>e #<CR>", { noremap = true, desc = "switch buffer" })
-vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts) --  go to next tab
-vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts) --  go to previous tab
+-- vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts) --  go to next tab
+-- vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts) --  go to previous tab
 
 -- Toggle line wrapping
 vim.keymap.set("n", "<leader>lw", "<cmd>set wrap! linebreak! nolist! <CR>", opts)

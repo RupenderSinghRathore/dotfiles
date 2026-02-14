@@ -66,6 +66,7 @@ return {
       -- "Hakurei_Shrine",
       "Session.vim",
       "package",
+      ".repos",
     }
     require("telescope").setup({
       -- You can put your default mappings / updates / etc. in here

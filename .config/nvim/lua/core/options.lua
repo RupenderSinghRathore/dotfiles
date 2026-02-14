@@ -90,3 +90,12 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.linebreak = false
   end,
 })
+-- Add this autocommand to your init.lua
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = { "*.mp4", "*.mkv", "*.mpv", "*.png", "*.jpg", "*.pdf" }, -- Add other extensions here
+  callback = function(ev)
+    local cmd = { "xdg-open", ev.file }
+    vim.fn.jobstart(cmd, { detach = true })
+    vim.api.nvim_buf_delete(ev.buf, { force = true })
+  end,
+})

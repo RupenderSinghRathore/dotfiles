@@ -1,4 +1,4 @@
 .config/alacritty/themes/images
 **/Session.vim
 colemak-dh
-.config/zsh/private-env
+.config/zsh/api-keys.sh

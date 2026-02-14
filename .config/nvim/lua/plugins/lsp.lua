@@ -257,6 +257,7 @@ return {
       -- dockerls = {},
       -- sqlls = {},
       -- sqls = {},
+      svelte = {},
       jsonls = {},
 
       lua_ls = {},

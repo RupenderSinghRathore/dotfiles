@@ -10,7 +10,7 @@ return {
       -- local sn = ls.snippet_node
       local t = ls.text_node
       local i = ls.insert_node
-      -- local f = ls.function_node
+      local f = ls.function_node
       -- local c = ls.choice_node
       -- local d = ls.dynamic_node
       -- local r = ls.restore_node
@@ -89,20 +89,45 @@ return {
           vim.keymap.set("i", "<c-k>h", function()
             ls.snip_expand(s("Handler func", {
               t({ "func (app *application) " }),
-              i(1, ""),
+              i(1),
               t({ "(w http.ResponseWriter, r *http.Request) {", "\t" }),
-              i(2, ""),
+              i(2),
               t({ "", "}" }),
             }))
           end, { buffer = true, desc = "http handlerfunc signature" })
 
-          vim.keymap.set("i", "<c-k>e", function()
+          vim.keymap.set("i", "<c-k>ee", function()
             ls.snip_expand(s("Errorhandling", {
               t({ "if err != nil {", "\t" }),
-              i(1, ""),
+              i(1),
               t({ "", "}" }),
             }))
           end, { buffer = true, desc = "Insert Go error handling block" })
+
+          vim.keymap.set("i", "<c-k>ei", function()
+            local fmt = require("luasnip.extras.fmt").fmt
+
+            local line = vim.api.nvim_get_current_line()
+            local indent = line:match("^%s*") -- Capture leading tabs/spaces
+            local code = vim.trim(line) -- Capture the code (e.g., "os.Open(f)")
+
+            vim.api.nvim_set_current_line(indent)
+            vim.api.nvim_win_set_cursor(0, { vim.fn.line("."), #indent })
+            ls.snip_expand(ls.snippet(
+              "",
+              fmt(
+                [[
+            if err := {}; err != nil {{
+                {}
+            }}
+        ]],
+                {
+                  ls.text_node(code), -- Wraps your captured code
+                  ls.insert_node(0), -- Places cursor inside the block, correctly indented
+                }
+              )
+            ))
+          end, { buffer = true, desc = "Insert Go inline error handling block" })
         end,
       })
 
@@ -187,7 +212,8 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "markdown",
         callback = function()
-          vim.keymap.set("n", "<leader>r", "<cmd>!zen %<CR>", { buffer = true })
+          vim.keymap.set("n", "<leader>r", "<cmd>LivePreview start<CR>", { buffer = true })
+          -- vim.keymap.set("n", "<leader>r", "<cmd>!zen %<CR>", { buffer = true })
           -- vim.keymap.set("n", "<leader>r", "<cmd>RenderMarkdown toggle<CR>", { buffer = true })
           -- vim.keymap.set("n", "<leader>r", "<cmd>RenderMarkdown toggle<CR>", { buffer = true })
         end,

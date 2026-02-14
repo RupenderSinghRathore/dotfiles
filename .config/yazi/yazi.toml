@@ -1,0 +1,4 @@
+[[manager.prepend_keymap]]
+on   = "O"
+run  = 'shell --detach "xdg-open \"$@\""' 
+desc = "Open externally"

@@ -8,10 +8,10 @@ binds {
     Mod+O hotkey-overlay-title="Open okular" { spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus okular"; }
     Mod+E hotkey-overlay-title="Open zen" { spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus zen"; }
     Mod+T hotkey-overlay-title="Open mpv" { spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus mpv"; }
-    // Mod+Space hotkey-overlay-title="Open a Terminal: rofi" { spawn "rofi" "-show" "drun" "-theme" "/home/kami-sama/dotfiles/.config/rofi/config-apps.rasi"; }
+    // Mod+Space hotkey-overlay-title="App launcher(rofi)" { spawn "rofi" "-show" "drun" "-theme" "/home/kami-sama/dotfiles/.config/rofi/config-apps.rasi"; }
     SUPER+M hotkey-overlay-title="Emoji" { spawn "rofimoji"; }
 
-    SUPER+Shift+K hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+    Alt+Shift+K hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
 
     // Spotify controls
     Mod+S allow-when-locked=true { spawn-sh "playerctl --player=spotify,ncspot play-pause"; }
@@ -32,6 +32,7 @@ binds {
     Mod+R hotkey-overlay-title="Remove" { spawn-sh "/home/kami-sama/.local/omarchy/bin/omarchy-menu remove"; }
     Mod+Ctrl+S hotkey-overlay-title="Share" { spawn-sh "/home/kami-sama/.local/omarchy/bin/omarchy-menu share"; }
     Mod+Ctrl+L hotkey-overlay-title="Toggle locking" { spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-toggle-idle"; }
+    Mod+Ctrl+N hotkey-overlay-title="Toggle nightmode" { spawn-sh "/home/kami-sama/.local/bin/nightmode"; }
     // Mod+Escape hotkey-overlay-title="System" { spawn-sh "/home/kami-sama/.local/omarchy/bin/omarchy-menu system"; }
     // Mod+Shift+K hotkey-overlay-title="All Mappings" { spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-menu-keybinds"; }
 
@@ -54,10 +55,10 @@ binds {
     // Mod+Comma  { focus-column-left; }
     // Mod+Period  { focus-column-right; }
 
-    SUPER+Ctrl+H     { move-column-left; }
-    SUPER+Ctrl+J     { move-window-down; }
-    SUPER+Ctrl+K     { move-window-up; }
-    SUPER+Ctrl+L     { move-column-right; }
+    SUPER+Shift+H     { move-column-left; }
+    SUPER+Shift+J     { move-window-down; }
+    SUPER+Shift+K     { move-window-up; }
+    SUPER+Shift+L     { move-column-right; }
 
     // You can bind mouse wheel scroll ticks using the following syntax.
     // These binds will change direction based on the natural-scroll setting.
@@ -240,7 +241,7 @@ binds {
         spawn "dms" "ipc" "call" "processlist" "toggle"; 
     }
 
-    Mod+Shift+Comma hotkey-overlay-title="Settings" { 
+    SUPER+S hotkey-overlay-title="Settings" { 
         spawn "dms" "ipc" "call" "settings" "toggle"; 
     }
 
@@ -267,7 +268,7 @@ binds {
       spawn "dms" "ipc" "call" "notepad" "toggle";  
     }
     
-    SUPER+Shift+L hotkey-overlay-title="Lock Screen" { 
+    SUPER+Ctrl+L hotkey-overlay-title="Lock Screen" { 
         spawn "dms" "ipc" "call" "lock" "lock"; 
     }
 
@@ -314,10 +315,10 @@ binds {
 }
 recent-windows {
     binds {
-        Super+grave         { next-window; }
-        Super+Shift+grave   { previous-window; }
-        Super+Tab         { next-window     filter="app-id"; }
-        Super+Shift+Tab   { previous-window filter="app-id"; }
+        Super+Tab         { next-window; }
+        Super+Shift+Tab   { previous-window; }
+        Super+grave         { next-window     filter="app-id"; }
+        Super+Shift+grave   { previous-window filter="app-id"; }
 
         // Mod+Tab         { next-window; }
         // Mod+Shift+Tab   { previous-window; }
