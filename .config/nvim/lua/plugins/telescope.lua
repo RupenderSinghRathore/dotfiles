@@ -122,8 +122,8 @@ return {
         },
         buffers = {
           mappings = {
-            i = { ["<C-w>"] = require("telescope.actions").delete_buffer },
-            n = { ["<C-w>"] = require("telescope.actions").delete_buffer },
+            i = { ["<C-s>"] = require("telescope.actions").delete_buffer },
+            n = { ["<C-s>"] = require("telescope.actions").delete_buffer },
           },
         },
       },

@@ -11,7 +11,7 @@ export GREENLIGHT_DB_DSN='postgres://greenlight:touka@localhost/greenlight?sslmo
 typeset -U PATH # remove duplication from path
 
 # export QT_QPA_PLATFORMTHEME=qt5ct
-# export QT_QPA_PLATFORMTHEME=qt6ct
+export QT_QPA_PLATFORMTHEME=qt6ct
 # export QT_STYLE_OVERRIDE=Kvantum
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org"
 

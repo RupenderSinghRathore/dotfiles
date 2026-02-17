@@ -60,6 +60,10 @@ window-rule {
     open-on-workspace "3"
 }
 window-rule {
+    match app-id="org.gnome.Evince"
+    open-on-workspace "3"
+}
+window-rule {
     match app-id="popup"
     default-column-width { proportion 0.60; }
     default-window-height { fixed 500; }

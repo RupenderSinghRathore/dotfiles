@@ -4,8 +4,10 @@ file=$(find -type d \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 
     -o \
     -type f \( ! -name '*.png' ! -name '*.pdf' ! -name '*.epub' ! -name '*.zip' ! -name '*.db' ! -name '*.class' \) -print |
     sed "s|^\./||" |
-    fzf --height 40% --reverse --prompt="Select file: ")
+    fzf --height 40% --reverse --prompt="Select file: " --print-query | tail -1)
 
 # Open the selected file in Neovim if a file is selected
 tmux rename-window nvim
 [ -n "$file" ] && nvim "$file"
+# [ -n "$file" ]
+# nvim "$file"

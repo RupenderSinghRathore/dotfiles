@@ -21,10 +21,15 @@ while true; do
     fi
 
     if [[ "$battery_state" == "Discharging" ]] && [[ "$battery_level" -le $THRESHOLD1 ]]; then
-        notify-send -a "Battery" -u critical -i battery-caution "⚡ Battery Low!" "      ${battery_level}%" ; paplay /usr/share/sounds/freedesktop/stereo/dialog-warning.oga
-    
-    elif [[ "$battery_state" == "Charging" ]] && [[ "$battery_level" -ge $THRESHOLD2 ]]; then
-        notify-send -a "Battery" -u critical -i battery-full "⚡ Battery overflow!" "      ${battery_level}%" ; paplay /usr/share/sounds/freedesktop/stereo/dialog-warning.oga
+        notify-send -a "Battery" -u critical -i battery-caution "⚡ Battery Low!" "      ${battery_level}%"
+        paplay /usr/share/sounds/freedesktop/stereo/dialog-warning.oga
+
+    elif [[ "$battery_state" == "Charging" ]] && [[ "$battery_level" -ge $THRESHOLD2 ]] || [[ "$battery_state" == "Full" ]]; then
+        notify-send -a "Battery" -u critical -i battery-full "⚡ Battery overflow!" "      ${battery_level}%"
+        paplay /usr/share/sounds/freedesktop/stereo/dialog-warning.oga
+    elif [[ "$battery_state" == "Unknown" ]] && [[ "$battery_level" == 0 ]]; then
+        notify-send -a "Battery" -u critical -i battery-caution "⚡ Battery Fucked!!!!" "      ${battery_level}%"
+        paplay /usr/share/sounds/freedesktop/stereo/dialog-warning.oga
     fi
 
     sleep $SLEEP_TIME

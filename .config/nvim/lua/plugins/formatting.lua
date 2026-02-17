@@ -56,6 +56,7 @@ return {
         graphql = { "prettier" },
         liquid = { "prettier" },
         lua = { "stylua" },
+        kdl = { "kdlfmt" },
         python = { "black" },
         -- markdown = { "prettier", "markdown-toc" },
         markdown = { "prettier" },
