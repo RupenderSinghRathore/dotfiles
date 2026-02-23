@@ -15,7 +15,7 @@ gui:
   sidePanelWidth: 0.3333
   showBottomLine: true
   expandFocusedSidePanel: false
-  screenMode: normal # one of 'normal' | 'half' | 'fullscreen'
+  screenMode: half # one of 'normal' | 'half' | 'fullscreen'
   containerStatusHealthStyle: long
   border: ""
 logs:
@@ -40,11 +40,23 @@ commandTemplates:
   serviceTop: "{{ .DockerCompose }} top {{ .Service.Name }}"
 
 customCommands:
-  images:
-    - name: bash
+  conainers: 
+    - name: "help"
+      command: 'bash -c "read -e -p \"image_name: \" image_name && docker pull \$image_name"'
       attach: true
-      command: "docker run -d -p 8080:80 {{ .Service.Name }}"
+  images:
+    - name: run
+      attach: true
+      command: 'docker run -d -p 8080:80 {{ .Image.Name }}'
+      # command: 'bash -c "read -p \"Args: \" args && docker run  \$args {{ .Image.Name }}"'
       serviceNames: []
+    - name: "pull"
+      command: 'bash -c "read -e -p \"image_name: \" image_name && docker pull \$image_name"'
+      attach: true
+  volumes:
+    - name: "Create new volume"
+      command: 'bash -c "read -p \"Enter volume name: \" vol_name && docker volume create \$vol_name"'
+      attach: true
 
 bulkCommands:
   services:

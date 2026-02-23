@@ -180,7 +180,7 @@
   "weatherEnabled": true,
   "networkPreference": "wifi",
   "vpnLastConnected": "",
-  "iconTheme": "System Default",
+  "iconTheme": "candy-icons",
   "cursorSettings": {
     "theme": "System Default",
     "size": 28,

@@ -161,7 +161,6 @@ animations {
 cursor {
     // xcursor-theme "breeze_cursors"
     // xcursor-size 48
-
     hide-when-typing
-    hide-after-inactive-ms 2000
+    hide-after-inactive-ms 1000
 }

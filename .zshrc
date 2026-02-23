@@ -5,6 +5,10 @@ export PATH="$HOME/.local/bin:$HOME/.local/omarchy/bin:$HOME/go/bin:$HOME/.cargo
 export MANPAGER='nvim +Man!'
 export GTK_USE_PORTAL=0
 export GREENLIGHT_DB_DSN='postgres://greenlight:touka@localhost/greenlight?sslmode=disable'
+
+export KRAFTKIT_LOG_LEVEL=debug
+export KRAFTKIT_LOG_TYPE=basic
+
 # export QT_QPA_PLATFORMTHEME=gtk3
 # export GTK_THEME=catppuccin-mocha-rosewater-standard+default
 # export RUST_BACKTRACE=1
@@ -83,6 +87,9 @@ mdc() {
 }
 top-bar-toggle() {
     mv ~/dotfiles/.config/DankMaterialShell/settings.json ~/dotfiles/.config/DankMaterialShell/temp && mv ~/dotfiles/.config/DankMaterialShell/toggle.json ~/dotfiles/.config/DankMaterialShell/settings.json && mv ~/dotfiles/.config/DankMaterialShell/temp ~/dotfiles/.config/DankMaterialShell/toggle.json && dms restart
+}
+help() {
+  "$@" --help | bat -l man
 }
 
 # Generated for envman. Do not edit.
