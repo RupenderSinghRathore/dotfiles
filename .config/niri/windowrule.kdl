@@ -52,6 +52,14 @@ window-rule {
     open-on-workspace "3"
 }
 window-rule {
+    match app-id="discord"
+    open-on-workspace "3"
+}
+window-rule {
+    match app-id="sioyek"
+    open-on-workspace "3"
+}
+window-rule {
     match app-id="spotify"
     open-on-workspace "4"
 }

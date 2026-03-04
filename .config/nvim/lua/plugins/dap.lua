@@ -22,6 +22,28 @@ return {
           return vim.split(input, " ")
         end,
       })
+      table.insert(dap.configurations.go, {
+        type = "go",
+        name = "Exec Binary (Prompts for Args)",
+        request = "launch",
+        mode = "exec",
+        program = function()
+          -- Prompts you for the path to the compiled binary
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        args = function()
+          -- This will prompt you for args every time you launch
+          local input = vim.fn.input("Args: ")
+          return vim.split(input, " ")
+        end,
+        dlvLoadConfig = {
+          followPointers = true,
+          maxVariableRecurse = 3, -- How deep to go into nested structs (default is usually 1)
+          maxStringLen = 1024, -- Maximum string length to display (default is usually 64)
+          maxArrayValues = 1024, -- Maximum number of array/slice elements to show
+          maxStructFields = -1, -- -1 means fetch all fields of a struct
+        },
+      })
 
       dap.listeners.before.attach.dapui_config = function()
         dapui.open()

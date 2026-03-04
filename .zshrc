@@ -91,6 +91,9 @@ top-bar-toggle() {
 help() {
   "$@" --help | bat -l man
 }
+docker-latest() {
+    docker build . -t "$1:$2" -t "$1:latest"
+}
 
 # Generated for envman. Do not edit.
 # [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"

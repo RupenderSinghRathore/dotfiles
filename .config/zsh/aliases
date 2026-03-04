@@ -61,3 +61,4 @@ alias oslectures="zen /home/kami-sama/Documents/OS/os-lectures/index.html"
 alias ssharch='ssh kami-sama@192.168.122.245'
 alias sshkali='ssh kami-sama@192.168.122.234'
 alias leetq='leetcode_questions'
+alias gobuild='go build -gcflags="all=-N -l"'
