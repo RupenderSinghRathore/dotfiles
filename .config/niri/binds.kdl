@@ -3,8 +3,11 @@ binds {
         show-hotkey-overlay
     }
     // Application
-    Mod+K hotkey-overlay-title="Open a Terminal: kitty" {
-        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus kitty"
+    // Mod+K hotkey-overlay-title="Open a Terminal: kitty" {
+    //     spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus kitty"
+    // }
+    Mod+K hotkey-overlay-title="Open a Terminal: alacritty" {
+        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus alacritty"
     }
     Mod+N hotkey-overlay-title="Open dolphin" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus dolphin"
@@ -12,8 +15,11 @@ binds {
     Mod+M hotkey-overlay-title="Open spotify" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus spotify-launcher"
     }
-    Mod+O hotkey-overlay-title="Open okular" {
-        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus okular"
+    Mod+O hotkey-overlay-title="Focus sioyek" {
+        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus sioyek"
+    }
+    SUPER+O hotkey-overlay-title="Focus obsidian" {
+        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus obsidian"
     }
     Mod+E hotkey-overlay-title="Open zen" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus zen"
@@ -21,7 +27,9 @@ binds {
     Mod+T hotkey-overlay-title="Open mpv" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus mpv"
     }
-    // Mod+Space hotkey-overlay-title="App launcher(rofi)" { spawn "rofi" "-show" "drun" "-theme" "/home/kami-sama/dotfiles/.config/rofi/config-apps.rasi"; }
+    Mod+Space hotkey-overlay-title="App launcher(rofi)" {
+        spawn "rofi" "-show" "drun" "-theme" "/home/kami-sama/dotfiles/.config/rofi/config-apps.rasi"; 
+    }
     SUPER+M hotkey-overlay-title="Emoji" {
         spawn "rofimoji"
     }
@@ -228,7 +236,7 @@ binds {
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
     // Switches focus between the current and the previous workspace.
-    Mod+Tab {
+    Super+Tab {
         focus-workspace-previous
     }
     // Mod+Tab { next-window; }
@@ -367,9 +375,9 @@ binds {
     // moving the mouse or pressing any other key.
     // Mod+Shift+P { power-off-monitors; }
     // DMS
-    Mod+Space hotkey-overlay-title="Application Launcher" {
-        spawn "dms" "ipc" "call" "spotlight" "toggle"
-    }
+    // Mod+Space hotkey-overlay-title="Application Launcher" {
+    //     spawn "dms" "ipc" "call" "spotlight" "toggle"
+    // }
     Mod+X hotkey-overlay-title="Clipboard Manager" {
         spawn "dms" "ipc" "call" "clipboard" "toggle"
     }
@@ -449,24 +457,25 @@ binds {
         spawn "dms" "ipc" "call" "brightness" "decrement" "5" ""
     }
 }
-recent-windows {
-    binds {
-        Super+Tab {
-            next-window
-        }
-        Super+Shift+Tab {
-            previous-window
-        }
-        Super+grave {
-            next-window filter="app-id"
-        }
-        Super+Shift+grave {
-            previous-window filter="app-id"
-        }
- // Mod+Tab         { next-window; }
+// recent-windows {
+    // binds {
+        // Super+Tab {
+        //     next-window
+        // }
+        // Super+Shift+Tab {
+        //     previous-window
+        // }
+        // Super+grave {
+        //     next-window filter="app-id"
+        // }
+        // Super+Shift+grave {
+        //     previous-window filter="app-id"
+        // }
+         // Mod+Tab         { next-window; }
         // Mod+Shift+Tab   { previous-window; }
         // Mod+grave       { next-window     filter="app-id"; }
         // Mod+Shift+grave { previous-window filter="app-id"; }
-    }
-}
+    // }
+
+// }
 

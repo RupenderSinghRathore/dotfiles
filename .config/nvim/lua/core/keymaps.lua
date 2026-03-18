@@ -57,7 +57,8 @@ vim.keymap.set("n", "<leader>j", "<cmd>e #<CR>", { noremap = true, desc = "switc
 -- vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts) --  go to previous tab
 
 -- Toggle line wrapping
-vim.keymap.set("n", "<leader>lw", "<cmd>set wrap! linebreak! nolist! <CR>", opts)
+-- vim.keymap.set("n", "<leader>lw", "<cmd>set wrap! linebreak! nolist! <CR>", opts)
+vim.keymap.set("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
 
 -- Keep last yanked when pasting
 vim.keymap.set("v", "p", '"_dP', opts)

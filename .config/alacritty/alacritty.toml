@@ -1,5 +1,10 @@
 # general.import = [ "~/.config/omarchy/current/theme/alacritty.toml" ]
-general.import = [ "~/.local/omarchy/themes/tokyo-night/alacritty.toml" ]
+# general.import = [ "~/.local/omarchy/themes/tokyo-night/alacritty.toml" ]
+general.import = [ "dank-theme.toml" ]
+
+[terminal.shell]
+program = "tmux"
+args = ["new-session", "-A", "-s", "main"]
 
 [env]
 TERM = "xterm-256color"
@@ -18,5 +23,6 @@ opacity = 0.8
 
 [keyboard]
 bindings = [
-{ key = "F11", action = "ToggleFullscreen" }
+{ key = "F11", action = "ToggleFullscreen" },
+{ key = "Back",mods = "Control", chars = "\u0017" }
 ]

@@ -48,11 +48,11 @@ ZSH_WEB_SEARCH_ENGINES=(
 source $ZSH/oh-my-zsh.sh
 
 mycd() {
-    local search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads ~/lunaar/languages/go)
+    local search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads ~/lunaar/languages/go ~/lunaar/languages/obsidian/Domain\ of\ Heavenly\ Demon )
     local dir=$(
         find "${search_dirs[@]}" -maxdepth 2 -type d \
             \
-            \( -name '.git' -o -name '.cache' \) -prune \
+            \( -name '.git' -o -name '.cache' -o -name '.obsidian' \) -prune \
             -o -type d -print 2>/dev/null | # \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name 'env' -o -name 'venv' -o -name '.gradle' -o -name 'META-INF' -o -name 'target' -o -name '.cache' -o -name 'utils' -o -name 'random stuff' \) -prune \
             awk '!seen[$0]++' |  # <--- This line removes duplicates
             sed "s|^$HOME/||" |
@@ -84,6 +84,9 @@ npipe() {
 }
 mdc() {
     mkdir -p "$1" && cd "$1"
+}
+alopacity() {
+    alacritty msg config window.opacity="$1"
 }
 top-bar-toggle() {
     mv ~/dotfiles/.config/DankMaterialShell/settings.json ~/dotfiles/.config/DankMaterialShell/temp && mv ~/dotfiles/.config/DankMaterialShell/toggle.json ~/dotfiles/.config/DankMaterialShell/settings.json && mv ~/dotfiles/.config/DankMaterialShell/temp ~/dotfiles/.config/DankMaterialShell/toggle.json && dms restart

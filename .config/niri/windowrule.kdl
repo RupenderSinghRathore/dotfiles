@@ -43,6 +43,10 @@ window-rule {
     open-on-workspace "2"
 }
 window-rule {
+    match app-id="obsidian"
+    open-on-workspace "2"
+}
+window-rule {
     match app-id="org.kde.dolphin"
     opacity 0.85
     open-on-workspace "3"
@@ -118,7 +122,7 @@ recent-windows {
     open-delay-ms 150
 
     highlight {
-        active-color "#999999ff"
+        active-color "#009999ff"
         urgent-color "#ff9999ff"
         padding 30
         corner-radius 0
@@ -128,5 +132,8 @@ recent-windows {
         max-height 480
         max-scale 0.5
     }
-
+    binds {
+        Mod+Tab { previous-window scope="workspace"; }
+        Mod+Grave { next-window; }
+    }
 }

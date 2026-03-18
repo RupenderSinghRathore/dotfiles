@@ -1,15 +1,26 @@
 {
-  "currentThemeName": "custom",
-  "currentThemeCategory": "registry",
-  "customThemeFile": "/home/kami-sama/.config/DankMaterialShell/themes/rosePine/theme.json",
+  "currentThemeName": "dynamic",
+  "currentThemeCategory": "dynamic",
+  "customThemeFile": "/home/kami-sama/.config/DankMaterialShell/themes/petrichor/theme.json",
   "registryThemeVariants": {
-    "rosePine": "rosePine",
+    "rosePine": "dawn",
     "catppuccin": {
-      "flavor": "mocha",
-      "accent": "mauve"
+      "dark": {
+        "flavor": "mocha",
+        "accent": "mauve"
+      }
+    },
+    "peaceAndQuiet": "lavender",
+    "gruvboxMaterial": "hard",
+    "flexoki": "purple",
+    "amoledBlack": {
+      "dark": {
+        "flavor": "black",
+        "accent": "light-orange"
+      }
     }
   },
-  "matugenScheme": "scheme-rainbow",
+  "matugenScheme": "scheme-fidelity",
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "",
   "popupTransparency": 0.85,
@@ -527,7 +538,17 @@
   "desktopWidgetGroups": [],
   "builtInPluginSettings": {
     "dms_settings_search": {
-      "trigger": "?"
+      "trigger": "?",
+      "enabled": true
+    },
+    "dms_settings": {
+      "enabled": true
+    },
+    "dms_notepad": {
+      "enabled": true
+    },
+    "dms_sysmon": {
+      "enabled": true
     }
   },
   "clipboardEnterToPaste": false,
