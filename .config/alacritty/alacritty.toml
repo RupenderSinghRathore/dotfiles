@@ -10,10 +10,28 @@ args = ["new-session", "-A", "-s", "main"]
 TERM = "xterm-256color"
 
 [font]
-# normal = { family = "CaskaydiaMono Nerd Font", style = "Regular" }
-# bold = { family = "CaskaydiaMono Nerd Font", style = "Bold" }
-# italic = { family = "CaskaydiaMono Nerd Font", style = "Italic" }
-size = 14
+size = 14.0
+
+[font.normal]
+# family = "JetBrainsMonoNerdFont"
+# family = "Hack Nerd Font"
+family = "FiraCodeNerdFontMono"
+style = "Regular"
+
+# [font.bold]
+# family = "SauceCodePro Nerd Font Mono"
+# style = "Bold"
+#
+# [font.italic]
+# family = "SauceCodePro Nerd Font Mono"
+# style = "Italic"
+#
+# [font.bold_italic]
+# family = "SauceCodePro Nerd Font Mono"
+# style = "Bold Italic"
+
+# [[font.fallback]]
+# family = "Noto Color Emoji"
 
 [window]
 # padding.x = 14

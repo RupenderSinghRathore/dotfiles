@@ -48,7 +48,7 @@ ZSH_WEB_SEARCH_ENGINES=(
 source $ZSH/oh-my-zsh.sh
 
 mycd() {
-    local search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads ~/lunaar/languages/go ~/lunaar/languages/obsidian/Domain\ of\ Heavenly\ Demon )
+    local search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads ~/lunaar/languages/go ~/Notes )
     local dir=$(
         find "${search_dirs[@]}" -maxdepth 2 -type d \
             \
