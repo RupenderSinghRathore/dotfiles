@@ -48,13 +48,13 @@ ZSH_WEB_SEARCH_ENGINES=(
 source $ZSH/oh-my-zsh.sh
 
 mycd() {
-    local search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads ~/lunaar/languages/go ~/Notes )
+    local search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads ~/lunaar/languages/go ~/Notes)
     local dir=$(
         find "${search_dirs[@]}" -maxdepth 2 -type d \
             \
             \( -name '.git' -o -name '.cache' -o -name '.obsidian' \) -prune \
             -o -type d -print 2>/dev/null | # \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name 'env' -o -name 'venv' -o -name '.gradle' -o -name 'META-INF' -o -name 'target' -o -name '.cache' -o -name 'utils' -o -name 'random stuff' \) -prune \
-            awk '!seen[$0]++' |  # <--- This line removes duplicates
+            awk '!seen[$0]++' |             # <--- This line removes duplicates
             sed "s|^$HOME/||" |
             fzf --height 40% --reverse --prompt="Select directory: "
     )
@@ -82,6 +82,9 @@ rustp() {
 npipe() {
     nvim $(which $1)
 }
+py() {
+    source ${1}venv/bin/activate
+}
 mdc() {
     mkdir -p "$1" && cd "$1"
 }
@@ -92,7 +95,7 @@ top-bar-toggle() {
     mv ~/dotfiles/.config/DankMaterialShell/settings.json ~/dotfiles/.config/DankMaterialShell/temp && mv ~/dotfiles/.config/DankMaterialShell/toggle.json ~/dotfiles/.config/DankMaterialShell/settings.json && mv ~/dotfiles/.config/DankMaterialShell/temp ~/dotfiles/.config/DankMaterialShell/toggle.json && dms restart
 }
 help() {
-  "$@" --help | bat -l man
+    "$@" --help | bat -l man
 }
 docker-latest() {
     docker build . -t "$1:$2" -t "$1:latest"

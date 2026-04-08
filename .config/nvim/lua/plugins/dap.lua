@@ -1,14 +1,21 @@
 return {
   {
     "mfussenegger/nvim-dap",
-    dependencies = { "rcarriga/nvim-dap-ui", "nvim-neotest/nvim-nio", "leoluz/nvim-dap-go" },
+    dependencies = {
+      -- "rcarriga/nvim-dap-ui",
+      "nvim-neotest/nvim-nio",
+      "leoluz/nvim-dap-go",
+      "theHamsta/nvim-dap-virtual-text",
+      "igorlfs/nvim-dap-view",
+    },
     -- dependencies = { "rcarriga/nvim-dap-ui" },
     config = function()
       local dap = require("dap")
-      local dapui = require("dapui")
+      -- local dapui = require("dapui")
 
+      require("nvim-dap-virtual-text").setup()
       require("dap-go").setup()
-      require("dapui").setup()
+      -- require("dapui").setup()
 
       table.insert(dap.configurations.go, {
         type = "go",
@@ -45,18 +52,18 @@ return {
         },
       })
 
-      dap.listeners.before.attach.dapui_config = function()
-        dapui.open()
-      end
-      dap.listeners.before.launch.dapui_config = function()
-        dapui.open()
-      end
-      dap.listeners.before.event_terminated.dapui_config = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited.dapui_config = function()
-        dapui.close()
-      end
+      -- dap.listeners.before.attach.dapui_config = function()
+      --   dapui.open()
+      -- end
+      -- dap.listeners.before.launch.dapui_config = function()
+      --   dapui.open()
+      -- end
+      -- dap.listeners.before.event_terminated.dapui_config = function()
+      --   dapui.close()
+      -- end
+      -- dap.listeners.before.event_exited.dapui_config = function()
+      --   dapui.close()
+      -- end
 
       dap.adapters.gdb = {
         type = "executable",
@@ -100,13 +107,19 @@ return {
         },
       }
       dap.configurations.cpp = dap.configurations.c
-      dap.configurations.rust = dap.configurations.c
+
+      -- local mason_path = vim.fn.stdpath("data") .. "/mason/packages/codelldb"
+      -- local codelldb_path = mason_path .. "/extension/adapter/codelldb"
 
       -- Keymaps for general debugging
 
       vim.keymap.set("n", "<leader>dt", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
       vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Continue" })
       -- vim.keymap.set("n", "<leader>dn", dap.next, { desc = "Next" })
+
+      -- dap-view
+      vim.keymap.set("n", "<leader>do", "<cmd>DapViewToggle<CR>", { desc = "Toggle ui" })
+      vim.keymap.set("n", "<leader>dw", "<cmd>DapViewWatch<CR>", { desc = "Watch a variable" })
 
       vim.keymap.set("n", "<leader>dd", dap.disconnect, { desc = "Disconnect" })
       vim.keymap.set("n", "<leader>dq", dap.terminate, { desc = "Terminate" })
@@ -116,37 +129,37 @@ return {
       vim.keymap.set("n", "<leader>dn", dap.step_over, { desc = "Step Over" })
       vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "Step Into" })
       vim.keymap.set("n", "<leader>du", dap.step_out, { desc = "Step Out" })
-      vim.keymap.set("n", "<leader>dh", dap.run_to_cursor, { desc = "Run untill Cursor" }) -- Run until the line your cursor is on
+      vim.keymap.set("n", "<leader>dH", dap.run_to_cursor, { desc = "Run untill Cursor" }) -- Run until the line your cursor is on
 
-      vim.keymap.set("n", "<leader>dU", function()
-        require("dapui").toggle()
-      end, { desc = "Toggle Debug UI" })
-
-      vim.keymap.set("n", "<Leader>dr", function()
-        require("dap").repl.open()
-      end, { desc = "open repl" })
-
-      vim.keymap.set("n", "<Leader>dl", function()
-        require("dap").run_last()
-      end, { desc = "run last test" })
-
-      vim.keymap.set({ "n", "v" }, "<Leader>dh", function()
-        require("dap.ui.widgets").hover()
-      end, { desc = "hover dap ui widget" })
-
-      vim.keymap.set({ "n", "v" }, "<Leader>dp", function()
-        require("dap.ui.widgets").preview()
-      end, { desc = "preview dap ui widgets" })
-
-      vim.keymap.set("n", "<Leader>df", function()
-        local widgets = require("dap.ui.widgets")
-        widgets.centered_float(widgets.frames)
-      end, { desc = "centered_float" })
-
-      vim.keymap.set("n", "<Leader>ds", function()
-        local widgets = require("dap.ui.widgets")
-        widgets.centered_float(widgets.scopes)
-      end, { desc = "centered variables pane" })
+      -- vim.keymap.set("n", "<leader>dU", function()
+      --   require("dapui").toggle()
+      -- end, { desc = "Toggle Debug UI" })
+      --
+      -- vim.keymap.set("n", "<Leader>dr", function()
+      --   require("dap").repl.open()
+      -- end, { desc = "open repl" })
+      --
+      -- vim.keymap.set("n", "<Leader>dl", function()
+      --   require("dap").run_last()
+      -- end, { desc = "run last test" })
+      --
+      -- vim.keymap.set({ "n", "v" }, "<Leader>dh", function()
+      --   require("dap.ui.widgets").hover()
+      -- end, { desc = "hover dap ui widget" })
+      --
+      -- vim.keymap.set({ "n", "v" }, "<Leader>dp", function()
+      --   require("dap.ui.widgets").preview()
+      -- end, { desc = "preview dap ui widgets" })
+      --
+      -- vim.keymap.set("n", "<Leader>df", function()
+      --   local widgets = require("dap.ui.widgets")
+      --   widgets.centered_float(widgets.frames)
+      -- end, { desc = "centered_float" })
+      --
+      -- vim.keymap.set("n", "<Leader>ds", function()
+      --   local widgets = require("dap.ui.widgets")
+      --   widgets.centered_float(widgets.scopes)
+      -- end, { desc = "centered variables pane" })
     end,
   },
 }

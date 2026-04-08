@@ -2,6 +2,7 @@ return {
   {
     "github/copilot.vim",
     -- event = "InsertEnter",
+    ft = "javascript",
     config = function()
       vim.g.copilot_enabled = 0
       -- vim.g.copilot_no_tab_map = true

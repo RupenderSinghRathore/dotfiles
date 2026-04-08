@@ -34,7 +34,7 @@ require("lazy").setup({
   require("plugins.yazi"),
   -- require("plugins.oil"),
   -- require("plugins.neotree"),
-  require("plugins.image"),
+  -- require("plugins.image"),
   require("plugins.dap"),
   require("plugins.copilot"),
   require("plugins.database"),
@@ -43,7 +43,8 @@ require("lazy").setup({
   -- require("plugins.hover"),
 
   require("plugins.markdowns"),
-  -- require("plugins.rustaceanvim"),
+  require("plugins.compile-mode"),
+  require("plugins.rustaceanvim"),
   -- require("plugins.debugger"),
   -- require("plugins.copilot"),
   -- require("plugins.vim-be-good"),

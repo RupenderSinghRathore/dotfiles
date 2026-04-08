@@ -1,6 +1,9 @@
+[general]
+import = ["~/.config/alacritty/themes/noctalia.toml"]
+
 # general.import = [ "~/.config/omarchy/current/theme/alacritty.toml" ]
 # general.import = [ "~/.local/omarchy/themes/tokyo-night/alacritty.toml" ]
-general.import = [ "dank-theme.toml" ]
+# general.import = [ "dank-theme.toml" ]
 
 [terminal.shell]
 program = "tmux"
@@ -13,34 +16,15 @@ TERM = "xterm-256color"
 size = 14.0
 
 [font.normal]
-# family = "JetBrainsMonoNerdFont"
-# family = "Hack Nerd Font"
 family = "FiraCodeNerdFontMono"
 style = "Regular"
 
-# [font.bold]
-# family = "SauceCodePro Nerd Font Mono"
-# style = "Bold"
-#
-# [font.italic]
-# family = "SauceCodePro Nerd Font Mono"
-# style = "Italic"
-#
-# [font.bold_italic]
-# family = "SauceCodePro Nerd Font Mono"
-# style = "Bold Italic"
-
-# [[font.fallback]]
-# family = "Noto Color Emoji"
-
 [window]
-# padding.x = 14
-# padding.y = 14
-# decorations = "None"
-opacity = 0.8
+opacity = 0.75
 
 [keyboard]
 bindings = [
 { key = "F11", action = "ToggleFullscreen" },
-{ key = "Back",mods = "Control", chars = "\u0017" }
+{ key = "Back",mods = "Control", chars = "\u0017" },
+{ key = "[",mods = "Control", chars = "\u001b" }
 ]

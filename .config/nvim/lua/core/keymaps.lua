@@ -8,9 +8,12 @@ vim.g.maplocalleader = " "
 local opts = { noremap = true, silent = false }
 local opts2 = { noremap = true, silent = true }
 
+-- Compile
+vim.keymap.set("n", "<leader>r", "<cmd>Recompile<CR>", { silent = true, desc = "compile" })
+vim.keymap.set("n", "<leader>R", "<cmd>Compile<CR>", { silent = true, desc = "compile" })
+
 -- save file
 vim.keymap.set("n", "<leader>s", "<cmd>w<CR>", opts)
-vim.keymap.set("n", "<leader>r", "<cmd>w<CR><cmd>make<CR>", opts)
 vim.keymap.set("n", "<leader>S", "<cmd>wq<CR>", opts)
 vim.keymap.set("n", "<leader>md", "<cmd>call mkdir(expand('%:h'), 'p')<CR>", opts)
 

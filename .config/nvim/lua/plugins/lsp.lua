@@ -297,6 +297,9 @@ return {
     require("mason-lspconfig").setup({
       handlers = {
         function(server_name)
+          -- if server_name == "rust_analyzer" then
+          --   return
+          -- end -- let rustaceanvim handle it
           local server = servers[server_name] or {}
           -- This handles overriding only values explicitly passed
           -- by the server configuration above. Useful when disabling
@@ -311,6 +314,11 @@ return {
         tmpl = "html",
       },
     })
+    vim.diagnostic.config({
+      severity_sort = true,
+      update_in_insert = false,
+      -- underline = true,
+    })
     -- vim.diagnostic.config({ virtual_text = false, underline = true })
     -- vim.diagnostic.config({
     --   virtual_text = false,
@@ -318,33 +326,33 @@ return {
     --     severity = { min = vim.diagnostic.severity.WARN }, -- Only errors
     --   },
     -- })
-    vim.lsp.config("rust_analyzer", {
-      cmd = { "rustup", "run", "stable", "rust-analyzer" },
-      settings = {
-        ["rust-analyzer"] = {
-          checkOnSave = true, -- Enable automatic checking
-          check = {
-            -- command = "clippy", -- Use clippy for more helpful lints
-            -- OR use "check" for faster checks without lints:
-            command = "check",
-          },
-          diagnostics = {
-            enable = true,
-            experimental = {
-              enable = true, -- Enable experimental diagnostics
-            },
-          },
-          -- Make it more responsive
-          cargo = {
-            allFeatures = true,
-            loadOutDirsFromCheck = true,
-          },
-          procMacro = {
-            enable = true,
-          },
-        },
-      },
-    })
+    -- vim.lsp.config("rust_analyzer", {
+    --   cmd = { "rustup", "run", "stable", "rust-analyzer" },
+    --   settings = {
+    --     ["rust-analyzer"] = {
+    --       checkOnSave = true, -- Enable automatic checking
+    --       check = {
+    --         -- command = "clippy", -- Use clippy for more helpful lints
+    --         -- OR use "check" for faster checks without lints:
+    --         command = "check",
+    --       },
+    --       diagnostics = {
+    --         enable = true,
+    --         experimental = {
+    --           enable = true, -- Enable experimental diagnostics
+    --         },
+    --       },
+    --       -- Make it more responsive
+    --       cargo = {
+    --         allFeatures = true,
+    --         loadOutDirsFromCheck = true,
+    --       },
+    --       procMacro = {
+    --         enable = true,
+    --       },
+    --     },
+    --   },
+    -- })
     vim.lsp.config("htmx", {
       filetypes = { "html" },
       handlers = {

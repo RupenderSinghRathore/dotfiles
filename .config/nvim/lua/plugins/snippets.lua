@@ -33,28 +33,38 @@ return {
 
         pattern = "rust",
         callback = function()
-          vim.lsp.enable("rust_analyzer")
-          vim.diagnostic.config({
-            -- virtual_text = {
-            --   severity = { min = vim.diagnostic.severity.WARN }, -- Only errors
-            -- },
-            signs = {
-              severity = { min = vim.diagnostic.severity.ERROR }, -- Only errors
-            },
-            underline = {
-              severity = { min = vim.diagnostic.severity.WARN }, -- Only errors
-            },
-            -- underline = true,
-            -- update_in_insert = false, -- Don't update diagnostics in insert mode
-          })
+          -- vim.lsp.enable("rust_analyzer", false)
+
+          -- vim.diagnostic.config({
+          --   severity_sort = true,
+          --   update_in_insert = false,
+          --   -- underline = true,
+          -- })
 
           -- buid commands
-          vim.keymap.set("n", "<leader>r", "<cmd>!cargo run<CR>", { buffer = true })
-          vim.keymap.set("n", "<F2>", "<cmd>term<CR>icargo run<CR>", { buffer = true })
-          vim.keymap.set("n", "<F1>", ":!rustc % -o run && ./run && rm run<CR>", { buffer = true })
-          vim.keymap.set("n", "<F3>", ":!cargo check<CR>", { buffer = true })
+          -- vim.keymap.set("n", "<leader>r", "<cmd>!cargo run<CR>", { buffer = true, desc = "cargo run" })
+          vim.keymap.set(
+            "n",
+            "<leader><F1>",
+            ":!rustc % -o run && ./run && rm run<CR>",
+            { buffer = true, desc = "rustc" }
+          )
+          vim.keymap.set(
+            "n",
+            "<leader><F2>",
+            "<cmd>split | term<CR>icargo run",
+            { buffer = true, desc = "cargo run(term)" }
+          )
+          vim.keymap.set("n", "<leader><F3>", ":!cargo check<CR>", { buffer = true, desc = "cargo check" })
 
           -- snippets
+          vim.keymap.set("i", "<c-k>ep", function()
+            ls.snip_expand(s("log", {
+              t("#[derive(Debug"),
+              i(1, ""),
+              t(")]"),
+            }))
+          end, { buffer = true, desc = "debug macro" })
           vim.keymap.set("i", "<c-k>p", function()
             ls.snip_expand(s("log", {
               t('println!("'),
@@ -71,9 +81,9 @@ return {
         callback = function()
           local dirname = vim.fn.expand("%:p:h")
           -- vim.keymap.set("n", "<leader>r", "<cmd>!go run " .. dirname .. "<CR>", { buffer = true })
-          vim.keymap.set("n", "<leader>r", "<cmd>!go run %<CR>", { buffer = true })
+          -- vim.keymap.set("n", "<leader>r", "<cmd>!go run %<CR>", { buffer = true })
           vim.keymap.set("n", "<leader><F1>", "<cmd>!go run .<CR>", { buffer = true })
-          vim.keymap.set("n", "<leader><F2>", "<cmd>term<CR>igo run ./cmd<CR>", { buffer = true })
+          vim.keymap.set("n", "<leader><F2>", "<cmd>split | term<CR>igo run ", { buffer = true })
 
           vim.keymap.set("i", "<c-k>p", function()
             ls.snip_expand(s("log", {
@@ -135,13 +145,14 @@ return {
         pattern = "c",
         callback = function()
           -- vim.opt_local.makeprg = "clang -fsanitize=address -g -Iinclude -Wall % -o run"
-          vim.keymap.set(
-            "n",
-            "<leader>r",
-            "<cmd>!clang -fsanitize=address -g -Iinclude -Wall % -o run && ./run<CR>",
-            { buffer = true }
-          )
-          vim.keymap.set("n", "<F2>", "<cmd>term<CR>imakec<CR>", { buffer = true })
+          -- vim.keymap.set(
+          --   "n",
+          --   "<leader>r",
+          --   "<cmd>!clang -fsanitize=address -g -Iinclude -Wall % -o run && ./run<CR>",
+          --   { buffer = true }
+          -- )
+          vim.keymap.set("n", "<leader><F1>", "<cmd>split | term<CR>imakec", { buffer = true })
+
           vim.keymap.set("i", "<c-k>p", function()
             ls.snip_expand(s("log", {
               t('printf("'),
@@ -161,9 +172,9 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "html",
         callback = function()
-          vim.keymap.set("n", "<leader>r", "<cmd>!zen-browser %<CR>", { buffer = true })
+          vim.keymap.set("n", "<leader>r", "<cmd>!xdg-open %<CR>", { buffer = true })
 
-          vim.keymap.set("i", "<F2>", "{{% block  %}}{{% endblock %}}<Esc>Fk;la")
+          vim.keymap.set("i", "<leader><F1>", "{{% block  %}}{{% endblock %}}<Esc>Fk;la")
         end,
       })
       vim.api.nvim_create_autocmd("FileType", {
@@ -175,13 +186,14 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "java",
         callback = function()
+          -- vim.keymap.set("n", "<leader>r", "<cmd>!javac % && java %:t:r<CR>", { buffer = true })
+
           local classname = vim.fn.expand("%:t:r")
           local filename = classname .. ".java"
-          vim.keymap.set("n", "<leader>r", "<cmd>!javac % && java " .. classname .. "<CR>", { buffer = true })
           vim.keymap.set(
             "n",
-            "<F2>",
-            "<cmd>term<CR>ijavac " .. filename .. " && java " .. classname .. "<CR>",
+            "<leader><F1>",
+            "<cmd>split | term<CR>ijavac " .. filename .. " && java " .. classname,
             { buffer = true }
           )
           vim.keymap.set("i", "<c-k>p", function()
@@ -198,7 +210,7 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "javascript",
         callback = function()
-          vim.keymap.set("n", "<leader>r", "<cmd>!node %<CR>", { buffer = true })
+          -- vim.keymap.set("n", "<leader>r", "<cmd>!node %<CR>", { buffer = true })
 
           vim.keymap.set("i", "<c-k>p", function()
             ls.snip_expand(s("log", {
@@ -214,17 +226,76 @@ return {
         callback = function()
           vim.keymap.set("n", "<leader>r", "<cmd>LivePreview start<CR>", { buffer = true })
           -- vim.keymap.set("n", "<leader>r", "<cmd>!zen %<CR>", { buffer = true })
-          -- vim.keymap.set("n", "<leader>r", "<cmd>RenderMarkdown toggle<CR>", { buffer = true })
-          -- vim.keymap.set("n", "<leader>r", "<cmd>RenderMarkdown toggle<CR>", { buffer = true })
+
+          -- Markdown formatting keymaps
+          vim.keymap.set(
+            "n",
+            "<leader>km",
+            '"zyiwciw$<C-r>z$<ESC>',
+            { noremap = true, silent = true, desc = "Wrap word in $$" }
+          )
+          vim.keymap.set(
+            "n",
+            "<leader>ki",
+            '"zyiwciw*<C-r>z*<ESC>',
+            { noremap = true, silent = true, desc = "Wrap word in *italic*" }
+          )
+          vim.keymap.set(
+            "n",
+            "<leader>kb",
+            '"zyiwciw**<C-r>z**<ESC>',
+            { noremap = true, silent = true, desc = "Wrap word in **bold**" }
+          )
+          vim.keymap.set(
+            "n",
+            "<leader>kc",
+            '"zyiwciw`<C-r>z`<ESC>',
+            { noremap = true, silent = true, desc = "Wrap word in `code`" }
+          )
+
+          vim.keymap.set(
+            "v",
+            "<leader>km",
+            '"zygvc$<C-r>z$<ESC>',
+            { noremap = true, silent = true, desc = "Wrap selection in $$" }
+          )
+          vim.keymap.set(
+            "v",
+            "<leader>ki",
+            '"zygvc*<C-r>z*<ESC>',
+            { noremap = true, silent = true, desc = "Wrap selection in *italic*" }
+          )
+          vim.keymap.set(
+            "v",
+            "<leader>kb",
+            '"zygvc**<C-r>z**<ESC>',
+            { noremap = true, silent = true, desc = "Wrap selection in **bold**" }
+          )
+          vim.keymap.set(
+            "v",
+            "<leader>kc",
+            '"zygvc`<C-r>z`<ESC>',
+            { noremap = true, silent = true, desc = "Wrap selection in `code`" }
+          )
+
+          vim.keymap.set("n", "<leader>kv", "i![]()<ESC>hp", { noremap = true, silent = true })
         end,
       })
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "python",
         callback = function()
-          vim.keymap.set("n", "<leader>r", "<cmd>!python %<CR>", { buffer = true })
+          -- vim.keymap.set("n", "<leader>r", "<cmd>!python %<CR>", { buffer = true })
+          vim.keymap.set("i", "<c-k>p", function()
+            ls.snip_expand(s("log", {
+              t('print(f"'),
+              i(1, ""),
+              t('"'),
+              i(2, ""),
+              t(")"),
+            }))
+          end, { buffer = true, desc = "Insert println snippet" })
         end,
       })
-
       --       local html_snippet = {
       --         ls.parser.parse_snippet(
       --           "!",

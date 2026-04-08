@@ -5,7 +5,7 @@ workspace "4" {}
 // workspace "5" {}
 
 debug {
-    honor-xdg-activation-with-invalid-serial // switch focus
+    honor-xdg-activation-with-invalid-serial
 }
 window-rule {
     // This regular expression is intentionally made as specific as possible,
@@ -33,7 +33,7 @@ window-rule {
     }
 }
 window-rule {
-    match app-id="zen"
+    match app-id="app.zen_browser.zen"
     // open-fullscreen true
     // opacity 0.85
     open-on-workspace "1"
@@ -49,6 +49,16 @@ window-rule {
 window-rule {
     match app-id="obsidian"
     open-on-workspace "2"
+}
+window-rule {
+    match app-id=r"(?i)^thunar$"
+    opacity 0.85
+    open-on-workspace "3"
+}
+window-rule {
+    match app-id="org.gnome.Nautilus"
+    // opacity 0.85
+    open-on-workspace "3"
 }
 window-rule {
     match app-id="org.kde.dolphin"
@@ -138,6 +148,6 @@ recent-windows {
     }
     binds {
         Mod+Tab { previous-window scope="workspace"; }
-        Mod+Grave { next-window; }
+        Mod+Shift+Tab { next-window; }
     }
 }

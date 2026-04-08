@@ -8,6 +8,8 @@
 // spawn-at-startup "swayidle"
 
 // spawn-sh-at-startup "/home/kami-sama/.local/bin/nightmode"
+spawn-at-startup "qs" "-c" "noctalia-shell"
+
 spawn-sh-at-startup "/home/kami-sama/.config/scripts/battery_saver_simpler.sh"
 spawn-sh-at-startup "wl-paste --watch cliphist store"
 // spawn-sh-at-startup "gsettings set org.gnome.desktop.interface gtk-theme 'catppuccin-mocha-blue-standard+default' "
