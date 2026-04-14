@@ -18,29 +18,29 @@ window-rule {
     open-maximized true
 }
 window-rule {
-    match title="Choose Directory"
-    default-column-width { proportion 0.70; }
-    default-window-height { fixed 600; }
+    // match title="Choose Directory"
+    match app-id="xdg-desktop-portal-gtk"
     open-floating true
-    geometry-corner-radius 12.0
-    clip-to-geometry true
-    focus-ring {
-        on
-        width 2
-        active-color "#7fc8ff"
-        // inactive-color "#505050"
-        urgent-color "#9b0000"
-    }
+    // default-column-width { proportion 0.70; }
+    // default-window-height { fixed 600; }
+    // geometry-corner-radius 12.0
+    // clip-to-geometry true
 }
 window-rule {
-    match app-id="app.zen_browser.zen"
+    match app-id="python3"
+    open-floating true
+    // default-column-width { proportion 0.50; }
+    // default-window-height { proportion 0.35; }
+}
+window-rule {
+    match app-id="zen"
     // open-fullscreen true
     // opacity 0.85
     open-on-workspace "1"
 }
 window-rule {
-    match app-id="kitty"
-    open-on-workspace "2"
+    match app-id="ncspot"
+    open-on-workspace "4"
 }
 window-rule {
     match app-id="Alacritty"
@@ -55,11 +55,11 @@ window-rule {
     opacity 0.85
     open-on-workspace "3"
 }
-window-rule {
-    match app-id="org.gnome.Nautilus"
-    // opacity 0.85
-    open-on-workspace "3"
-}
+// window-rule {
+//     match app-id="org.gnome.Nautilus"
+//     // opacity 0.85
+//     open-on-workspace "3"
+// }
 window-rule {
     match app-id="org.kde.dolphin"
     opacity 0.85

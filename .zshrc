@@ -83,7 +83,7 @@ npipe() {
     nvim $(which $1)
 }
 py() {
-    source ${1}venv/bin/activate
+    source ${1}.venv/bin/activate
 }
 mdc() {
     mkdir -p "$1" && cd "$1"

@@ -1,0 +1,4 @@
+[keybindings]
+"Space" = "playpause"
+"Shift+q" = "quit"
+"q" = "noop"

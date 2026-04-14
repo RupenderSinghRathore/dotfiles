@@ -13,7 +13,8 @@ binds {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus thunar"
     }
     Mod+M hotkey-overlay-title="Open spotify" {
-        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus com.spotify.Client"
+        // spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus com.spotify.Client"
+        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus ncspot"
     }
     Mod+O hotkey-overlay-title="Focus sioyek" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus sioyek"
@@ -22,7 +23,7 @@ binds {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus obsidian"
     }
     Mod+E hotkey-overlay-title="Open zen" {
-        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus app.zen_browser.zen"
+        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus zen"
     }
     Mod+T hotkey-overlay-title="Open mpv" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus mpv"
@@ -60,6 +61,9 @@ binds {
     }
     SUPER+I hotkey-overlay-title="Wifi" { 
         spawn-sh "qs -c noctalia-shell ipc call network togglePanel"
+    }
+    Mod+A hotkey-overlay-title="Window Switcher" { 
+        spawn-sh "qs -c noctalia-shell ipc call launcher windows"
     }
 
     // scripts
@@ -286,7 +290,7 @@ binds {
     Mod+Ctrl+F {
         expand-column-to-available-width
     }
-    Mod+C {
+    Super+C {
         center-column
     }
     // Center all fully visible columns on screen.
@@ -400,7 +404,7 @@ binds {
     }
     SUPER+N hotkey-overlay-title="Notification Center" {
         // spawn "dms" "ipc" "call" "notifications" "toggle"
-        spawn-sh "qs -c noctalia-shell ipc call settings openTab notifications"
+        spawn-sh "qs -c noctalia-shell ipc call notifications toggleHistory"
     }
     SUPER+shift+N hotkey-overlay-title="Dismiss Notification" {
 // -        spawn "dms" "ipc" "call" "notifications" "clearAll"
@@ -433,6 +437,9 @@ binds {
     }
     Mod+J allow-when-locked=true hotkey-overlay-title="Toggle Bar" {
         spawn-sh "qs -c noctalia-shell ipc call bar toggle"
+    }
+    Mod+C allow-when-locked=true hotkey-overlay-title="Calendar" {
+        spawn-sh "qs -c noctalia-shell ipc call calendar toggle"
     }
     Mod+Slash hotkey-overlay-title="Toggle niri Keybinds" {
         // spawn "dms" "ipc" "call" "keybinds" "toggle" "niri"

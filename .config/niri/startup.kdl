@@ -12,6 +12,12 @@ spawn-at-startup "qs" "-c" "noctalia-shell"
 
 spawn-sh-at-startup "/home/kami-sama/.config/scripts/battery_saver_simpler.sh"
 spawn-sh-at-startup "wl-paste --watch cliphist store"
+// spawn-sh-at-startup "qs -c noctalia-shell ipc call bar hideBar"
+
+
+// spawn-at-startup "systemctl" "--user" "import-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XDG_SESSION_TYPE" "XDG_SESSION_DESKTOP"
+// spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XDG_SESSION_TYPE" "XDG_SESSION_DESKTOP"
+
 // spawn-sh-at-startup "gsettings set org.gnome.desktop.interface gtk-theme 'catppuccin-mocha-blue-standard+default' "
 // spawn-sh-at-startup "sleep 5 && gsettings set org.gnome.desktop.interface gtk-theme 'catppuccin-mocha-blue-standard+default' "
 

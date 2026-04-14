@@ -198,6 +198,8 @@ return {
       },
       gopls = {
         -- settings = {
+        --   position_encoding = "utf-8",
+        -- },
         --   gopls = {
         --     completeUnimported = true,
         --     usePlaceholders = true,
@@ -218,11 +220,11 @@ return {
         --   },
         -- },
       },
-      dockerls = {},
-      qmlls = {},
-      zls = {},
+      -- dockerls = {},
+      -- qmlls = {},
+      -- zls = {},
 
-      kotlin_language_server = {},
+      -- kotlin_language_server = {},
       pyright = {},
 
       -- rust_analyzer = {},
@@ -250,16 +252,16 @@ return {
       --     },
       --   },
       -- },
-      templ = {},
-      htmx = {},
+      -- templ = {},
+      -- htmx = {},
       html = { filetypes = { "html", "css", "javascript" } },
       cssls = {},
       -- tailwindcss = {},
       -- dockerls = {},
       -- sqlls = {},
       -- sqls = {},
-      svelte = {},
-      jsonls = {},
+      -- svelte = {},
+      -- jsonls = {},
 
       lua_ls = {},
     }
