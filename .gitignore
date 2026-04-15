@@ -2,3 +2,8 @@
 **/Session.vim
 colemak-dh
 .config/zsh/api-keys.sh
+
+.config/emacs/*~
+.config/emacs/auto-save-list/
+.config/emacs/eln-cache/
+.config/emacs/elpaca/
