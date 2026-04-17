@@ -79,11 +79,6 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "go",
         callback = function()
-          local dirname = vim.fn.expand("%:p:h")
-          -- vim.keymap.set("n", "<leader>r", "<cmd>!go run " .. dirname .. "<CR>", { buffer = true })
-          -- vim.keymap.set("n", "<leader>r", "<cmd>!go run %<CR>", { buffer = true })
-          vim.keymap.set("n", "<leader><F1>", "<cmd>!go run .<CR>", { buffer = true })
-          vim.keymap.set("n", "<leader><F2>", "<cmd>split | term<CR>igo run ", { buffer = true })
 
           vim.keymap.set("i", "<c-k>p", function()
             ls.snip_expand(s("log", {
@@ -94,6 +89,12 @@ return {
               t(")"),
             }))
           end, { buffer = true, desc = "Insert println snippet" })
+
+          local dirname = vim.fn.expand("%:p:h")
+          -- vim.keymap.set("n", "<leader>r", "<cmd>!go run " .. dirname .. "<CR>", { buffer = true })
+          -- vim.keymap.set("n", "<leader>r", "<cmd>!go run %<CR>", { buffer = true })
+          vim.keymap.set("n", "<leader><F1>", "<cmd>!go run .<CR>", { buffer = true })
+          vim.keymap.set("n", "<leader><F2>", "<cmd>split | term<CR>igo run ", { buffer = true })
 
           -- vim.keymap.del("i", "<C-s>")
           vim.keymap.set("i", "<c-k>h", function()

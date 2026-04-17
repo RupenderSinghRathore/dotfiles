@@ -1,0 +1,425 @@
+#+title: Config
+#+AUTHOR: Heavenly Demon (HD)
+#+DESCRIPTION: HD's personal Emacs config.
+# #+STARTUP: overview
+#+STARTUP: content
+#+OPTIONS: toc:3
+
+* Table of Content :toc:
+- [[#options][OPTIONS]]
+- [[#keybinds][Keybinds]]
+- [[#theme][THEME]]
+- [[#custom-functions][Custom functions]]
+- [[#plugin-configurations][Plugin Configurations]]
+  - [[#which-key][Which-key]]
+  - [[#terminal][Terminal]]
+- [[#snippets][Snippets]]
+  - [[#go-mode][go-mode]]
+  - [[#rust-mode][rust-mode]]
+  - [[#c-mode][c-mode]]
+  - [[#java-mode][java-mode]]
+  - [[#js-mode][js-mode]]
+  - [[#python-mode][python-mode]]
+  - [[#web-mode-htmlhtmldjango][web-mode (html/htmldjango)]]
+- [[#lsp][LSP]]
+  - [[#python][python]]
+
+* OPTIONS
+#+begin_src emacs-lisp
+;; (setq doom-theme 'doom-rne)
+
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 18))
+(custom-set-faces
+ '(font-lock-comment-face ((t (:slant italic))))
+ '(font-lock-keyword-face ((t (:slant italic)))))
+
+
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode 1)
+
+;; Scroll
+(setq-default evil-scroll-count 10)
+(setq scroll-margin 8)
+(setq scroll-conservatively 101)
+
+;; no confirm
+(setq confirm-kill-emacs nil)
+(setq confirm-kill-processes nil)
+
+(setq gc-cons-threshold (* 50 1000 1000)) ;; 50MB
+
+(setq compile-command "")
+(add-hook 'find-file-hook #'my/set-compile-based-on-file)
+
+;; default terminal
+;; (after! vterm
+;;   (setq shell-file-name "/bin/zsh"))
+;; (setq +term-shell "/bin/zsh")
+;; (setq +term-default-terminal 'vterm)
+
+;; (add-hook 'find-file-hook
+;;           (lambda ()
+;;             (when (eq major-mode 'fundamental-mode)
+;;               (conf-mode))))
+
+#+end_src
+
+* Keybinds
+
+#+begin_src emacs-lisp
+
+(map! :desc "comment line" "C-/" #'comment-line)
+        (map! :leader :desc "Save file" "s a" #'save-buffer)
+
+;; (map! :leader :desc "Toggle shell" "t t" #'project-eshell)
+(map! :leader :desc "Toggle shell" "t t" #'my/toggle-project-eshell)
+
+(map! :leader :desc "Toggle markdown view" "m v" #'my/toggle-markdown-view-mode)
+(map! :leader :desc "counsel command" "SPC" #'execute-extended-command)
+
+(map! :leader
+      (:prefix ("j" . "buffer")
+       :desc "Switch buffer" "j" #'switch-to-buffer
+       :desc "ibuffer" "i" #'ibuffer
+       :desc "Next buffer" "n" #'next-buffer
+       :desc "Previous buffer" "p" #'previous-buffer
+       :desc "Reload buffer" "r" #'revert-buffer
+       :desc "Last buffer" "l" #'my/switch-to-last-buffer))
+
+(map! :leader :desc "Kill current buffer" "x" #'kill-current-buffer)
+
+;; (map! :leader :desc "format buffer" "n f" #'eglot-format-buffer)
+(map! :leader
+      :desc "format and buffer"
+      "n f" #'my/smart-format-buffer)
+
+(map! :leader
+      (:prefix ("f" . "buffer")
+       :desc "Edit emacs config"  "c"  (lambda ()
+                                         (interactive)
+                                         (+workspace-switch "emacs config" t)
+                                         (find-file "~/dotfiles/.doom.d/config.org"))
+       :desc "Find project files" "f" #'project-find-file
+       ))
+
+;; Map C-h to Backspace at the translation level
+(define-key key-translation-map (kbd "C-h") (kbd "DEL"))
+
+(map! :leader
+      :desc "Fuzzy cd" "f j" #'my/fuzzy-cd)
+
+(map! :leader
+      :desc "Fuzzy find file" "f F" #'my/fuzzy-find-file)
+
+;; tui programs
+(map! :leader
+      :desc "LazyGit" "g z" #'my/open-lazygit)
+
+
+;; command mode
+(evil-ex-define-cmd "q" (lambda ()
+                          (interactive)
+                          (kill-current-buffer)
+                          (delete-window)))
+
+#+end_src
+
+
+* THEME
+
+#+begin_src emacs-lisp
+
+(add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
+(load-theme 'noctalia t)
+
+(set-frame-parameter nil 'alpha-background 85)
+(add-to-list 'default-frame-alist '(alpha-background . 85))
+
+#+end_src
+
+* Custom functions
+#+begin_src emacs-lisp
+
+(defun my/fuzzy-find-file ()
+  (interactive)
+  (let* ((search-dirs '("~/dotfiles"))
+         (expanded (mapcar #'expand-file-name search-dirs))
+         (candidates
+          (split-string
+           (shell-command-to-string
+            (concat "find "
+                    (mapconcat #'identity expanded " ")
+                    " -type d \\( -name '.git' -o -name '.repos' \\) -prune"
+                    " -o -type f"
+                    " \\( ! -name '*.png'"
+                    " -a ! -name '*.pdf'"
+                    " -a ! -name '*.epub'"
+                    " -a ! -name '*.zip'"
+                    " -a ! -name '*.svg' \\) -print"
+                    " 2>/dev/null | awk '!seen[$0]++'"))
+           "\n" t))
+         (file (completing-read "Select file: " candidates nil t)))
+    (when file
+      (find-file file))))
+
+(defun my/fuzzy-cd ()
+  (interactive)
+  (let* ((search-dirs '("~/dotfiles" "~/lunaar" "~/Documents"
+                        "~/Downloads" "~/lunaar/languages/go" "~/Notes"))
+         (expanded (mapcar #'expand-file-name search-dirs))
+         (candidates
+          (split-string
+           (shell-command-to-string
+            (concat "find "
+                    (mapconcat #'identity expanded " ")
+                    " -maxdepth 2 -type d "
+                    "\\( -name '.git' -o -name '.cache' -o -name '.obsidian' \\) -prune "
+                    "-o -type d -print 2>/dev/null | awk '!seen[$0]++'"))
+           "\n" t))
+         (dir (completing-read "Jump to: " candidates nil t)))
+    (when dir
+      (+workspace/new (file-name-nondirectory (directory-file-name dir)))
+      (cd dir)
+      (dired dir))))
+
+(defun my/switch-to-last-buffer ()
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+
+(defun my/toggle-markdown-view-mode ()
+  "Toggle between `markdown-mode' and `markdown-view-mode'."
+  (interactive)
+  (if (eq major-mode 'markdown-view-mode)
+      (markdown-mode)
+    (markdown-view-mode)))
+
+(defun my/doom-sync ()
+  (interactive)
+  (compile "~/.config/emacs/bin/doom sync"))
+
+(defun my/set-compile-based-on-file ()
+  (when buffer-file-name
+    (setq-local compile-command
+                (cond
+                 ((derived-mode-p 'c-mode)
+                  (format "gcc -o run %s && ./run && rm ./run"
+                          (shell-quote-argument buffer-file-name)))
+
+                 ((derived-mode-p 'python-mode)
+                  (format "python3 %s"
+                          (shell-quote-argument buffer-file-name)))
+
+                 ((derived-mode-p 'go-mode)
+                  (if (locate-dominating-file buffer-file-name "go.mod")
+                      "go run ."
+                    (format "go run %s"
+                            (shell-quote-argument buffer-file-name))))
+
+                 ((derived-mode-p 'rust-mode)
+                  "cargo run")
+
+                 ((derived-mode-p 'java-mode)
+                  (format "javac %s && java %s"
+                          (file-name-nondirectory buffer-file-name)
+                          (file-name-base buffer-file-name)))
+
+                 (t "")))))
+
+(defun my/toggle-project-eshell ()
+  (interactive)
+  (let ((win (get-window-with-predicate
+              (lambda (w) (eq (buffer-local-value 'major-mode (window-buffer w)) 'eshell-mode)))))
+    (if win
+        (previous-buffer)
+      (project-eshell))))
+
+(defun my/toggle-project-vterm ()
+  (interactive)
+  (let ((win (get-window-with-predicate
+              (lambda (w) (eq (buffer-local-value 'major-mode (window-buffer w)) 'vterm-mode)))))
+    (if win
+        (previous-buffer)
+      (projectile-run-vterm))))
+
+(defun my/smart-format-buffer ()
+  "Format with Eglot if active, otherwise fallback to standard Emacs formatting."
+  (interactive)
+  (if (bound-and-true-p eglot--managed-mode)
+      (eglot-format-buffer)
+    ;; Fallback to Doom's native format or standard Emacs indentation
+    (if (fboundp '+format/buffer)
+        (+format/buffer)
+      (indent-region (point-min) (point-max))))
+  (save-buffer)
+  )
+
+(defun my/open-lazygit ()
+  (interactive)
+  (start-process "lazygit" nil "alacritty" "-e" "lazygit"))
+
+#+end_src
+
+* Plugin Configurations
+
+** Which-key
+#+begin_src emacs-lisp
+(after! which-key
+  (setq which-key-max-display-columns nil
+        which-key-idle-delay 0.5
+        which-key-allow-imprecise-window-fit nil
+        which-key-separator " → "))
+#+end_src
+
+
+** Terminal
+#+begin_src emacs-lisp
+
+(use-package! exec-path-from-shell
+  :config
+  (when (memq window-system '(mac ns x pgtk))
+    (exec-path-from-shell-initialize)))
+
+(after! eshell
+  ;; Save more history
+  (setq eshell-history-size 5000
+        eshell-save-history-on-exit t
+        eshell-hist-ignoredups t
+        eshell-scroll-to-bottom-on-input t
+        eshell-buffer-maximum-lines 10000)
+
+  ;; Better TAB completion
+  (setq eshell-cmpl-ignore-case t
+        completion-ignore-case t)
+
+  ;; Use history with M-p / M-n
+  (define-key eshell-mode-map (kbd "M-p") #'eshell-previous-matching-input-from-input)
+  (define-key eshell-mode-map (kbd "M-n") #'eshell-next-matching-input-from-input)
+
+    (add-hook 'eshell-mode-hook
+            (lambda ()
+              (eshell/alias "lgit" "alacritty -e lazygit $*"))))
+  ;; (eshell/alias "lgit" "alacritty -e lazygit $*"))
+
+
+(use-package! capf-autosuggest
+  :hook (eshell-mode . capf-autosuggest-mode))
+
+(map! :map eshell-mode-map
+      :i "C-e" #'capf-autosuggest-accept)
+#+end_src
+
+* Snippets
+#+begin_src emacs-lisp
+(after! yasnippet
+  (define-key yas-keymap (kbd "C-l") #'yas-next-field)
+  (define-key yas-keymap (kbd "C-j") #'yas-prev-field))
+#+end_src
+
+** go-mode
+#+begin_src emacs-lisp
+(after! go-mode
+  (map! :map go-mode-map
+        :i "C-k p" (lambda ()
+                     (interactive)
+                     (yas-expand-snippet
+                      "fmt.Printf(\"$1\\n\"$2)$0"))
+        :i "C-k h" (lambda ()
+                     (interactive)
+                     (yas-expand-snippet
+                      "func (app *application) $1(w http.ResponseWriter, r *http.Request) {\n\t$2\n}$0"))
+        :i "C-k e e" (lambda ()
+                       (interactive)
+                       (yas-expand-snippet
+                        "if err != nil {\n\t$1\n}$0"))
+        :i "C-k e i" (lambda ()
+                       (interactive)
+                       (let* ((line (thing-at-point 'line t))
+                              (code (string-trim line)))
+                         (delete-region (line-beginning-position) (line-end-position))
+                         (yas-expand-snippet
+                          (format "if err := %s; err != nil {\n\t$0\n}" code))))))
+#+end_src
+
+** rust-mode
+#+begin_src emacs-lisp
+(after! rust-mode
+  (map! :map rust-mode-map
+        :i "C-k p" (lambda ()
+                     (interactive)
+                     (yas-expand-snippet
+                      "println!(\"$1\"$2);$0"))
+        :i "C-k e p" (lambda ()
+                       (interactive)
+                       (yas-expand-snippet
+                        "#[derive(Debug$1)]$0"))))
+#+end_src
+
+** c-mode
+#+begin_src emacs-lisp
+(after! c-mode
+  (map! :map c-mode-map
+        :i "C-k p" (lambda ()
+                     (interactive)
+                     (yas-expand-snippet
+                      "printf(\"$1\\n\"$2);$0"))))
+#+end_src
+
+** java-mode
+#+begin_src emacs-lisp
+(after! java-mode
+  (map! :map java-mode-map
+        :i "C-k p" (lambda ()
+                     (interactive)
+                     (yas-expand-snippet
+                      "System.out.printf(\"$1\\n\"$2);$0"))))
+#+end_src
+
+** js-mode
+#+begin_src emacs-lisp
+(after! js-mode
+  (map! :map js-mode-map
+        :i "C-k p" (lambda ()
+                     (interactive)
+                     (yas-expand-snippet
+                      "console.log(`$1`);$0"))))
+#+end_src
+
+** python-mode
+#+begin_src emacs-lisp
+;; (after! python-mode
+;;   (map! :map python-mode-map
+;;         :i "C-k p" (lambda ()
+;;                      (interactive)
+;;                      (yas-expand-snippet
+;;                       "print(f\"$1\"$2)$0"))))
+
+
+(after! python
+  (evil-define-key 'insert python-mode-map
+    (kbd "C-k p") (lambda ()
+                    (interactive)
+                    (yas-expand-snippet "print(f\"$1\"$2)$0"))))
+#+end_src
+
+** web-mode (html/htmldjango)
+#+begin_src emacs-lisp
+(after! web-mode
+  (map! :map web-mode-map
+        :i "C-k e" (lambda ()
+                     (interactive)
+                     (yas-expand-snippet
+                      "{% block $1 %}{% endblock %}$0"))))
+#+end_src
+
+* LSP
+** python
+#+begin_src emacs-lisp
+;; (with-eval-after-load 'eglot
+;;   (add-to-list 'eglot-server-programs
+;;                '((python-mode python-ts-mode) . ("pyright-langserver" "--stdio"))))
+(after! python-mode
+  (add-to-list 'eglot-server-programs
+               '((python-mode python-ts-mode) . ("pyright-langserver" "--stdio"))))
+(add-hook 'python-mode-hook #'eglot-ensure)
+(add-hook 'python-ts-mode-hook #'eglot-ensure)
+#+end_src

@@ -13,7 +13,7 @@ vim.keymap.set("n", "<leader>r", "<cmd>Recompile<CR>", { silent = true, desc = "
 vim.keymap.set("n", "<leader>R", "<cmd>Compile<CR>", { silent = true, desc = "compile" })
 
 -- save file
-vim.keymap.set("n", "<leader>s", "<cmd>w<CR>", opts)
+vim.keymap.set("n", "<leader>sa", "<cmd>w<CR>", opts)
 vim.keymap.set("n", "<leader>S", "<cmd>wq<CR>", opts)
 vim.keymap.set("n", "<leader>md", "<cmd>call mkdir(expand('%:h'), 'p')<CR>", opts)
 
@@ -23,6 +23,7 @@ vim.keymap.set("n", "<leader>nq", "<cmd>q!<CR>", opts)
 -- vim.keymap.set("n", "<leader>te", ":e %:h/", opts)
 
 vim.keymap.set("n", "<Esc>", ":<BS>", opts)
+vim.keymap.set("n", "<C-g>", ":<BS>", opts)
 -- vim.keymap.set("n", "<leader>c", ":fclose<CR>", opts)
 
 -- vim.keymap.set("n", "<leader>o", "<cmd>e #<CR>", opts)

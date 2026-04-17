@@ -20,6 +20,6 @@
 
 (deflayer base
   lctl h m @quotectrl
-  lalt
+  lmet
   caps
 )

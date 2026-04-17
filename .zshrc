@@ -57,7 +57,7 @@ mycd() {
             awk '!seen[$0]++' |             # <--- This line removes duplicates
             sed "s|^$HOME/||" |
             fzf --height 40% --reverse --prompt="Select directory: "
-    )
+          )
     if [ -n "$dir" ]; then
         echo $dir
         cd "$HOME/$dir" && clear || echo "error opening directory"

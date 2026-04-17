@@ -22,10 +22,10 @@ binds {
     Alt+O hotkey-overlay-title="Focus sioyek" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus sioyek"
     }
-    SUPER+O hotkey-overlay-title="Focus obsidian" {
+    Super+O hotkey-overlay-title="Focus obsidian" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus obsidian"
     }
-    Alt+F hotkey-overlay-title="Open browser" {
+    Super+F hotkey-overlay-title="Open browser" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus zen"
     }
     Alt+T hotkey-overlay-title="Open mpv" {
@@ -42,19 +42,19 @@ binds {
         spawn "kitty"
     }
     // Spotify controls
-    Alt+S allow-when-locked=true {
+    Mod+S allow-when-locked=true {
         spawn-sh "playerctl --player=spotify,ncspot play-pause"
     }
-    Alt+Up allow-when-locked=true {
+    Mod+Up allow-when-locked=true {
         spawn-sh "playerctl --player=spotify,ncspot volume 0.05+"
     }
-    Alt+Down allow-when-locked=true {
+    Mod+Down allow-when-locked=true {
         spawn-sh "playerctl --player=spotify,ncspot volume 0.05-"
     }
-    Alt+Right allow-when-locked=true {
+    Mod+Right allow-when-locked=true {
         spawn-sh "playerctl --player=spotify,ncspot next"
     }
-    Alt+Left allow-when-locked=true {
+    Mod+Left allow-when-locked=true {
         spawn-sh "playerctl --player=spotify,ncspot previous"
     }
     // Floating windows
@@ -281,7 +281,7 @@ binds {
     Super+Ctrl+F {
         reset-window-height
     }
-    Super+F {
+    Mod+F {
         maximize-column
     }
     // Alt+F { maximize-window-to-edges; }
@@ -375,9 +375,9 @@ binds {
     //
     // The allow-inhibiting=false property can be applied to other binds as well,
     // which ensures niri always processes them, even when an inhibitor is active.
-    SUPER+Escape allow-inhibiting=false {
-        toggle-keyboard-shortcuts-inhibit
-    }
+    // SUPER+Escape allow-inhibiting=false {
+    //     toggle-keyboard-shortcuts-inhibit
+    // }
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Alt+Shift+E {
         quit
@@ -396,10 +396,10 @@ binds {
     // SUPER+Shift+M hotkey-overlay-title="Task Manager" {
     //     spawn-sh "qs -c noctalia-shell ipc call bar toggle"
     // }
-    SUPER+S hotkey-overlay-title="Settings" {
+    Alt+Shift+S hotkey-overlay-title="Settings" {
         spawn-sh "qs -c noctalia-shell ipc call settings toggle"
     }
-    Alt+Escape hotkey-overlay-title="Power" {
+    Mod+Escape hotkey-overlay-title="Power" {
         spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"
     }
     SUPER+Space hotkey-overlay-title="Control Centre" {
@@ -421,7 +421,7 @@ binds {
 // -        spawn "dms" "ipc" "call" "notifications" "clearAll"
         spawn-sh "qs -c noctalia-shell ipc call notifications dismissAll"
     }
-    Alt+Shift+Y hotkey-overlay-title="Browse Wallpapers" {
+    Mod+Shift+Y hotkey-overlay-title="Browse Wallpapers" {
          // spawn "dms" "ipc" "call" "dankdash" "wallpaper"
         spawn-sh "qs -c noctalia-shell ipc call wallpaper toggle"
     }
@@ -431,20 +431,20 @@ binds {
     SUPER+Ctrl+L hotkey-overlay-title="Lock Screen" {
         spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"
     }
-    Alt+Ctrl+N hotkey-overlay-title="Toggle nightmode" {
+    Mod+Ctrl+N hotkey-overlay-title="Toggle nightmode" {
         // spawn "dms" "ipc" "call" "night" "toggle"
         spawn-sh "qs -c noctalia-shell ipc call nightLight toggle"
     }
-    Ctrl+Alt+T hotkey-overlay-title="System Moniter" {
+    Mod+Ctrl+T hotkey-overlay-title="System Moniter" {
         spawn-sh "qs -c noctalia-shell ipc call systemMonitor toggle"
     }
     Alt+J allow-when-locked=true hotkey-overlay-title="Toggle Bar" {
         spawn-sh "qs -c noctalia-shell ipc call bar toggle"
     }
-    Alt+C allow-when-locked=true hotkey-overlay-title="Calendar" {
+    Mod+C allow-when-locked=true hotkey-overlay-title="Calendar" {
         spawn-sh "qs -c noctalia-shell ipc call calendar toggle"
     }
-    Alt+Slash hotkey-overlay-title="Toggle niri Keybinds" {
+    Mod+Slash hotkey-overlay-title="Toggle niri Keybinds" {
         // spawn "dms" "ipc" "call" "keybinds" "toggle" "niri"
         show-hotkey-overlay
     }
