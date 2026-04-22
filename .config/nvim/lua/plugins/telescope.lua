@@ -144,7 +144,7 @@ return {
     vim.keymap.set("n", "<leader>nh", builtin.help_tags, { desc = "Search Help" })
     vim.keymap.set("n", "<leader>nk", builtin.keymaps, { desc = "Search Keymaps" })
 
-    vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Search Files" })
+    vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Search Files" })
     vim.keymap.set("n", "<leader>gs", builtin.git_status, { desc = "Git Status" })
 
     vim.keymap.set("n", "<leader>nn", builtin.builtin, { desc = "Search Select Telescope" })
@@ -153,7 +153,8 @@ return {
     vim.keymap.set("n", "<leader>n.", builtin.oldfiles, { desc = 'Search Recent Files ("." for repeat)' })
     vim.keymap.set("n", "<leader>nd", builtin.diagnostics, { desc = "Search Diagnostics" })
     vim.keymap.set("n", "<leader>nr", builtin.resume, { desc = "Search Resume" })
-    vim.keymap.set("n", "<leader>v", builtin.buffers, { desc = "Find existing buffers" })
+    vim.keymap.set("n", "<leader>jj", builtin.buffers, { desc = "Find existing buffers" })
+    -- vim.keymap.set("n", "<leader>jj", builtin.buffers, { desc = "Find existing buffers" })
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set("n", "<leader>/", function()

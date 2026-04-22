@@ -77,21 +77,21 @@ return {
         end)
 
         -- Actions
-        -- map("n", "<leader>hs", gitsigns.stage_hunk)
-        map("n", "<leader>hr", gitsigns.reset_hunk)
+        map("n", "<leader>gS", gitsigns.stage_hunk, { desc = "stage_hunk" })
+        map("n", "<leader>gR", gitsigns.reset_hunk, { desc = "reset_hunk" })
 
-        -- map("v", "<leader>hs", function()
-        --   gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-        -- end)
+        map("v", "<leader>gS", function()
+          gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+        end, { desc = "stage_hunk" })
         --
-        map("v", "<leader>hr", function()
+        map("v", "<leader>gR", function()
           gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-        end)
+        end, { desc = "reset_hunk" })
 
         -- map("n", "<leader>hS", gitsigns.stage_buffer)
         -- map("n", "<leader>hR", gitsigns.reset_buffer)
-        map("n", "<leader>hp", gitsigns.preview_hunk)
-        map("n", "<leader>hi", gitsigns.preview_hunk_inline)
+        map("n", "<leader>gp", gitsigns.preview_hunk, { desc = "preview_hunk" })
+        map("n", "<leader>gi", gitsigns.preview_hunk_inline, { desc = "preview_hunk_inline" })
 
         -- map("n", "<leader>hb", function()
         --   gitsigns.blame_line({ full = true })

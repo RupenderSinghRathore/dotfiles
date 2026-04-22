@@ -79,7 +79,6 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "go",
         callback = function()
-
           vim.keymap.set("i", "<c-k>p", function()
             ls.snip_expand(s("log", {
               t('fmt.Printf("'),
@@ -227,6 +226,8 @@ return {
         callback = function()
           vim.keymap.set("n", "<leader>r", "<cmd>LivePreview start<CR>", { buffer = true })
           -- vim.keymap.set("n", "<leader>r", "<cmd>!zen %<CR>", { buffer = true })
+
+          vim.keymap.set("i", "*", "**<Esc>i", { buffer = true })
 
           -- Markdown formatting keymaps
           vim.keymap.set(

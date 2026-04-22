@@ -1,22 +1,14 @@
-# shell sh -c "tmux attach -t default 2>/dev/null || tmux"
-
 confirm_os_window_close 0
 allow_remote_control yes
 copy_on_select yes
 
-# include theme/tokyo_night.conf
-include dank-theme.conf
-include dank-tabs.conf
-# include tabs/kitty
-# include tabs/tmux
+include themes/noctalia.conf
 
 # cursor animation
 # cursor_trail 1
 cursor_blink_interval 0
 cursor_shape block
 shell_integration no-cursor
-map ctrl+shift+k scroll_line_up
-# cursor #31748f
 
 # Fonts
 # font_family SauceCodePro Nerd Font Mono
@@ -24,34 +16,11 @@ font_family FiraCodeNerdFontMono
 bold_font auto
 italic_font auto
 bold_italic_font auto
-font_size 14
+font_size 14.0
 
-# Full-screen
+# keybinds
 map f11 toggle_fullscreen
-window_padding_width 0
+map ctrl+backspace send_text all \x17
 
 # Background
 background_opacity 0.80
-dynamic_background_opacity yes
- # background_blur 1
-
-map ctrl+backspace send_text all \x17
-
-# map ctrl+shift+f1 combine : set_background_opacity 1.0 : set_colors background=#2a2b36
-map ctrl+shift+f1 combine : set_background_opacity 1.0 : set_colors background=#0d1117
-
-map ctrl+space>c launch --cwd=current --type=tab
-map ctrl+space>x close_tab
-map ctrl+shift+. move_tab_forward
-map ctrl+shift+, move_tab_backward
-map ctrl+space>d send_text all mycd\r
-
-map ctrl+space>1 goto_tab 1
-map ctrl+space>2 goto_tab 2
-map ctrl+space>3 goto_tab 3
-map ctrl+space>4 goto_tab 4
-map ctrl+space>5 goto_tab 5
-map ctrl+space>6 goto_tab 6
-map ctrl+space>7 goto_tab 7
-map ctrl+space>8 goto_tab 7
-map ctrl+space>9 goto_tab 9

@@ -1,3 +1,4 @@
+require("vim._core.ui2").enable({})
 require("core.options")
 require("core.keymaps")
 require("core.tabs")
@@ -27,25 +28,27 @@ require("lazy").setup({
   require("plugins.auto-tag"),
   require("plugins.misc"),
   require("plugins.formatting"),
+  -- require("plugins.scope"),
   -- require("plugins.codium"),
   require("plugins.gitsigns"),
   require("plugins.git-fugitive"),
   require("plugins.lualine"),
   require("plugins.love"),
   require("plugins.yazi"),
-  -- require("plugins.oil"),
-  -- require("plugins.neotree"),
+  require("plugins.auto-session"),
   -- require("plugins.image"),
   require("plugins.dap"),
   require("plugins.copilot"),
   require("plugins.database"),
   require("plugins.folding"),
   require("plugins.leetcode"),
-  -- require("plugins.hover"),
-
   require("plugins.markdowns"),
   require("plugins.compile-mode"),
   require("plugins.rustaceanvim"),
+
+  -- require("plugins.hover"),
+  -- require("plugins.oil"),
+  -- require("plugins.neotree"),
   -- require("plugins.debugger"),
   -- require("plugins.copilot"),
   -- require("plugins.vim-be-good"),

@@ -111,7 +111,7 @@ return {
 
         -- Fuzzy find all the symbols in your current workspace.
         --  Similar to document symbols, except searches over your entire project.
-        map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+        map("<leader>wS", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
         -- Rename the variable under your cursor.
         --  Most Language Servers support renaming across files, etc.
@@ -186,40 +186,8 @@ return {
     local servers = {
       clangd = {},
       marksman = {},
-      jdtls = {
-        -- cmd = {
-        --     "jdtls",
-        --     "-configuration",
-        --     vim.fn.stdpath("cache") .. "/jdtls/config",
-        --     "-data",
-        --     vim.fn.stdpath("cache") .. "/jdtls/workspace",
-        -- },
-        -- root_dir = require("lspconfig").util.root_pattern(".git", "mvnw", "gradlew", "pom.xml", "build.gradle"),
-      },
-      gopls = {
-        -- settings = {
-        --   position_encoding = "utf-8",
-        -- },
-        --   gopls = {
-        --     completeUnimported = true,
-        --     usePlaceholders = true,
-        --     analyses = {
-        --       unusedparams = true,
-        --       shadow = true,
-        --     },
-        --     -- staticcheck = true,
-        --     -- gofumpt = true,
-        --     hints = {
-        --       assignVariableTypes = true,
-        --       compositeLiteralFields = true,
-        --       constantValues = true,
-        --       functionTypeParameters = true,
-        --       parameterNames = true,
-        --       rangeVariableTypes = true,
-        --     },
-        --   },
-        -- },
-      },
+      -- jdtls = {},
+      gopls = {},
       -- dockerls = {},
       -- qmlls = {},
       -- zls = {},
@@ -301,6 +269,9 @@ return {
         function(server_name)
           -- if server_name == "rust_analyzer" then
           --   return
+          if server_name == "gitlab_duo" then
+            return
+          end
           -- end -- let rustaceanvim handle it
           local server = servers[server_name] or {}
           -- This handles overriding only values explicitly passed

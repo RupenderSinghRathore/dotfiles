@@ -1,4 +1,5 @@
-theme = "mytokyonight"
+# theme = "mytokyonight"
+theme = "noctalia"
 [editor]
 line-number = "relative"
 scroll-lines = 1

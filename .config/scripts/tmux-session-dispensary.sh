@@ -9,9 +9,22 @@ DIRS=(
 #     selected="$1"
 # else
 selected=$(
-    find "${DIRS[@]}" -maxdepth 2 -type d \
-        \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name 'env' -o -name 'venv' -o -name '.gradle' -o -name 'META-INF' -o -name 'target' -o -name '.cache' -o -name 'utils' \) -prune \
-        -o -type d -print 2>/dev/null |
+    fd . "${DIRS[@]}" \
+        --max-depth 2 \
+        --type d \
+        --no-ignore \
+        --hidden \
+        --exclude .git \
+        --exclude themes \
+        --exclude .venv \
+        --exclude node_modules \
+        --exclude env \
+        --exclude venv \
+        --exclude .gradle \
+        --exclude META-INF \
+        --exclude target \
+        --exclude .cache \
+        --exclude utils |
         sed "s|^$HOME/||" |
         fzf --prompt="New Tmux Session: "
 )

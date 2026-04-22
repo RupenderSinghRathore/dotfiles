@@ -58,3 +58,5 @@
 ;;(package! sudo-edit)
 (package! exec-path-from-shell)
 (package! capf-autosuggest)
+(package! apheleia)
+(package! leetcode)

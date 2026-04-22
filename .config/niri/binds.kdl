@@ -9,10 +9,13 @@ binds {
     Mod+K hotkey-overlay-title="Open a Terminal" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus alacritty"
     }
-    Mod+E hotkey-overlay-title="emacs" {
-        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus emacs"
+    Mod+N hotkey-overlay-title="Neovim" {
+        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus nvim"
     }
-    Mod+N hotkey-overlay-title="Open thunar" {
+    Mod+Shift+N hotkey-overlay-title="Neovim" {
+        spawn-sh "alacritty --class 'nvim' -e nvim"
+    }
+    Super+F hotkey-overlay-title="Open thunar" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus thunar"
     }
     Mod+M hotkey-overlay-title="Open spotify" {
@@ -22,23 +25,23 @@ binds {
     Alt+O hotkey-overlay-title="Focus sioyek" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus sioyek"
     }
-    Super+O hotkey-overlay-title="Focus obsidian" {
-        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus obsidian"
-    }
-    Super+F hotkey-overlay-title="Open browser" {
+    // Super+O hotkey-overlay-title="Focus obsidian" {
+    //     spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus obsidian"
+    // }
+    Mod+E hotkey-overlay-title="Open browser" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus zen"
     }
     Alt+T hotkey-overlay-title="Open mpv" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus mpv"
     }
-    Alt+Space hotkey-overlay-title="App launcher(rofi)" {
+    Mod+Space hotkey-overlay-title="App launcher(rofi)" {
         spawn "rofi" "-show" "drun" "-theme" "/home/kami-sama/dotfiles/.config/rofi/config-apps.rasi"; 
     }
     Mod+Shift+M hotkey-overlay-title="Emoji" {
         // spawn "rofimoji"
         spawn-sh "qs -c noctalia-shell ipc call launcher emoji"
     }
-    Alt+Shift+K hotkey-overlay-title="Open a Terminal: kitty" {
+    Mod+Shift+K hotkey-overlay-title="Open a Terminal: kitty" {
         spawn "kitty"
     }
     // Spotify controls
@@ -98,33 +101,33 @@ binds {
     Alt+Ctrl+O repeat=false {
         toggle-overview
     }
-    Super+W repeat=false {
+    Alt+W repeat=false {
         close-window
     }
-    SUPER+H {
+    Alt+H {
         focus-column-left
     }
-    SUPER+J {
+    Alt+J {
         focus-window-down
     }
-    SUPER+K {
+    Alt+K {
         focus-window-up
     }
-    SUPER+L {
+    Alt+L {
         focus-column-right
     }
     // Alt+Comma  { focus-column-left; }
     // Alt+Period  { focus-column-right; }
-    SUPER+Shift+H {
+    Alt+Shift+H {
         move-column-left
     }
-    SUPER+Shift+J {
+    Alt+Shift+J {
         move-window-down
     }
-    SUPER+Shift+K {
+    Alt+Shift+K {
         move-window-up
     }
-    SUPER+Shift+L {
+    Alt+Shift+L {
         move-column-right
     }
     // You can bind mouse wheel scroll ticks using the following syntax.
@@ -281,7 +284,7 @@ binds {
     Super+Ctrl+F {
         reset-window-height
     }
-    Mod+F {
+    Alt+F {
         maximize-column
     }
     // Alt+F { maximize-window-to-edges; }
@@ -390,19 +393,19 @@ binds {
     // Alt+Space hotkey-overlay-title="Application Launcher" {
     //     spawn "dms" "ipc" "call" "spotlight" "toggle"
     // }
-    Alt+Shift+X hotkey-overlay-title="Clipboard Manager" {
+    Super+X hotkey-overlay-title="Clipboard Manager" {
         spawn-sh "qs -c noctalia-shell ipc call launcher clipboard"
     }
     // SUPER+Shift+M hotkey-overlay-title="Task Manager" {
     //     spawn-sh "qs -c noctalia-shell ipc call bar toggle"
     // }
-    Alt+Shift+S hotkey-overlay-title="Settings" {
+    Alt+S hotkey-overlay-title="Settings" {
         spawn-sh "qs -c noctalia-shell ipc call settings toggle"
     }
     Mod+Escape hotkey-overlay-title="Power" {
         spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"
     }
-    SUPER+Space hotkey-overlay-title="Control Centre" {
+    SUPER+Return hotkey-overlay-title="Control Centre" {
         spawn-sh "qs -c noctalia-shell ipc call controlCenter toggle"
     }
     SUPER+N hotkey-overlay-title="Notification Center" {
@@ -438,7 +441,7 @@ binds {
     Mod+Ctrl+T hotkey-overlay-title="System Moniter" {
         spawn-sh "qs -c noctalia-shell ipc call systemMonitor toggle"
     }
-    Alt+J allow-when-locked=true hotkey-overlay-title="Toggle Bar" {
+    Mod+J allow-when-locked=true hotkey-overlay-title="Toggle Bar" {
         spawn-sh "qs -c noctalia-shell ipc call bar toggle"
     }
     Mod+C allow-when-locked=true hotkey-overlay-title="Calendar" {

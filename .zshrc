@@ -36,8 +36,8 @@ HYPHEN_INSENSITIVE="true" # Case-sensitive completion must be off. _ and - will 
 # zstyle ':omz:update' mode auto      # update automatically without asking
 zstyle ':omz:update' mode reminder # just remind me to update when it's time
 
-plugins=(git web-search zsh-syntax-highlighting zsh-vi-mode zsh-autosuggestions)
-# plugins=(git web-search zsh-syntax-highlighting zsh-autosuggestions)
+# plugins=(git web-search zsh-syntax-highlighting zsh-vi-mode zsh-autosuggestions)
+plugins=(git web-search zsh-syntax-highlighting zsh-autosuggestions)
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZVM_CURSOR_STYLE_ENABLED=false
@@ -49,17 +49,22 @@ source $ZSH/oh-my-zsh.sh
 
 mycd() {
     local search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads ~/lunaar/languages/go ~/Notes)
+
     local dir=$(
-        find "${search_dirs[@]}" -maxdepth 2 -type d \
-            \
-            \( -name '.git' -o -name '.cache' -o -name '.obsidian' \) -prune \
-            -o -type d -print 2>/dev/null | # \( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name 'env' -o -name 'venv' -o -name '.gradle' -o -name 'META-INF' -o -name 'target' -o -name '.cache' -o -name 'utils' -o -name 'random stuff' \) -prune \
-            awk '!seen[$0]++' |             # <--- This line removes duplicates
+        command fd '' "${search_dirs[@]}" \
+            --type d \
+            --max-depth 2 \
+            --hidden \
+            --no-ignore \
+            --exclude .git \
+            --exclude .cache \
+            --exclude .obsidian \
+            --absolute-path 2>/dev/null |
             sed "s|^$HOME/||" |
             fzf --height 40% --reverse --prompt="Select directory: "
-          )
+    )
+
     if [ -n "$dir" ]; then
-        echo $dir
         cd "$HOME/$dir" && clear || echo "error opening directory"
     fi
 }
@@ -71,6 +76,9 @@ web-dow() {
         --no-parent \
         -U "Mozilla/5.0 (compatible; MyOfflineBot/1.0)" \
         ${1}
+}
+launch() {
+    "$2" --class "$1" -e "$1" || echo "Use: launch nvim kitty/alacritty"
 }
 makec() {
     ./make.sh "$@"

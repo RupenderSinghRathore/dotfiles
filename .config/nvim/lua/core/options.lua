@@ -45,7 +45,7 @@ vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- Separate Vim plugins fr
 
 -- Tabline setup
 --vim.o.showtabline = 0 -- Always hides tabs
-vim.o.showtabline = 1
+-- vim.o.showtabline = 1
 
 -- vim.opt.laststatus = 0 -- Hide the statusline by default
 vim.o.scroll = 10

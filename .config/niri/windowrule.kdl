@@ -151,7 +151,7 @@ recent-windows {
         max-scale 0.5
     }
     binds {
-        Mod+Tab { previous-window scope="workspace"; }
+        Alt+Tab { previous-window scope="workspace"; }
         Mod+Shift+Tab { next-window; }
     }
 }

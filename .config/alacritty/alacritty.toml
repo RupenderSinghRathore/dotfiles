@@ -20,11 +20,19 @@ family = "FiraCodeNerdFontMono"
 style = "Regular"
 
 [window]
-opacity = 0.75
+# opacity = 0.85
+padding = { x = 0, y = 0 }
+dynamic_padding = true
+# resize_increments = true
+# decorations = "none"
 
 [keyboard]
 bindings = [
 { key = "F11", action = "ToggleFullscreen" },
 { key = "Back",mods = "Control", chars = "\u0017" },
-{ key = "[",mods = "Control", chars = "\u001b" }
+{ key = "[",mods = "Control", chars = "\u001b" },
+{ key = "Key0", mods = "Control", action = "ResetFontSize" }
 ]
+
+[colors.cursor]
+text = '#000000'

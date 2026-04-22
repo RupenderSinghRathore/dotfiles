@@ -35,10 +35,12 @@
 ;;               (conf-mode))))
 
 (map! :desc "comment line" "C-/" #'comment-line)
-        (map! :leader :desc "Save file" "s a" #'save-buffer)
+(map! :leader :desc "Save file" "s a" #'save-buffer)
 
 ;; (map! :leader :desc "Toggle shell" "t t" #'project-eshell)
 (map! :leader :desc "Toggle shell" "t t" #'my/toggle-project-eshell)
+
+(map! :leader :desc "lsp disable" "l d" #'eglot-shutdown)
 
 (map! :leader :desc "Toggle markdown view" "m v" #'my/toggle-markdown-view-mode)
 (map! :leader :desc "counsel command" "SPC" #'execute-extended-command)
@@ -72,7 +74,10 @@
 (define-key key-translation-map (kbd "C-h") (kbd "DEL"))
 
 (map! :leader
-      :desc "Fuzzy cd" "f j" #'my/fuzzy-cd)
+      :desc "Fuzzy cd" "f J" #'my/fuzzy-cd)
+
+(map! :leader
+      :desc "Fuzzy cd" "f j" #'my/fuzzy-cd-ws)
 
 (map! :leader
       :desc "Fuzzy find file" "f F" #'my/fuzzy-find-file)
@@ -81,18 +86,16 @@
 (map! :leader
       :desc "LazyGit" "g z" #'my/open-lazygit)
 
-
-;; command mode
-(evil-ex-define-cmd "q" (lambda ()
-                          (interactive)
-                          (kill-current-buffer)
-                          (delete-window)))
-
 (add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
 (load-theme 'noctalia t)
 
 (set-frame-parameter nil 'alpha-background 85)
 (add-to-list 'default-frame-alist '(alpha-background . 85))
+
+;; terminal only
+(unless (display-graphic-p)
+  (set-face-attribute 'default nil :background "unspecified-bg")
+  )
 
 (defun my/fuzzy-find-file ()
   (interactive)
@@ -132,9 +135,30 @@
            "\n" t))
          (dir (completing-read "Jump to: " candidates nil t)))
     (when dir
-      (+workspace/new (file-name-nondirectory (directory-file-name dir)))
-      (cd dir)
+      (setq default-directory (file-name-as-directory dir))
       (dired dir))))
+
+(defun my/fuzzy-cd-ws ()
+  (interactive)
+  (let* ((search-dirs '("~/dotfiles" "~/lunaar" "~/Documents"
+                        "~/Downloads" "~/lunaar/languages/go" "~/Notes"))
+         (expanded (mapcar #'expand-file-name search-dirs))
+         (candidates
+          (split-string
+           (shell-command-to-string
+            (concat "find "
+                    (mapconcat #'identity expanded " ")
+                    " -maxdepth 2 -type d "
+                    "\\( -name '.git' -o -name '.cache' -o -name '.obsidian' \\) -prune "
+                    "-o -type d -print 2>/dev/null | awk '!seen[$0]++'"))
+           "\n" t))
+         (dir (completing-read "Jump to: " candidates nil t)))
+    (when dir
+      (let ((name (file-name-nondirectory
+                   (directory-file-name dir)))
+            (default-directory dir))
+        (+workspace/new name)
+        (dired dir)))))
 
 (defun my/switch-to-last-buffer ()
   (interactive)
@@ -153,31 +177,61 @@
 
 (defun my/set-compile-based-on-file ()
   (when buffer-file-name
-    (setq-local compile-command
-                (cond
-                 ((derived-mode-p 'c-mode)
-                  (format "gcc -o run %s && ./run && rm ./run"
-                          (shell-quote-argument buffer-file-name)))
+    (let* ((file buffer-file-name)
+           (ext  (file-name-extension file)))
+      (setq-local
+       compile-command
+       (cond
+        ((equal ext "c")
+         (format "gcc -o run %s && ./run && rm ./run"
+                 (shell-quote-argument file)))
 
-                 ((derived-mode-p 'python-mode)
-                  (format "python3 %s"
-                          (shell-quote-argument buffer-file-name)))
+        ((equal ext "py")
+         (format "python3 %s"
+                 (shell-quote-argument file)))
 
-                 ((derived-mode-p 'go-mode)
-                  (if (locate-dominating-file buffer-file-name "go.mod")
-                      "go run ."
-                    (format "go run %s"
-                            (shell-quote-argument buffer-file-name))))
+        ((equal ext "go")
+         (if (locate-dominating-file file "go.mod")
+             "go run ."
+           (format "go run %s"
+                   (shell-quote-argument file))))
 
-                 ((derived-mode-p 'rust-mode)
-                  "cargo run")
+        ((equal ext "rs")
+         "cargo run")
 
-                 ((derived-mode-p 'java-mode)
-                  (format "javac %s && java %s"
-                          (file-name-nondirectory buffer-file-name)
-                          (file-name-base buffer-file-name)))
+        ((equal ext "java")
+         (format "javac %s && java %s"
+                 (file-name-nondirectory file)
+                 (file-name-base file)))
 
-                 (t "")))))
+        (t ""))))))
+;; (defun my/set-compile-based-on-file ()
+;;   (when buffer-file-name
+;;     (setq-local compile-command
+;;                 (cond
+;;                  ((derived-mode-p 'c-mode)
+;;                   (format "gcc -o run %s && ./run && rm ./run"
+;;                           (shell-quote-argument buffer-file-name)))
+
+;;                  ((derived-mode-p 'python-mode)
+;;                   (format "python3 %s"
+;;                           (shell-quote-argument buffer-file-name)))
+
+;;                  ((derived-mode-p 'go-mode)
+;;                   (if (locate-dominating-file buffer-file-name "go.mod")
+;;                       "go run ."
+;;                     (format "go run %s"
+;;                             (shell-quote-argument buffer-file-name))))
+
+;;                  ((derived-mode-p 'rust-mode)
+;;                   "cargo run")
+
+;;                  ((derived-mode-p 'java-mode)
+;;                   (format "javac %s && java %s"
+;;                           (file-name-nondirectory buffer-file-name)
+;;                           (file-name-base buffer-file-name)))
+
+;;                  (t "")))))
 
 (defun my/toggle-project-eshell ()
   (interactive)
@@ -195,21 +249,26 @@
         (previous-buffer)
       (projectile-run-vterm))))
 
+
 (defun my/smart-format-buffer ()
-  "Format with Eglot if active, otherwise fallback to standard Emacs formatting."
   (interactive)
-  (if (bound-and-true-p eglot--managed-mode)
-      (eglot-format-buffer)
-    ;; Fallback to Doom's native format or standard Emacs indentation
-    (if (fboundp '+format/buffer)
-        (+format/buffer)
-      (indent-region (point-min) (point-max))))
-  (save-buffer)
-  )
+  (condition-case nil
+      (apheleia-format-buffer)
+    (error
+     (indent-region (point-min) (point-max))))
+  (save-buffer))
 
 (defun my/open-lazygit ()
   (interactive)
   (start-process "lazygit" nil "alacritty" "-e" "lazygit"))
+
+(after! leetcode
+  (setq leetcode-prefer-language "golang"
+        leetcode-submit-timeout 10
+        leetcode-save-solutions t)
+  )
+
+;; (tab-bar-mode 1)
 
 (after! which-key
   (setq which-key-max-display-columns nil
@@ -234,14 +293,10 @@
   (setq eshell-cmpl-ignore-case t
         completion-ignore-case t)
 
-  ;; Use history with M-p / M-n
-  (define-key eshell-mode-map (kbd "M-p") #'eshell-previous-matching-input-from-input)
-  (define-key eshell-mode-map (kbd "M-n") #'eshell-next-matching-input-from-input)
-
-    (add-hook 'eshell-mode-hook
+  (add-hook 'eshell-mode-hook
             (lambda ()
               (eshell/alias "lgit" "alacritty -e lazygit $*"))))
-  ;; (eshell/alias "lgit" "alacritty -e lazygit $*"))
+;; (eshell/alias "lgit" "alacritty -e lazygit $*"))
 
 
 (use-package! capf-autosuggest
@@ -329,6 +384,52 @@
                      (yas-expand-snippet
                       "{% block $1 %}{% endblock %}$0"))))
 
+(after! evil-snipe
+  (evil-snipe-mode -1)
+  )
+(after! evil
+  (defmacro my/blackhole-cmd (fn)
+    `(lambda () (interactive)
+       (let ((evil-this-register ?_))
+         (call-interactively #',fn))))
+
+  (evil-define-key '(normal visual) 'global
+    "x" (my/blackhole-cmd evil-delete-char)
+    "c" (my/blackhole-cmd evil-change)
+    "s" (my/blackhole-cmd evil-substitute))
+
+  (advice-remove 'evil-open-below
+                 #'+evil--insert-newline-below-and-respect-comments-a)
+
+  ;; Override :q
+  (defun my/kill-buffer-and-window ()
+    (interactive)
+    (kill-current-buffer)
+    (delete-window))
+
+  (defun my/save-and-kill-buffer-and-window ()
+    (interactive)
+    (save-buffer)
+    (kill-current-buffer)
+    (delete-window))
+
+  ;; :q variants - just close
+  (evil-ex-define-cmd "q"   #'my/kill-buffer-and-window)
+  (evil-ex-define-cmd "q!"  #'my/kill-buffer-and-window)
+  (evil-ex-define-cmd "bd"  #'my/kill-buffer-and-window)
+  (evil-ex-define-cmd "bd!" #'my/kill-buffer-and-window)
+
+  ;; :wq variants - save then close
+  (evil-ex-define-cmd "wq"  #'my/save-and-kill-buffer-and-window)
+  (evil-ex-define-cmd "wq!" #'my/save-and-kill-buffer-and-window)
+  (evil-ex-define-cmd "x"   #'my/save-and-kill-buffer-and-window)  ;; :x is alias for :wq
+
+  ;; :qa variants - close all / quit emacs (optional, keep default or override)
+  (evil-ex-define-cmd "qa"  #'save-buffers-kill-terminal)
+  (evil-ex-define-cmd "qa!" #'kill-emacs)
+  (evil-ex-define-cmd "wqa" #'save-buffers-kill-terminal)
+  (evil-ex-define-cmd "wqa!" #'save-buffers-kill-emacs))
+
 ;; (with-eval-after-load 'eglot
 ;;   (add-to-list 'eglot-server-programs
 ;;                '((python-mode python-ts-mode) . ("pyright-langserver" "--stdio"))))
@@ -337,3 +438,51 @@
                '((python-mode python-ts-mode) . ("pyright-langserver" "--stdio"))))
 (add-hook 'python-mode-hook #'eglot-ensure)
 (add-hook 'python-ts-mode-hook #'eglot-ensure)
+
+(after! apheleia
+  (apheleia-global-mode +1)
+
+  (setf (alist-get 'gofumpt apheleia-formatters)
+        '("gofumpt"))
+
+  (setf (alist-get 'golines apheleia-formatters)
+        '("golines" "--max-len=120"))  ; adjust line length to taste
+
+  (setf (alist-get 'goimports apheleia-formatters)
+        '("goimports"))
+
+  ;; Chain them for go-mode — order matters: goimports → gofumpt → golines
+  (setf (alist-get 'go-mode apheleia-mode-alist)
+        '(goimports gofumpt golines))
+
+  (setf (alist-get 'go-ts-mode apheleia-mode-alist)
+        '(goimports gofumpt golines)))
+
+(after! (eglot cape)
+  (defun my/setup-capf ()
+    (setq-local completion-at-point-functions
+                (list #'eglot-completion-at-point
+                      #'cape-dabbrev
+                      #'yasnippet-capf)))
+  (add-hook 'eglot-managed-mode-hook #'my/setup-capf))
+
+(setq dabbrev-check-other-buffers t
+      dabbrev-check-all-buffers t
+      dabbrev-upcase-means-case-search t)
+
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (add-to-list 'completion-at-point-functions #'cape-dabbrev t)))
+
+(global-corfu-mode)
+(setq corfu-auto-prefix 2
+      cape-dabbrev-min-length 2)
+
+(after! corfu
+  (setq corfu-auto t
+        corfu-auto-delay 0.2
+        corfu-auto-prefix 2))
+
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (add-to-list 'completion-at-point-functions #'cape-dabbrev t)))

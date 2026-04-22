@@ -11,9 +11,9 @@
 spawn-at-startup "qs" "-c" "noctalia-shell"
 
 spawn-sh-at-startup "/home/kami-sama/.config/scripts/battery_saver_simpler.sh"
-spawn-sh-at-startup "wl-paste --watch cliphist store"
+// spawn-sh-at-startup "wl-paste --watch cliphist store"
 
-spawn-sh-at-startup "/usr/bin/emacs --daemon &"
+// spawn-sh-at-startup "/usr/bin/emacs --daemon &"
 // spawn-sh-at-startup "qs -c noctalia-shell ipc call bar hideBar"
 
 

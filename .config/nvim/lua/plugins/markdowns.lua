@@ -19,7 +19,8 @@ return {
   -- },
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    ft = "markdown",
+    -- ft = "markdown",
+    Cmd = "RenderMarkdown",
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' }, -- if you use standalone mini plugins
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
@@ -32,16 +33,16 @@ return {
         lsp = { enabled = true },
       },
       anti_conceal = {
-        -- enabled = false,
+        enabled = false,
       },
     },
     latex = {
       enabled = true,
       converter = { "latex2text", "utftex" }, -- Try 'latex2text' first (Python-based, often better for fractions/complex expr)
-      -- Other options: position = 'center', top_pad = 0, etc.
+      -- Other options: po ition = 'center', top_pad = 0, etc.
     },
     keys = {
-      { "<leader>t", "<cmd>RenderMarkdown toggle<CR>" },
+      { "<leader>mt", "<cmd>RenderMarkdown toggle<CR>" },
     },
   },
   -- {
