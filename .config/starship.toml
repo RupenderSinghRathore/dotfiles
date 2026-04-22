@@ -1,6 +1,6 @@
 # Warning: This config does not include keys that have an unset value
 
-# $all is shorthand for $username$hostname$localip$shlvl$singularity$kubernetes$nats$directory$vcsh$fossil_branch$fossil_metrics$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package$bun$c$cmake$cobol$cpp$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$gleam$golang$gradle$haskell$haxe$helm$java$julia$kotlin$lua$mojo$nim$nodejs$ocaml$odin$opa$perl$php$pulumi$purescript$python$quarto$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$typst$vlang$vagrant$zig$buf$guix_shell$nix_shell$conda$pixi$meson$spack$memory_usage$aws$gcloud$openstack$azure$direnv$env_var$mise$crystal$custom$sudo$cmd_duration$line_break$jobs$battery$time$status$container$netns$os$shell$character
+# $all is shorthand for $username$hostname$localip$shlvl$singularity$kubernetes$nats$directory$vcsh$fossil_branch$fossil_metrics$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$hg_state$pijul_channel$docker_context$package$bun$c$cmake$cobol$cpp$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$fortran$gleam$golang$gradle$haskell$haxe$helm$java$julia$kotlin$lua$mojo$nim$nodejs$ocaml$odin$opa$perl$php$pulumi$purescript$python$quarto$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$typst$vlang$vagrant$xmake$zig$buf$guix_shell$nix_shell$conda$pixi$meson$spack$memory_usage$aws$gcloud$openstack$azure$direnv$env_var$mise$crystal$custom$sudo$cmd_duration$line_break$jobs$battery$time$status$container$netns$os$shell$character
 "$schema" = "https://starship.rs/config-schema.json"
 format = "$all"
 right_format = ""
@@ -18,7 +18,7 @@ follow_symlinks = true
 format = 'on [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
 symbol = "☁️  "
 style = "bold yellow"
-disabled = false
+disabled = true
 expiration_symbol = "X"
 force_display = false
 
@@ -290,6 +290,8 @@ only_with_files = true
 disabled = false
 detect_extensions = []
 detect_files = [
+    "compose.yml",
+    "compose.yaml",
     "docker-compose.yml",
     "docker-compose.yaml",
     "Dockerfile",
@@ -371,6 +373,49 @@ style = "bold black"
 symbol = "."
 disabled = false
 
+[fortran]
+format = "via [$symbol($version(-$name) )]($style)"
+version_format = "${raw}"
+symbol = "🅵  "
+style = "bold purple"
+disabled = false
+detect_extensions = [
+    "f",
+    "F",
+    "for",
+    "FOR",
+    "ftn",
+    "FTN",
+    "f77",
+    "F77",
+    "f90",
+    "F90",
+    "f95",
+    "F95",
+    "f03",
+    "F03",
+    "f08",
+    "F08",
+    "f18",
+    "F18",
+]
+detect_files = ["fpm.toml"]
+detect_folders = []
+commands = [
+    [
+    "gfortran",
+    "--version",
+],
+    [
+    "flang",
+    "--version",
+],
+    [
+    "flang-new",
+    "--version",
+],
+]
+
 [fossil_branch]
 format = "on [$symbol$branch]($style) "
 symbol = " "
@@ -406,6 +451,7 @@ truncation_symbol = "…"
 only_attached = false
 always_show_remote = false
 ignore_branches = []
+ignore_bare_repo = false
 disabled = false
 
 [git_commit]
@@ -564,6 +610,19 @@ truncation_length = 9223372036854775807
 truncation_symbol = "…"
 disabled = true
 
+[hg_state]
+merge = "MERGING"
+rebase = "REBASING"
+update = "UPDATING"
+bisect = "BISECTING"
+shelve = "SHELVING"
+graft = "GRAFTING"
+transplant = "TRANSPLANTING"
+histedit = "HISTEDITING"
+style = "bold yellow"
+format = '\([$state]($style)\) '
+disabled = true
+
 [hostname]
 ssh_only = true
 ssh_symbol = "🌐 "
@@ -688,7 +747,7 @@ style = "blue bold"
 disabled = false
 
 [mise]
-format = "[$symbol$health]($style) "
+format = "on [$symbol$health]($style) "
 symbol = "mise "
 style = "bold purple"
 disabled = true
@@ -816,7 +875,7 @@ detect_folders = []
 [opa]
 format = "via [$symbol($version )]($style)"
 version_format = "v${raw}"
-symbol = "🪖  "
+symbol = "🪖 "
 style = "bold blue"
 disabled = false
 detect_extensions = ["rego"]
@@ -839,14 +898,17 @@ AIX = "➿ "
 Alpaquita = "🔔 "
 AlmaLinux = "💠 "
 Alpine = "🏔️ "
+ALTLinux = "Ⓐ "
 Amazon = "🙂 "
 Android = "🤖 "
+AOSC = "🐱 "
 Arch = "🎗️ "
 Artix = "🎗️ "
 Bluefin = "🐟 "
 CachyOS = "🎗️ "
 CentOS = "💠 "
 Debian = "🌀 "
+Elementary = "🍏 "
 DragonFly = "🐉 "
 Emscripten = "🔗 "
 EndeavourOS = "🚀 "
@@ -856,6 +918,8 @@ Garuda = "🦅 "
 Gentoo = "🗜️ "
 HardenedBSD = "🛡️ "
 Illumos = "🐦 "
+Ios = "📱 "
+InstantOS = "⏲️ "
 Kali = "🐉 "
 Linux = "🐧 "
 Mabox = "📦 "
@@ -872,6 +936,7 @@ OpenCloudOS = "☁️ "
 openEuler = "🦉 "
 openSUSE = "🦎 "
 OracleLinux = "🦴 "
+PikaOS = "🐤 "
 Pop = "🍭 "
 Raspbian = "🍓 "
 Redhat = "🎩 "
@@ -884,8 +949,9 @@ Ubuntu = "🎯 "
 Ultramarine = "🔷 "
 Unknown = "❓ "
 Uos = "🐲 "
-Void = "  "
+Void = " "
 Windows = "🪟 "
+Zorin = "🔹 "
 
 [package]
 format = "is [$symbol$version]($style) "
@@ -951,7 +1017,7 @@ detect_files = [
     "pixi.toml",
     "pixi.lock",
 ]
-detect_folders = [".pixi"]
+detect_folders = []
 
 [pulumi]
 format = "via [$symbol($username@)$stack]($style) "
@@ -1198,6 +1264,16 @@ detect_extensions = [
 ]
 detect_files = []
 detect_folders = [".terraform"]
+commands = [
+    [
+    "terraform",
+    "version",
+],
+    [
+    "tofu",
+    "version",
+],
+]
 
 [time]
 format = "at [$time]($style) "
@@ -1257,6 +1333,16 @@ detect_files = [
 ]
 detect_folders = []
 
+[xmake]
+format = "via [$symbol($version )]($style)"
+version_format = "v${raw}"
+symbol = "△ "
+style = "bold green"
+disabled = false
+detect_extensions = []
+detect_files = ["xmake.lua"]
+detect_folders = []
+
 [zig]
 format = "via [$symbol($version )]($style)"
 version_format = "v${raw}"
@@ -1268,3 +1354,4 @@ detect_files = []
 detect_folders = []
 
 [custom]
+
