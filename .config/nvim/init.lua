@@ -1,4 +1,4 @@
-require("vim._core.ui2").enable({})
+-- require("vim._core.ui2").enable({})
 require("core.options")
 require("core.keymaps")
 require("core.tabs")
@@ -28,7 +28,8 @@ require("lazy").setup({
   require("plugins.auto-tag"),
   require("plugins.misc"),
   require("plugins.formatting"),
-  -- require("plugins.scope"),
+  require("plugins.noice"),
+  require("plugins.scope"),
   -- require("plugins.codium"),
   require("plugins.gitsigns"),
   require("plugins.git-fugitive"),

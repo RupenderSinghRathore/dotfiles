@@ -51,6 +51,10 @@ window-rule {
     open-on-workspace "2"
 }
 window-rule {
+    match app-id="nvim"
+    open-on-workspace "2"
+}
+window-rule {
     match app-id="obsidian"
     open-on-workspace "2"
 }
@@ -66,7 +70,7 @@ window-rule {
 // }
 window-rule {
     match app-id="org.kde.dolphin"
-    opacity 0.85
+    // opacity 0.85
     open-on-workspace "3"
 }
 window-rule {
@@ -86,6 +90,10 @@ window-rule {
     open-on-workspace "4"
 }
 window-rule {
+    match app-id="spotube"
+    open-on-workspace "4"
+}
+window-rule {
     match app-id="org.kde.okular"
     open-on-workspace "3"
 }
@@ -100,9 +108,15 @@ window-rule {
     open-floating true
 }
 window-rule {
+    match app-id="fyne"
+    default-column-width { proportion 0.60; }
+    default-window-height { fixed 500; }
+    open-floating true
+}
+window-rule {
     match app-id="Omarchy"
-    default-column-width { proportion 0.75; }
-    default-window-height { fixed 600; }
+    // default-column-width { proportion 0.75; }
+    // default-window-height { fixed 600; }
     open-floating true
 }
 

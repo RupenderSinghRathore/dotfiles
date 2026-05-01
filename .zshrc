@@ -6,17 +6,16 @@ export MANPAGER='nvim +Man!'
 export GTK_USE_PORTAL=0
 export GREENLIGHT_DB_DSN='postgres://greenlight:touka@localhost/greenlight?sslmode=disable'
 
+
 export KRAFTKIT_LOG_LEVEL=debug
 export KRAFTKIT_LOG_TYPE=basic
 
-# export QT_QPA_PLATFORMTHEME=gtk3
-# export GTK_THEME=catppuccin-mocha-rosewater-standard+default
-# export RUST_BACKTRACE=1
-typeset -U PATH # remove duplication from path
 
-# export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_QPA_PLATFORMTHEME=qt6ct
-# export QT_STYLE_OVERRIDE=Kvantum
+
+# export RUST_BACKTRACE=1
+# typeset -U PATH # remove duplication from path
+
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org"
 
 # setopt ignoreeof
@@ -36,8 +35,9 @@ HYPHEN_INSENSITIVE="true" # Case-sensitive completion must be off. _ and - will 
 # zstyle ':omz:update' mode auto      # update automatically without asking
 zstyle ':omz:update' mode reminder # just remind me to update when it's time
 
-# plugins=(git web-search zsh-syntax-highlighting zsh-vi-mode zsh-autosuggestions)
-plugins=(git web-search zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git web-search zsh-syntax-highlighting zsh-vi-mode zsh-autosuggestions)
+# plugins=(git web-search zsh-syntax-highlighting zsh-autosuggestions zsh-system-clipboard)
+# plugins=(git web-search zsh-syntax-highlighting zsh-autosuggestions)
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZVM_CURSOR_STYLE_ENABLED=false
@@ -124,7 +124,17 @@ docker-latest() {
 # bindkey '^H' backward-kill-word
 # bindkey '^?' backward-kill-word
 
+# set -o vi
+# bindkey -M viins '^e' autosuggest-accept
+
 precmd() {print -Pn "\e]0;%~\a"}
 DISABLE_AUTO_TITLE="true"
 source ~/dotfiles/.config/zsh/aliases
-source ~/dotfiles/.config/zsh/api-keys.sh
+# source ~/dotfiles/.config/zsh/api-keys.sh
+
+function set_cursor() {
+  printf '\e[2 q'   # steady block (no blink)
+}
+
+precmd_functions+=(set_cursor)
+

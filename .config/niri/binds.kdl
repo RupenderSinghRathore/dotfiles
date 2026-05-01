@@ -19,8 +19,9 @@ binds {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus thunar"
     }
     Mod+M hotkey-overlay-title="Open spotify" {
-        // spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus com.spotify.Client"
-        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus ncspot"
+        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus com.spotify.Client"
+        // spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus ncspot"
+        // spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus spotube"
     }
     Alt+O hotkey-overlay-title="Focus sioyek" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus sioyek"
@@ -37,28 +38,31 @@ binds {
     Mod+Space hotkey-overlay-title="App launcher(rofi)" {
         spawn "rofi" "-show" "drun" "-theme" "/home/kami-sama/dotfiles/.config/rofi/config-apps.rasi"; 
     }
-    Mod+Shift+M hotkey-overlay-title="Emoji" {
+    Alt+M hotkey-overlay-title="Emoji" {
         // spawn "rofimoji"
         spawn-sh "qs -c noctalia-shell ipc call launcher emoji"
     }
     Mod+Shift+K hotkey-overlay-title="Open a Terminal: kitty" {
         spawn "kitty"
     }
+
     // Spotify controls
     Mod+S allow-when-locked=true {
-        spawn-sh "playerctl --player=spotify,ncspot play-pause"
+        spawn-sh "playerctl --player=spotify,ncspot,spotube play-pause"
     }
     Mod+Up allow-when-locked=true {
-        spawn-sh "playerctl --player=spotify,ncspot volume 0.05+"
+        // spawn-sh "playerctl --player=spotify,ncspot,spotube volume 0.05+ || qs -c noctalia-shell ipc call volume increase"
+        spawn-sh "playerctl -l | grep -q spotube && qs -c noctalia-shell ipc call volume increase || playerctl --player=spotify,ncspot volume 0.05+"    
     }
     Mod+Down allow-when-locked=true {
-        spawn-sh "playerctl --player=spotify,ncspot volume 0.05-"
+        // spawn-sh "playerctl --player=spotify,ncspot,spotube volume 0.05- || qs -c noctalia-shell ipc call volume decrease"
+        spawn-sh "playerctl -l | grep -q spotube && qs -c noctalia-shell ipc call volume decrease || playerctl --player=spotify,ncspot volume 0.05-"
     }
     Mod+Right allow-when-locked=true {
-        spawn-sh "playerctl --player=spotify,ncspot next"
+        spawn-sh "playerctl --player=spotify,ncspot,spotube next"
     }
     Mod+Left allow-when-locked=true {
-        spawn-sh "playerctl --player=spotify,ncspot previous"
+        spawn-sh "playerctl --player=spotify,ncspot,spotube previous"
     }
     // Floating windows
     // Alt+B hotkey-overlay-title="Bluetooth" { spawn-sh "alacritty --class popup -e /usr/bin/bluetui"; }
@@ -73,10 +77,10 @@ binds {
     }
 
     // scripts
-    Alt+Shift+O hotkey-overlay-title="Open pdf" {
+    Mod+Shift+P hotkey-overlay-title="Open pdf" {
         spawn-sh "/home/kami-sama/dotfiles/.config/scripts/okular_pdf_search.sh"
     }
-    Alt+Shift+M hotkey-overlay-title="Open pdf" {
+    Mod+Shift+V hotkey-overlay-title="Open video" {
         spawn-sh "/home/kami-sama/dotfiles/.config/scripts/mpv-vid-search.sh"
     }
     Alt+I hotkey-overlay-title="Install" {
@@ -101,9 +105,10 @@ binds {
     Alt+Ctrl+O repeat=false {
         toggle-overview
     }
-    Alt+W repeat=false {
+    Mod+W repeat=false {
         close-window
     }
+
     Alt+H {
         focus-column-left
     }

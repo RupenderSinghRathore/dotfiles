@@ -30,7 +30,7 @@ return {
       },
       formatters_by_ft = {
         -- go = { "gofmt", "golines", "goimports" },
-        go = { "gofumpt", "golines", "goimports" },
+        go = { "gofumpt", "goimports", "golines" },
         -- go = { "gofumpt", "goimports" },
         rust = { "rustfmt" },
         sql = { "pg_format" },

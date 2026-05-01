@@ -31,7 +31,7 @@ chosen_short=$(
 # Match selection back to full path
 for i in "${!display_list[@]}"; do
     if [[ "${display_list[$i]}" == "$chosen_short" ]]; then
-        xdg-open "${files[$i]}" 2>/dev/null &
+        com.github.ahrm.sioyek --new-window "${files[$i]}" 2>/dev/null &
         break
     fi
 done

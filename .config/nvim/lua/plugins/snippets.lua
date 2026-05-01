@@ -174,7 +174,7 @@ return {
         callback = function()
           vim.keymap.set("n", "<leader>r", "<cmd>!xdg-open %<CR>", { buffer = true })
 
-          vim.keymap.set("i", "<leader><F1>", "{{% block  %}}{{% endblock %}}<Esc>Fk;la")
+          -- vim.keymap.set("n", "<leader><F1>", "{{% block  %}}{{% endblock %}}<Esc>Fk;la")
         end,
       })
       vim.api.nvim_create_autocmd("FileType", {

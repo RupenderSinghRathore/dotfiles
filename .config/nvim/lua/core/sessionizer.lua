@@ -6,10 +6,25 @@ M.open_project = function()
     vim.fn.expand("~/lunaar"),
   }
   local find_cmd = {
-    "find",
+    "fd",
+    ".", -- match everything
     table.concat(dirs, " "),
-    "-maxdepth 2 -type d",
-    [[\( -name '.git' -o -name 'themes' -o -name '.venv' -o -name 'node_modules' -o -name 'env' -o -name 'venv' -o -name '.gradle' -o -name 'META-INF' -o -name 'target' -o -name '.cache' -o -name 'utils' \) -prune -o -type d -print]],
+    "--type d",
+    "--max-depth 2",
+    "--hidden",
+    "--no-ignore",
+    "--absolute-path",
+    "--exclude .git",
+    "--exclude themes",
+    "--exclude .venv",
+    "--exclude node_modules",
+    "--exclude env",
+    "--exclude venv",
+    "--exclude .gradle",
+    "--exclude META-INF",
+    "--exclude target",
+    "--exclude .cache",
+    "--exclude utils",
   }
 
   local cmd = table.concat(find_cmd, " ")
@@ -44,19 +59,35 @@ M.open_file = function()
     -- vim.fn.expand("~/lunaar"), -- add if needed
   }
   local find_cmd = {
-    "find",
+    "fd",
+    ".",
     table.concat(dir, " "),
-    "-type d",
-    [[\( -name '.git' -o -name '.repos' \) -prune -o]],
-    "-type f",
-    [[! -name '*.png' ! -name '*.pdf' ! -name '*.epub' ! -name '*.zip' ! -name '*.svg' -print]],
+    "--type f",
+    "--hidden",
+    "--no-ignore",
+    "--absolute-path",
+    "--exclude .git",
+    "--exclude tmux-resurrect",
+    "--exclude .repos",
+    "--exclude '*.png'",
+    "--exclude '*.pdf'",
+    "--exclude '*.epub'",
+    "--exclude '*.zip'",
+    "--exclude '*.svg'",
   }
 
   local cmd = table.concat(find_cmd, " ")
-  local results = vim.fn.systemlist(cmd)
+  -- local results = vim.fn.systemlist(cmd)
+  --
+  -- if vim.v.shell_error ~= 0 then
+  --   print("Error running find")
+  --   return
+  -- end
+  local results = vim.fn.systemlist(cmd .. " 2>&1")
 
   if vim.v.shell_error ~= 0 then
-    print("Error running find")
+    print("fd failed:")
+    print(table.concat(results, "\n"))
     return
   end
 
@@ -83,12 +114,18 @@ M.change_dir = function()
   }
 
   local find_cmd = {
-    "find",
+    "fd",
+    ".",
     table.concat(dirs, " "),
-    "-maxdepth 2 -type d",
-    [[\( -name '.git' -o -name '.cache' -o -name '.obsidian' \) -prune -o -type d -print]],
+    "--type d",
+    "--max-depth 2",
+    "--hidden",
+    "--no-ignore",
+    "--absolute-path",
+    "--exclude .git",
+    "--exclude .cache",
+    "--exclude .obsidian",
   }
-
   local cmd = table.concat(find_cmd, " ")
   local results = vim.fn.systemlist(cmd)
 

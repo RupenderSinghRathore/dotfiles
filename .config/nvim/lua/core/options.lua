@@ -56,19 +56,19 @@ vim.g.netrw_liststyle = 3
 vim.opt.guicursor = "n-v-c-i-r-cr-o-sm:block"
 vim.g.db_ui_expand_tables_by_default = 1
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "*",
-  callback = function()
-    vim.defer_fn(function()
-      vim.api.nvim_echo({}, false, {}) -- Clears the message area
-    end, 1000) -- Adjust delay if messages appear later
-  end,
-})
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+--   pattern = "*",
+--   callback = function()
+--     vim.defer_fn(function()
+--       vim.cmd("echo ''")
+--     end, 1000)
+--   end,
+-- })
 vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
   callback = function()
     vim.defer_fn(function()
-      vim.api.nvim_echo({}, false, {})
+      vim.cmd("echo ''")
     end, 1500)
   end,
 })
@@ -97,5 +97,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     local cmd = { "xdg-open", ev.file }
     vim.fn.jobstart(cmd, { detach = true })
     vim.api.nvim_buf_delete(ev.buf, { force = true })
+  end,
+})
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  callback = function()
+    require("auto-session").SaveSession()
   end,
 })

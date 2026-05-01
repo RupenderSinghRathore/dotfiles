@@ -31,7 +31,8 @@ bindings = [
 { key = "F11", action = "ToggleFullscreen" },
 { key = "Back",mods = "Control", chars = "\u0017" },
 { key = "[",mods = "Control", chars = "\u001b" },
-{ key = "Key0", mods = "Control", action = "ResetFontSize" }
+{ key = "Key0", mods = "Control", action = "ResetFontSize" },
+{ key = "M", mods = "Control", chars = "\r" },
 ]
 
 [colors.cursor]
