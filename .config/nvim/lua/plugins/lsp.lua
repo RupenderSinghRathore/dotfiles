@@ -326,6 +326,9 @@ return {
     --     },
     --   },
     -- })
+    vim.diagnostic.config({
+      underline = false,
+    })
     vim.lsp.config("htmx", {
       filetypes = { "html" },
       handlers = {

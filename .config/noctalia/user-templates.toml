@@ -1,0 +1,9 @@
+[templates.nvim-base16]
+input_path = "~/.config/nvim/lua/core/matugen-template.lua"
+output_path = "~/.config/nvim/lua/core/matugen.lua"
+post_hook = 'pkill -SIGUSR1 nvim'
+
+[templates.rofi]
+input_path = "~/.config/rofi/template.css"
+output_path = "~/.config/rofi/theme.rasi"
+# post_hook = "notify-send 'myapp templated'"

@@ -102,7 +102,7 @@ return {
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
           --  completions whenever it has completion options available.
-          ["<C-Space>"] = cmp.mapping.complete({}),
+          -- ["<C-Space>"] = cmp.mapping.complete({}),
           -- free ctrl + n
           -- ["<C-n>"] = cmp.config.disable,
 

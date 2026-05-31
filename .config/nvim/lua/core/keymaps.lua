@@ -6,13 +6,15 @@ local opts = { noremap = true, silent = false }
 local opts2 = { noremap = true, silent = true }
 
 -- Compile
-vim.keymap.set("n", "<leader>cc", "<cmd>Recompile<CR>", { silent = true, desc = "compile" })
+vim.keymap.set("n", "<leader>cc", "<cmd>Recompile<CR>", { silent = true, desc = "re-compile" })
 vim.keymap.set("n", "<leader>cC", "<cmd>Compile<CR>", { silent = true, desc = "compile" })
 
 vim.keymap.set("n", "<leader><leader>", ":! ", { silent = true, desc = "command" })
 vim.keymap.set("n", "<leader>H", ":help ", { silent = true, desc = "help" })
 
 vim.keymap.set("n", "<leader>R", "<cmd>restart<CR>", { silent = true, desc = "restart" })
+
+vim.keymap.set("n", "<leader>S", "<cmd>w !sudo tee %<CR>", { silent = true, desc = "save with sudo" })
 
 vim.keymap.set("n", "<leader>cp", "<cmd>pwd<CR>", { silent = true, desc = "pwd" })
 -- vim.keymap.set({ "n", "i" }, "<C-g>", "<cmd>pwd<CR>", { silent = true, desc = "pwd" })
@@ -31,7 +33,8 @@ vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>N", function()
   require("core.sessionizer").open_file()
 end, { desc = "Open project" })
 
-vim.keymap.set("n", "<C-Space>g", "<cmd>silent !alacritty -e lazygit &<CR>", opts)
+-- vim.keymap.set("n", "<C-Space>g", "<cmd>silent !alacritty -e lazygit &<CR>", opts)
+vim.keymap.set("n", "<C-Space>g", "<cmd>tabnew | terminal lazygit<CR>a", opts)
 
 vim.keymap.set("n", "<leader>fp", function()
   require("core.sessionizer").open_project()
@@ -67,10 +70,17 @@ end, { desc = "Toggle terminal" })
 -- vim.keymap.set("n", "<leader>ng", "<cmd>term<CR>ilazygit && exit<CR>", opts)
 -- vim.keymap.set("n", "<leader>Y", "<cmd>silent !kitty -e yazi &<CR>", opts)
 -- vim.keymap.set("n", "<leader>L", "<cmd>silent !alacritty -e lazygit &<CR>", opts)
--- vim.api.nvim_set_keymap("t", "<C-o>", [[<C-\><C-n><C-o>]], opts)
--- vim.api.nvim_set_keymap("t", "JJ", [[<C-\><C-n>]], opts)
-vim.api.nvim_set_keymap("t", "<C-k>", [[<C-\><C-n>]], opts)
-vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], opts)
+
+vim.keymap.set("n", "<C-Space>T", function()
+  local cwd = vim.fn.getcwd()
+  vim.fn.jobstart({ "kitty" }, {
+    cwd = cwd,
+    detach = true,
+  })
+end, { desc = "terminal in cwd" })
+
+vim.api.nvim_set_keymap("t", "<C-k>", [[<C-\><C-n><C-w>k]], opts)
+vim.api.nvim_set_keymap("t", "<Esc><Esc>", [[<C-\><C-n>]], opts)
 -- vim.api.nvim_set_keymap("t", "<C-q>", [[<C-\><C-n><cmd>bdelete!<CR>]], opts)
 
 -- lsp keymaps
@@ -79,6 +89,18 @@ vim.keymap.set("n", "<leader>hi", "<cmd>checkhealth lsp<CR>", opts)
 vim.keymap.set("n", "<leader>hD", ":lsp disable", opts)
 vim.keymap.set("n", "<leader>hE", ":lsp enable", opts)
 vim.keymap.set("n", "<leader>hs", ":lsp stop", opts)
+
+local function stop_lsp_by_ids()
+  local input = vim.fn.input("LSP IDs (space-separated): ")
+  if input == "" then
+    return
+  end
+
+  for id in input:gmatch("%d+") do
+    vim.lsp.stop_client(tonumber(id))
+  end
+end
+vim.keymap.set("n", "<leader>hS", stop_lsp_by_ids, { desc = "Stop LSP by IDs" })
 
 vim.keymap.set({ "n", "v" }, "x", '"_x', opts)
 vim.keymap.set({ "n", "v" }, "c", '"_c', opts)
@@ -89,27 +111,49 @@ vim.keymap.set({ "n", "v" }, "s", '"_s', opts)
 -- vim.keymap.set("n", "<leader>ns", ":mksession!Session.vim<CR>:wqa<CR>", opts)
 -- vim.keymap.set("n", "<leader>nS", ":source Session.vim<CR>", opts)
 
-vim.keymap.set("n", "<leader>x", ":bdelete!<CR>", opts2) -- close buffer
+vim.keymap.set("n", "<leader>x", function()
+  local current = vim.api.nvim_get_current_buf()
+  local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+  if #buffers > 1 then
+    local ok = pcall(vim.cmd, "e #")
+    if not ok then
+      vim.cmd("bp")
+    end
+  else
+    vim.cmd("enew")
+    print("No more buffers")
+  end
+
+  vim.cmd("bdelete " .. current)
+end, { desc = "Close buffer" })
 vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", opts) -- new buffer
 
 -- Resize windows with arrow keys
-vim.keymap.set({"n", "t"}, "<C-Up>", "<C-w>+", { desc = "Increase window height" })
-vim.keymap.set({"n", "t"}, "<C-Down>", "<C-w>-", { desc = "Decrease window height" })
-vim.keymap.set({"n", "t"}, "<C-Left>", "<C-w><", { desc = "Decrease window width" })
-vim.keymap.set({"n", "t"}, "<C-Right>", "<C-w>>", { desc = "Increase window width" })
+vim.keymap.set({ "n", "t" }, "<C-Up>", "<C-w>+", { desc = "Increase window height" })
+vim.keymap.set({ "n", "t" }, "<C-Down>", "<C-w>-", { desc = "Decrease window height" })
+vim.keymap.set({ "n", "t" }, "<C-Left>", "<C-w><", { desc = "Decrease window width" })
+vim.keymap.set({ "n", "t" }, "<C-Right>", "<C-w>>", { desc = "Increase window width" })
 
 -- Tabs
 for i = 1, 9 do
-  vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>" .. i, i .. "gt", { desc = "goto tab " .. i })
+  vim.keymap.set({ "n", "i", "v" }, "<C-Space>" .. i, i .. "gt", { desc = "goto tab " .. i })
+  vim.keymap.set("t", "<C-Space>" .. i, [[<C-\><C-n>]] .. i .. "gt", { desc = "goto tab " .. i })
+  -- vim.keymap.set({ "n", "v" }, "<leader>" .. i, i .. "gt", { desc = "goto tab " .. i })
 end
 vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>c", "<cmd>tabnew<CR>", opts)
 vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>x", "<cmd>tabclose<CR>", opts)
 vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>n", "<cmd>tabn<CR>", opts)
 vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>p", "<cmd>tabp<CR>", opts)
 
-for i = 1, 9 do
-  vim.keymap.set({ "n", "v" }, "<leader>" .. i, i .. "gt", { desc = "goto tab " .. i })
-end
+vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>t", function()
+  vim.cmd("tabnew | terminal")
+  vim.cmd("startinsert")
+end, opts)
+
+vim.keymap.set("t", "<C-Space>c", [[<C-\><C-n>]] .. "<cmd>tabnew<CR>", opts)
+vim.keymap.set("t", "<C-Space>x", [[<C-\><C-n>]] .. "<cmd>tabclose<CR>", opts)
+vim.keymap.set("t", "<C-Space>n", [[<C-\><C-n>]] .. "<cmd>tabn<CR>", opts)
+vim.keymap.set("t", "<C-Space>p", [[<C-\><C-n>]] .. "<cmd>tabp<CR>", opts)
 
 -- Buffers
 vim.keymap.set("n", "<leader>jk", "<cmd>e #<CR>", { noremap = true, desc = "switch buffer" })

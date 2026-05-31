@@ -1,0 +1,17 @@
+* {
+    rose:                        {{colors.tertiary.default.hex}};
+    foam:                        {{colors.secondary.default.hex}};
+    iris:                        {{colors.primary.default.hex}};
+    pine:                        {{colors.primary_container.default.hex}};
+    gold:                        {{colors.tertiary_container.default.hex}};
+    love:                        {{colors.error.default.hex}};
+
+    text-color:                  {{colors.on_surface.default.hex}};
+    input-text-color:            {{colors.primary.default.hex}};
+
+    background-color:            {{colors.surface.default.hex}}d9;
+    background-color-elements:   {{colors.surface_container.default.hex}};
+
+    border-color:                {{colors.outline.default.hex}};
+    active:                      {{colors.primary.default.hex}};
+}

@@ -5,6 +5,9 @@ return {
   lazy = true, -- This plugin is already lazy
   init = function()
     vim.g.rustaceanvim = {
+      dap = {
+        autoload_configurations = false,
+      },
       tools = {},
       server = {
         -- cmd = (function()
@@ -47,33 +50,33 @@ return {
             },
           },
         },
-        on_attach = function(client, buf)
-          local nmap = function(bind, cmd, desc)
-            vim.keymap.set("n", bind, cmd, { desc = desc, silent = true, buffer = buf })
-          end
-
-          nmap("<leader>da", function()
-            vim.ui.input({ prompt = "Args: " }, function(input)
-              if input == nil then
-                return
-              end
-              local args = vim.split(input, " ")
-              vim.cmd.RustLsp(vim.list_extend({ "debuggables" }, args))
-            end)
-          end, "Debug with args")
-
-          -- },
-        end,
+        -- on_attach = function(client, buf)
+        --   local nmap = function(bind, cmd, desc)
+        --     vim.keymap.set("n", bind, cmd, { desc = desc, silent = true, buffer = buf })
+        --   end
+        --
+        --   nmap("<leader>da", function()
+        --     vim.ui.input({ prompt = "Args: " }, function(input)
+        --       if input == nil then
+        --         return
+        --       end
+        --       local args = vim.split(input, " ")
+        --       vim.cmd.RustLsp(vim.list_extend({ "debuggables" }, args))
+        --     end)
+        --   end, "Debug with args")
+        --
+        --   -- },
+        -- end,
       },
     }
   end,
   config = function()
-    local bufnr = vim.api.nvim_get_current_buf()
+    -- local bufnr = vim.api.nvim_get_current_buf()
 
-    vim.keymap.set("n", "<leader>a", function()
-      vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
-      -- or vim.lsp.buf.codeAction() if you don't want grouping.
-    end, { silent = true, buffer = bufnr })
+    -- vim.keymap.set("n", "<leader>a", function()
+    --   vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
+    --   -- or vim.lsp.buf.codeAction() if you don't want grouping.
+    -- end, { silent = true, buffer = bufnr })
     -- vim.keymap.set(
     --   "n",
     --   "K", -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions

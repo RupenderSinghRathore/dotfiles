@@ -35,6 +35,8 @@ M.open_project = function()
     return
   end
 
+  vim.list_extend(results, dirs)
+
   -- remove $HOME prefix
   for i, path in ipairs(results) do
     results[i] = path:gsub("^" .. vim.fn.expand("~") .. "/", "")
@@ -50,6 +52,7 @@ M.open_project = function()
     vim.cmd("tcd " .. vim.fn.fnameescape(full_path))
 
     -- vim.cmd("Telescope find_files")
+    vim.cmd("Explore")
   end)
 end
 
@@ -129,6 +132,8 @@ M.change_dir = function()
   local cmd = table.concat(find_cmd, " ")
   local results = vim.fn.systemlist(cmd)
 
+  vim.list_extend(results, dirs)
+
   if vim.v.shell_error ~= 0 then
     print("Error running find")
     return
@@ -150,6 +155,11 @@ M.change_dir = function()
     end
 
     vim.cmd("tcd " .. vim.fn.fnameescape(choice))
+    --
+    -- local listed_buffers = vim.fn.getbufinfo({ buflisted = 1 })
+    -- if #listed_buffers == 1 then
+    --   vim.cmd("Ex")
+    -- end
   end)
 end
 

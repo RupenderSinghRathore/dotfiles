@@ -25,7 +25,7 @@ return {
   },
   ---@type YaziConfig | {}
   opts = {
-    open_for_directories = true,
+    -- open_for_directories = true,
     floating_window_scaling_factor = 1,
     yazi_floating_window_border = "none",
     keymaps = {
@@ -38,6 +38,6 @@ return {
     -- vim.g.loaded_netrw = 1
     --
     -- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
-    vim.g.loaded_netrwPlugin = 1
+    -- vim.g.loaded_netrwPlugin = 1
   end,
 }

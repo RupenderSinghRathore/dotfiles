@@ -1,0 +1,64 @@
+mycd() {
+    local search_dirs=(~/dotfiles ~/lunaar ~/Documents ~/Downloads ~/lunaar/languages/go ~/Notes)
+
+    local dir=$(
+        command fd '' "${search_dirs[@]}" \
+            --type d \
+            --max-depth 2 \
+            --hidden \
+            --no-ignore \
+            --exclude .git \
+            --exclude .cache \
+            --exclude .obsidian \
+            --absolute-path 2>/dev/null |
+            sed "s|^$HOME/||" |
+            fzf --height 40% --reverse --prompt="Select directory: "
+    )
+
+    if [ -n "$dir" ]; then
+        cd "$HOME/$dir" && clear || echo "error opening directory"
+    fi
+}
+web-dow() {
+    wget --mirror \
+        --convert-links \
+        --adjust-extension \
+        --page-requisites \
+        --no-parent \
+        -U "Mozilla/5.0 (compatible; MyOfflineBot/1.0)" \
+        ${1}
+}
+launch() {
+    "$2" --class "$1" -e "$1" || echo "Use: launch nvim kitty/alacritty"
+}
+makec() {
+    ./make.sh "$@"
+}
+rustp() {
+    cargo new ${1} && cd ${1} || return 1
+    nvim ./src/main.rc
+}
+npipe() {
+    nvim $(which $1)
+}
+py() {
+    source ${1}.venv/bin/activate
+}
+mdc() {
+    mkdir -p "$1" && cd "$1"
+}
+alopacity() {
+    alacritty msg config window.opacity="$1"
+}
+top-bar-toggle() {
+    mv ~/dotfiles/.config/DankMaterialShell/settings.json ~/dotfiles/.config/DankMaterialShell/temp && mv ~/dotfiles/.config/DankMaterialShell/toggle.json ~/dotfiles/.config/DankMaterialShell/settings.json && mv ~/dotfiles/.config/DankMaterialShell/temp ~/dotfiles/.config/DankMaterialShell/toggle.json && dms restart
+}
+help() {
+    "$@" --help | bat -l man
+}
+docker-latest() {
+    docker build . -t "$1:$2" -t "$1:latest"
+}
+clippy() {
+    cargo clippy "$@" -- -W clippy::all -W clippy::pedantic
+}

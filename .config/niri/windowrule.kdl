@@ -49,6 +49,16 @@ window-rule {
 window-rule {
     match app-id="Alacritty"
     open-on-workspace "2"
+    // background-effect {
+    //     blur true
+    // }
+}
+overview {
+    backdrop-color "transparent"
+}
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
 }
 window-rule {
     match app-id="nvim"

@@ -65,6 +65,9 @@ return {
       --   dapui.close()
       -- end
 
+      dap.defaults.fallback.force_external_terminal = false
+      dap.defaults.fallback.external_terminal = nil
+
       dap.adapters.gdb = {
         type = "executable",
         command = "gdb",
@@ -107,6 +110,75 @@ return {
         },
       }
       dap.configurations.cpp = dap.configurations.c
+
+      dap.adapters.codelldb = {
+        type = "server",
+        port = "${port}",
+        executable = {
+          command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
+          args = { "--port", "${port}" },
+        },
+      }
+
+      -- dap.configurations.rust = {
+      --   {
+      --     name = "Rust debug",
+      --     type = "codelldb",
+      --     request = "launch",
+      --     program = function()
+      --       return vim.fn.getcwd() .. "/target/debug/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+      --     end,
+      --     cwd = "${workspaceFolder}",
+      --     stopOnEntry = false,
+      --     runInTerminal = false,
+      --     console = "internalConsole", -- add this
+      --   },
+      -- }
+      dap.configurations.rust = {
+        {
+          name = "Rust debug",
+          type = "codelldb",
+          request = "launch",
+          program = function()
+            return vim.fn.getcwd() .. "/target/debug/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+          end,
+          cwd = "${workspaceFolder}",
+          stopOnEntry = false,
+          runInTerminal = false,
+          console = "internalConsole",
+        },
+        {
+          name = "Rust debug (with args)",
+          type = "codelldb",
+          request = "launch",
+          program = function()
+            return vim.fn.getcwd() .. "/target/debug/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+          end,
+          cwd = "${workspaceFolder}",
+          stopOnEntry = false,
+          runInTerminal = false,
+          console = "internalConsole",
+          args = function()
+            local input = vim.fn.input("Args: ")
+            return vim.split(input, " ")
+          end,
+        },
+        {
+          name = "Rust debug (terminal)",
+          type = "codelldb",
+          request = "launch",
+          program = function()
+            return vim.fn.getcwd() .. "/target/debug/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+          end,
+          cwd = "${workspaceFolder}",
+          stopOnEntry = false,
+          runInTerminal = true,
+          args = function()
+            local input = vim.fn.input("Args: ")
+            return vim.split(input, " ")
+          end,
+        },
+      }
 
       -- local mason_path = vim.fn.stdpath("data") .. "/mason/packages/codelldb"
       -- local codelldb_path = mason_path .. "/extension/adapter/codelldb"

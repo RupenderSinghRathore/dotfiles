@@ -8,7 +8,7 @@ return {
       pre_hook = function()
         local ft = vim.bo.filetype
 
-        if ft == "kitty" or ft == "conf" or ft == "tmux" or ft == 'desktop' then
+        if ft == "kitty" or ft == "hyprlang" or ft == "conf" or ft == "tmux" or ft == "desktop" or ft == "dosini" then
           return "# %s"
         end
       end,

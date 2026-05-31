@@ -1,49 +1,62 @@
 return {
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = false, -- load immediately
+  --   priority = 1000, -- make sure it loads before other plugins
+  --   opts = {
+  --     style = "moon", -- "storm", "moon", "night", "day"
+  --     transparent = true,
+  --     terminal_colors = true,
+  --     styles = {
+  --       comments = { italic = true },
+  --       keywords = { italic = true },
+  --       functions = {},
+  --       variables = {},
+  --       floats = "transparent",
+  --       sidebars = "transparent",
+  --     },
+  --     -- sidebars = { "qf", "help", "terminal", "packer" },
+  --     -- hide_inactive_statusline = true,
+  --     dim_inactive = false,
+  --     lualine_bold = false,
+  --
+  --     -- cache = true,
+  --     --- You can override specific highlight groups
+  --     on_colors = function(colors)
+  --       colors.bg_highlight = "#5b2571"
+  --       -- colors.bg_highlight = "#40587C"
+  --
+  --       colors.bg_statusline = colors.none -- or "NONE"
+  --     end,
+  --
+  --     on_highlights = function(hl, c)
+  --       hl.CursorLine = { bg = c.bg_highlight, blend = 50 } -- 20% transparent
+  --       hl.Visual = { bg = c.bg_highlight, bold = false }
+  --       hl.Folded = { bg = "NONE" }
+  --
+  --       hl.UfoPreviewNormal = { bg = "NONE" }
+  --       hl.UfoPreviewBorder = { bg = "NONE" }
+  --       hl.UfoCursorFoldedLine = { bg = "NONE" }
+  --     end,
+  --   },
+  --   config = function(_, opts)
+  --     require("tokyonight").setup(opts)
+  --     vim.cmd([[colorscheme tokyonight]])
+  --   end,
+  -- },
   {
-    "folke/tokyonight.nvim",
-    lazy = false, -- load immediately
-    priority = 1000, -- make sure it loads before other plugins
-    opts = {
-      style = "moon", -- "storm", "moon", "night", "day"
-      transparent = true,
-      terminal_colors = true,
-      styles = {
-        comments = { italic = true },
-        keywords = { italic = true },
-        functions = {},
-        variables = {},
-        floats = "transparent",
-        sidebars = "transparent",
-      },
-      -- sidebars = { "qf", "help", "terminal", "packer" },
-      -- hide_inactive_statusline = true,
-      dim_inactive = false,
-      lualine_bold = false,
-
-      -- cache = true,
-      --- You can override specific highlight groups
-      on_colors = function(colors)
-        colors.bg_highlight = "#5b2571"
-        -- colors.bg_highlight = "#40587C"
-
-        colors.bg_statusline = colors.none -- or "NONE"
-      end,
-
-      on_highlights = function(hl, c)
-        hl.CursorLine = { bg = c.bg_highlight, blend = 50 } -- 20% transparent
-        hl.Visual = { bg = c.bg_highlight, bold = false }
-        hl.Folded = { bg = "NONE" }
-
-        hl.UfoPreviewNormal = { bg = "NONE" }
-        hl.UfoPreviewBorder = { bg = "NONE" }
-        hl.UfoCursorFoldedLine = { bg = "NONE" }
-      end,
-    },
-    config = function(_, opts)
-      require("tokyonight").setup(opts)
-      vim.cmd([[colorscheme tokyonight]])
+    "RRethy/base16-nvim",
+    config = function()
+      require("core.matugen").setup()
     end,
   },
+  -- {
+  --   "nyoom-engineering/oxocarbon.nvim",
+  --   -- Add in any other configuration;
+  --   --   event = foo,
+  --   --   config = bar
+  --   --   end,
+  -- },
   -- {
   --   "RRethy/base16-nvim",
   --   config = function()

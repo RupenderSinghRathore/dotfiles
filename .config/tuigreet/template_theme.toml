@@ -1,0 +1,11 @@
+[theme]
+border = "{{colors.outline.default.ansi}}"
+text = "{{colors.on_surface.default.ansi}}"
+time = "{{colors.secondary.default.ansi}}"
+container = "black"
+title = "{{colors.primary.default.ansi}}"
+greet = "{{colors.tertiary.default.ansi}}"
+prompt = "{{colors.primary.default.ansi}}"
+input = "{{colors.on_surface.default.ansi}}"
+action = "{{colors.secondary.default.ansi}}"
+button = "{{colors.error.default.ansi}}"

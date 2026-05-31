@@ -7,13 +7,13 @@ binds {
     //     spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus kitty"
     // }
     Mod+K hotkey-overlay-title="Open a Terminal" {
-        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus alacritty"
+        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus kitty"
     }
     Mod+N hotkey-overlay-title="Neovim" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus nvim"
     }
     Mod+Shift+N hotkey-overlay-title="Neovim" {
-        spawn-sh "alacritty --class 'nvim' -e nvim"
+        spawn-sh "kitty --class 'nvim' -e nvim"
     }
     Super+F hotkey-overlay-title="Open thunar" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus thunar"
@@ -66,10 +66,10 @@ binds {
     }
     // Floating windows
     // Alt+B hotkey-overlay-title="Bluetooth" { spawn-sh "alacritty --class popup -e /usr/bin/bluetui"; }
-    Alt+B hotkey-overlay-title="Bluetooth" {
+    Mod+B hotkey-overlay-title="Bluetooth" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-toggle-app \"alacritty --class popup -e /usr/bin/bluetui\" "
     }
-    SUPER+I hotkey-overlay-title="Wifi" { 
+    Alt+I hotkey-overlay-title="Wifi" { 
         spawn-sh "qs -c noctalia-shell ipc call network togglePanel"
     }
     Alt+A hotkey-overlay-title="Window Switcher" { 
@@ -83,10 +83,10 @@ binds {
     Mod+Shift+V hotkey-overlay-title="Open video" {
         spawn-sh "/home/kami-sama/dotfiles/.config/scripts/mpv-vid-search.sh"
     }
-    Alt+I hotkey-overlay-title="Install" {
+    Mod+I hotkey-overlay-title="Install" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/omarchy-menu install"
     }
-    Alt+R hotkey-overlay-title="Remove" {
+    Mod+R hotkey-overlay-title="Remove" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/omarchy-menu remove"
     }
     Alt+Ctrl+S hotkey-overlay-title="Share" {
@@ -102,7 +102,7 @@ binds {
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
     // or do a four-finger swipe up on a touchpad.
-    Alt+Ctrl+O repeat=false {
+    Mod+Ctrl+O repeat=false {
         toggle-overview
     }
     Mod+W repeat=false {
@@ -330,10 +330,10 @@ binds {
         set-window-height "+10%"
     }
     // Move the focused window between the floating and the tiling layout.
-    Alt+V {
+    Mod+V {
         toggle-window-floating
     }
-    Alt+Shift+V {
+    Alt+V {
         switch-focus-between-floating-and-tiling
     }
     // Toggle tabbed column display mode.

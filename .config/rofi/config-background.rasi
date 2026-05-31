@@ -1,4 +1,5 @@
-@import "~/dotfiles/.config/rofi/colors.rasi"
+// @import "~/dotfiles/.config/rofi/colors.rasi"
+@import "~/dotfiles/.config/rofi/theme.rasi"
 
 * {
     background-color-elements:   #2f1d4eaf;

@@ -1,44 +1,58 @@
 local M = {}
 
-M.term_buf = nil
-M.term_win = nil
+-- store terminals per tab
+M.terminals = {}
 
 M.toggle_terminal = function()
-  if M.term_buf and not vim.api.nvim_buf_is_valid(M.term_buf) then
-    M.term_buf = nil
+  local tab = vim.api.nvim_get_current_tabpage()
+
+  -- init table for this tab
+  if not M.terminals[tab] then
+    M.terminals[tab] = { buf = nil, win = nil }
+  end
+
+  local term = M.terminals[tab]
+
+  -- invalidate buffer if needed
+  if term.buf and not vim.api.nvim_buf_is_valid(term.buf) then
+    term.buf = nil
   end
 
   -- if terminal window exists → close it
-  if M.term_win and vim.api.nvim_win_is_valid(M.term_win) then
-    local buf = vim.api.nvim_win_get_buf(M.term_win)
+  if term.win and vim.api.nvim_win_is_valid(term.win) then
+    local buf = vim.api.nvim_win_get_buf(term.win)
 
-    if buf == M.term_buf then
+    if buf == term.buf then
       if #vim.api.nvim_list_wins() > 1 then
-        vim.api.nvim_win_close(M.term_win, true)
+        vim.api.nvim_win_close(term.win, true)
       else
         vim.cmd("enew")
       end
     end
 
-    M.term_win = nil
+    term.win = nil
     return
   end
-  -- open bottom split
+
+  -- open split
   vim.cmd("botright 12split")
+  term.win = vim.api.nvim_get_current_win()
 
-  local win = vim.api.nvim_get_current_win()
-  M.term_win = win
-
-  -- if terminal buffer exists → reuse it
-  if M.term_buf and vim.api.nvim_buf_is_valid(M.term_buf) then
-    vim.api.nvim_win_set_buf(win, M.term_buf)
+  -- reuse or create terminal
+  if term.buf and vim.api.nvim_buf_is_valid(term.buf) then
+    vim.api.nvim_win_set_buf(term.win, term.buf)
   else
     vim.cmd("terminal")
-    M.term_buf = vim.api.nvim_get_current_buf()
+    term.buf = vim.api.nvim_get_current_buf()
   end
 
-  -- optional: terminal settings
   vim.cmd("startinsert")
 end
+
+-- vim.api.nvim_create_autocmd("TabClosed", {
+--   callback = function(args)
+--     M.terminals[tonumber(args.match)] = nil
+--   end,
+-- })
 
 return M

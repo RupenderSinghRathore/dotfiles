@@ -26,6 +26,17 @@ return {
 
             { find = "Query '.-' finished" },
             { find = "%[DBUI%]" },
+            -- { find = "Compilation finished" },
+          },
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
+          event = "notify",
+          any = {
+            { find = "Compilation finished" },
+            { find = "^Restored session:" },
           },
         },
         opts = { skip = true },

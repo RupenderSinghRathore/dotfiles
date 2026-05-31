@@ -1,4 +1,5 @@
-@import "~/dotfiles/.config/rofi/colors.rasi"
+// @import "~/dotfiles/.config/rofi/colors.rasi"
+@import "~/dotfiles/.config/rofi/theme.rasi"
 
 // General Configurations
 configuration {
