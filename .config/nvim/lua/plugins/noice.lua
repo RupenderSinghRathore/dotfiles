@@ -37,7 +37,16 @@ return {
           any = {
             { find = "Compilation finished" },
             { find = "^Restored session:" },
+            { find = "No information available" },
           },
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
+          event = "lsp",
+          kind = "progress",
+          find = "pyright",
         },
         opts = { skip = true },
       },
@@ -67,6 +76,20 @@ return {
       long_message_to_split = true, -- long messages will be sent to a split
       inc_rename = false, -- enables an input dialog for inc-rename.nvim
       lsp_doc_border = true, -- add a border to hover docs and signature help
+    },
+    views = {
+      hover = {
+        size = {
+          max_height = 10,
+          max_width = 80,
+        },
+      },
+      signature = {
+        size = {
+          max_height = 10,
+          max_width = 80,
+        },
+      },
     },
   },
   dependencies = {

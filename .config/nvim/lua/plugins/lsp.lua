@@ -61,8 +61,11 @@ return {
         },
       },
       progress = {
+        suppress_on_insert = true,
+        ignore_done_already = true,
+        ignore_empty_message = true,
         display = {
-          render_limit = 0, -- Show max 5 progress items
+          render_limit = 5, -- Show max 5 progress items
           done_ttl = 0, -- Keep done messages for 2s
           progress_icon = {
             pattern = "dots", -- dots, dots_negative, or other patterns

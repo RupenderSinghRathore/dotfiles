@@ -13,7 +13,8 @@ return {
     arg = "leetcode.nvim",
 
     ---@type lc.lang
-    lang = "golang",
+    -- lang = "golang",
+    lang = "python3",
 
     ---@type lc.storage
     storage = {
@@ -35,6 +36,14 @@ return {
       }, ---@type table<lc.lang, lc.inject>
       ["golang"] = {
         before = { "package leetcode" },
+      }, ---@type table<lc.lang, lc.inject>
+      ["python3"] = {
+        imports = function()
+          return {
+            "from typing import List",
+          }
+        end,
+        -- before = { "from typing import List" },
       }, ---@type table<lc.lang, lc.inject>
     },
 

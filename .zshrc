@@ -78,3 +78,8 @@ DISABLE_AUTO_TITLE="true"
 
 # block cursor
 # echo -ne '\e[2 q'
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/kami-sama/.lmstudio/bin"
+# End of LM Studio CLI section
+

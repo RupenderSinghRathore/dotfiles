@@ -47,6 +47,10 @@ window-rule {
     open-on-workspace "2"
 }
 window-rule {
+    match app-id="kitty"
+    open-on-workspace "2"
+}
+window-rule {
     match app-id="Alacritty"
     open-on-workspace "2"
     // background-effect {

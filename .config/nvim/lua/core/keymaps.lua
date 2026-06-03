@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local opts = { noremap = true, silent = false }
-local opts2 = { noremap = true, silent = true }
+-- local opts2 = { noremap = true, silent = true }
 
 -- Compile
 vim.keymap.set("n", "<leader>cc", "<cmd>Recompile<CR>", { silent = true, desc = "re-compile" })
@@ -80,7 +80,8 @@ vim.keymap.set("n", "<C-Space>T", function()
 end, { desc = "terminal in cwd" })
 
 vim.api.nvim_set_keymap("t", "<C-k>", [[<C-\><C-n><C-w>k]], opts)
-vim.api.nvim_set_keymap("t", "<Esc><Esc>", [[<C-\><C-n>]], opts)
+-- vim.api.nvim_set_keymap("t", "<Esc><Esc>", [[<C-\><C-n>]], opts)
+vim.api.nvim_set_keymap("t", "<C-Space>[", [[<C-\><C-n>]], opts)
 -- vim.api.nvim_set_keymap("t", "<C-q>", [[<C-\><C-n><cmd>bdelete!<CR>]], opts)
 
 -- lsp keymaps
@@ -121,11 +122,12 @@ vim.keymap.set("n", "<leader>x", function()
     end
   else
     vim.cmd("enew")
-    print("No more buffers")
+    print("no more buffers")
   end
 
   vim.cmd("bdelete " .. current)
-end, { desc = "Close buffer" })
+end, { desc = "delete buffer" })
+vim.keymap.set("n", "<leader>X", "<cmd>bdelete!<CR>", { desc = "delete buffer without saving" })
 vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", opts) -- new buffer
 
 -- Resize windows with arrow keys
