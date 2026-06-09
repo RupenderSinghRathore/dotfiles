@@ -1,0 +1,216 @@
+workspace "1" {}
+workspace "2" {}
+workspace "3" {}
+workspace "4" {}
+
+// window-rule {
+//     geometry-corner-radius 20 // Set every window radius to 20
+//     clip-to-geometry true
+// }
+
+ // if you use steam you will probably like these
+// window-rule {
+//     match app-id="steam"
+//     exclude title=r#"^[Ss]team$"#
+//     open-floating true
+// }
+
+// window-rule {
+//    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+//    default-floating-position x=10 y=10 relative-to="bottom-right"
+//    open-focused false
+// }
+
+layer-rule {
+    match namespace="^noctalia-wallpaper*"
+    place-within-backdrop true
+}
+
+// workspace "5" {}
+
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+window-rule {
+    // This regular expression is intentionally made as specific as possible,
+    // since this is the default config, and we want no false positives.
+    // You can get away with just app-id="wezterm" if you want.
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
+}
+window-rule {
+    open-maximized true
+}
+window-rule {
+    match app-id="org.gnome.Nautilus"
+    open-floating true
+    // default-window-height { fixed 600; }
+}
+window-rule {
+    // match title="Choose Directory"
+    match app-id="xdg-desktop-portal-gtk"
+    open-floating true
+    // default-column-width { proportion 0.70; }
+    // default-window-height { fixed 600; }
+    // geometry-corner-radius 12.0
+    // clip-to-geometry true
+}
+window-rule {
+    match app-id="python3"
+    open-floating true
+    // default-column-width { proportion 0.50; }
+    // default-window-height { proportion 0.35; }
+}
+window-rule {
+    match app-id="zen"
+    // open-fullscreen true
+    // opacity 0.85
+    open-on-workspace "1"
+}
+window-rule {
+    match app-id="ncspot"
+    open-on-workspace "4"
+}
+window-rule {
+    match app-id="emacs"
+    open-on-workspace "2"
+}
+window-rule {
+    match app-id="kitty"
+    open-on-workspace "2"
+}
+window-rule {
+    match app-id="Alacritty"
+    open-on-workspace "2"
+    // background-effect {
+    //     blur true
+    // }
+}
+overview {
+    backdrop-color "transparent"
+}
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+window-rule {
+    match app-id="nvim"
+    open-on-workspace "2"
+}
+window-rule {
+    match app-id="obsidian"
+    open-on-workspace "2"
+}
+window-rule {
+    match app-id=r"(?i)^thunar$"
+    opacity 0.85
+    open-on-workspace "3"
+}
+// window-rule {
+//     match app-id="org.gnome.Nautilus"
+//     // opacity 0.85
+//     open-on-workspace "3"
+// }
+window-rule {
+    match app-id="org.kde.dolphin"
+    // opacity 0.85
+    open-on-workspace "3"
+}
+window-rule {
+    match app-id="mpv"
+    open-on-workspace "3"
+}
+window-rule {
+    match app-id="discord"
+    open-on-workspace "3"
+}
+window-rule {
+    match app-id="sioyek"
+    open-on-workspace "3"
+}
+window-rule {
+    // match app-id="Spotify"
+
+    match app-id=r"(?i)^spotify$"
+    open-on-workspace "4"
+}
+window-rule {
+    match app-id="spotube"
+    open-on-workspace "4"
+}
+window-rule {
+    match app-id="org.kde.okular"
+    open-on-workspace "3"
+}
+window-rule {
+    match app-id="org.gnome.Evince"
+    open-on-workspace "3"
+}
+window-rule {
+    match app-id="popup"
+    default-column-width { proportion 0.60; }
+    default-window-height { fixed 500; }
+    open-floating true
+}
+window-rule {
+    match app-id="fyne"
+    default-column-width { proportion 0.60; }
+    default-window-height { fixed 500; }
+    open-floating true
+}
+window-rule {
+    match app-id="Omarchy"
+    // default-column-width { proportion 0.75; }
+    // default-window-height { fixed 600; }
+    open-floating true
+}
+
+// Open the firefox picture-in-picture player as floating by default.
+// window-rule {
+    // This app-id regular expression will work for both:
+    // - host firefox (app-id is "firefox")
+    // - Flatpak firefox (app-id is "org.mozilla.firefox")
+    // match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    // open-floating true
+// }
+
+// Example: block out two password managers from screen capture.
+// (This example rule is commented out with a "/-" in front.)
+/-window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+    block-out-from "screen-capture"
+
+    // Use this instead if you want them visible on third-party screenshot tools.
+    // block-out-from "screencast"
+}
+
+// Example: enable rounded corners for all windows.
+// (This example rule is commented out with a "/-" in front.)
+window-rule {
+    geometry-corner-radius 0
+    clip-to-geometry true
+}
+recent-windows {
+    // off
+    debounce-ms 750
+
+    open-delay-ms 150
+
+    highlight {
+        active-color "#009999ff"
+        urgent-color "#ff9999ff"
+        padding 30
+        corner-radius 0
+    }
+
+    previews {
+        max-height 480
+        max-scale 0.5
+    }
+    binds {
+        Alt+Tab { previous-window scope="workspace"; }
+        Mod+Shift+Tab { next-window; }
+    }
+}

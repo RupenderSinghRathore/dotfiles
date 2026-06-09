@@ -146,7 +146,7 @@ return {
     theme = {},
 
     ---@type boolean
-    -- image_support = true,
+    image_support = true,
 
     vim.keymap.set("n", "<leader>lo", "<cmd>Leet open<CR>", { desc = "open in browser" }),
     vim.keymap.set("n", "<leader>lr", "<cmd>Leet run<CR>", { desc = "run test" }),

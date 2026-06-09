@@ -6,9 +6,11 @@ include themes/noctalia.conf
 
 # cursor animation
 # cursor_trail 1
-cursor_blink_interval 0
 cursor_shape block
+cursor_blink_interval 0
 shell_integration no-cursor
+# shell_integration enabled
+listen_on unix:/tmp/kitty
 
 # Fonts
 # font_family SauceCodePro Nerd Font Mono
@@ -17,10 +19,29 @@ bold_font auto
 italic_font auto
 bold_italic_font auto
 font_size 14.0
+disable_ligatures always
 
 # keybinds
 map f11 toggle_fullscreen
 map ctrl+backspace send_text all \x17
+map ctrl+[ send_text all \x1b
+map ctrl+m send_text all \x0d
 
 # Background
-background_opacity 0.80
+# background_opacity 0.80
+
+
+# BEGIN_KITTY_THEME
+# Noctalia
+# include current-theme.conf
+# END_KITTY_THEME
+# scrollback_pager nvim -u NONE +'set nowrap'
+# scrollback_pager nvim 
+# scrollback_pager nvim -c 'set nowrap' -
+
+action_alias kitty_scrollback_nvim kitten /home/kami-sama/.local/share/nvim/lazy/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py --env NVIM_APPNAME=nvim-kitty --nvim-args"-u /home/kami-sama/.config/nvim-kitty"
+
+map kitty_mod+h kitty_scrollback_nvim
+map kitty_mod+g kitty_scrollback_nvim --config ksb_builtin_last_cmd_output
+
+mouse_map ctrl+shift+right press ungrabbed combine : mouse_select_command_output : kitty_scrollback_nvim --config ksb_builtin_last_visited_cmd_output

@@ -10,7 +10,6 @@ alias tree='eza -F --group-directories-first --tree --level=3'
 # Tools
 alias d='docker'
 alias r='rails'
-# n() { if [ "$#" -eq 0 ]; then nvim .; else nvim "$@"; fi; }
 
 # Git
 alias g='git'
@@ -18,59 +17,79 @@ alias gcm='git commit -m'
 alias gcam='git commit -a -m'
 alias gcad='git commit -a --amend'
 
-# Miscellaneous
-alias load='source ~/.zshrc'
-alias n='nvim'
-if [ -n "$NVIM" ]; then
-  alias n='nvr --remote'
-    # nvr --remote-wait          # opens in current window
-    # nvr -cc split --remote-wait   # opens in horizontal split
-    # nvr -cc vsplit --remote-wait  # opens in vertical split
-    # nvr -cc tabedit --remote-wait # opens in new tab
-fi
+# Misc
+alias load='source ~/.config/fish/config.fish'
 alias v='vim'
 alias t='tmux attach || tmux new-session -s main'
 alias kt='tmux kill-server'
 alias b='brightnessctl'
-# alias c='clear'
 alias y='yazi'
+
 alias f="printf '\033[2J\033[H' && echo '\n' && fastfetch"
-# alias f='fastfetch'
+
 alias mysqlDisable='sudo systemctl disable mysqld'
 alias mysqlStart='sudo systemctl start mysqld'
+
 alias nopen='/home/kami-sama/dotfiles/.config/scripts/nvim_file_current_dir.sh'
 alias event='/home/kami-sama/dotfiles/.config/scripts/github_activity_less.sh'
+
 alias rain='terminal-rain --rain-color magenta --lightning-color white'
 alias goal='~/.goal.sh'
+
 alias dockerls='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Ports}}\t{{.Names}}\t{{.Status}}"'
-alias p='echo "Battery Percentage $(cat /sys/class/power_supply/BAT0/capacity)%"'
-# alias archclean='sudo pacman -Rns $(pacman -Qdtq) 2>/dev/null || echo "System cleaned!"'
+
+alias p='echo "Battery Percentage "(cat /sys/class/power_supply/BAT0/capacity)"%"'
+
 alias archclean='yay -Ycc'
 alias mpvtty='mpv --vo=drm'
+
 alias batterystat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | less'
+
 alias ktinit='/home/kami-sama/dotfiles/.config/scripts/kotlin_simple_project_setup.sh'
+
 alias ani='ani-cli -q best'
 alias anidub='ani-cli --dub -q best'
+
 alias gitlog='git log --graph --all --oneline'
 alias gotest='go test -v'
+
 alias yt='youtube'
 alias chat='chatgpt'
-# alias leetp='zen-browser "https://leetcode.com/problem-list/vrls0me5/"'
-alias yt-dow='yt-dlp -f "bv*[height<=1080]+ba" --embed-chapters '
-alias yt-dow-hi='yt-dlp --embed-chapters --embed-thumbnail --merge-output-format mkv '
+
+alias yt-dow='yt-dlp -f "bv*[height<=1080]+ba" --embed-chapters'
+alias yt-dow-hi='yt-dlp --embed-chapters --embed-thumbnail --merge-output-format mkv'
+
 alias gitp='xdg-open "https://github.com/RupenderSinghRathore"'
+
 alias fixfuckingdolphin='sudo pacman -S archlinux-xdg-menu && XDG_MENU_PREFIX=arch- kbuildsycoca6'
+
 alias wifi='nmcli device wifi'
+
 alias clangc='clang -fsanitize=address -Iinclude -Wall -g -Werror'
-alias gccglib='gcc main.c $(pkg-config --cflags --libs glib-2.0)'
+alias gccglib='gcc main.c (pkg-config --cflags --libs glib-2.0)'
+
 alias cleanup_class_files='find -name "*.class" -exec rm {} +'
-alias oslectures="zen /home/kami-sama/Documents/OS/os-lectures/index.html"
+
+alias oslectures='zen /home/kami-sama/Documents/OS/os-lectures/index.html'
+
 alias ssharch='ssh kami-sama@192.168.122.245'
 alias sshkali='ssh kami-sama@192.168.122.234'
+
 alias leetq='leetcode_questions'
+
 alias gobuild='go build -gcflags="all=-N -l"'
+
 alias yay-update='yay -Syu --noconfirm --sudoloop'
-# alias spotify='flatpak run com.spotify.Client'
+
 alias sys-update='yay && flatpak update'
+
 alias Yazi='kitty -e yazi'
+
 alias gpu-stat='sudo radeontop -b 03:00.0'
+
+# nvim/nvr logic
+if set -q NVIM
+    alias n='nvr --remote'
+else
+    alias n='nvim'
+end

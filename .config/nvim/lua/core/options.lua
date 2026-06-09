@@ -104,3 +104,9 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
     require("auto-session").SaveSession()
   end,
 })
+
+if vim.fn.executable("nvr") == 1 then
+  vim.env.VISUAL = "nvr -cc split --remote-wait"
+  vim.env.EDITOR = "nvr -cc split --remote-wait"
+  vim.env.GIT_EDITOR = "nvr -cc split --remote-wait"
+end

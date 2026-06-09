@@ -71,14 +71,6 @@ end, { desc = "Toggle terminal" })
 -- vim.keymap.set("n", "<leader>Y", "<cmd>silent !kitty -e yazi &<CR>", opts)
 -- vim.keymap.set("n", "<leader>L", "<cmd>silent !alacritty -e lazygit &<CR>", opts)
 
-vim.keymap.set("n", "<C-Space>T", function()
-  local cwd = vim.fn.getcwd()
-  vim.fn.jobstart({ "kitty" }, {
-    cwd = cwd,
-    detach = true,
-  })
-end, { desc = "terminal in cwd" })
-
 vim.api.nvim_set_keymap("t", "<C-k>", [[<C-\><C-n><C-w>k]], opts)
 -- vim.api.nvim_set_keymap("t", "<Esc><Esc>", [[<C-\><C-n>]], opts)
 vim.api.nvim_set_keymap("t", "<C-Space>[", [[<C-\><C-n>]], opts)
@@ -147,15 +139,35 @@ vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>x", "<cmd>tabclose<CR>", opts)
 vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>n", "<cmd>tabn<CR>", opts)
 vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>p", "<cmd>tabp<CR>", opts)
 
-vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>t", function()
-  vim.cmd("tabnew | terminal")
-  vim.cmd("startinsert")
-end, opts)
-
 vim.keymap.set("t", "<C-Space>c", [[<C-\><C-n>]] .. "<cmd>tabnew<CR>", opts)
 vim.keymap.set("t", "<C-Space>x", [[<C-\><C-n>]] .. "<cmd>tabclose<CR>", opts)
 vim.keymap.set("t", "<C-Space>n", [[<C-\><C-n>]] .. "<cmd>tabn<CR>", opts)
 vim.keymap.set("t", "<C-Space>p", [[<C-\><C-n>]] .. "<cmd>tabp<CR>", opts)
+
+-- vim.keymap.set("t", "<C-Space>b", [[<C-\><C-n>]] .. "<C-w>oa", opts)
+
+vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>t", function()
+  vim.cmd("tabnew | terminal")
+  vim.cmd("startinsert")
+end, { desc = "tabed terminal" })
+
+vim.keymap.set("n", "<C-Space>b", function()
+  -- require("core.terminal").toggle_terminal()
+  -- vim.cmd("stopinsert")
+  -- vim.cmd("wincmd o")
+  vim.cmd("terminal")
+  vim.cmd("startinsert")
+end, { desc = "terminal buffer" })
+
+vim.keymap.set("n", "<C-Space>T", function()
+  local cwd = vim.fn.getcwd()
+  vim.fn.jobstart({ "kitty" }, {
+    cwd = cwd,
+    detach = true,
+  })
+end, { desc = "external terminal" })
+
+-- vim.keymap.set("n", "<C-Space>b", [[<leader>tt]] .. [[<C-\><C-n>]] .. "<C-w>oa", opts)
 
 -- Buffers
 vim.keymap.set("n", "<leader>jk", "<cmd>e #<CR>", { noremap = true, desc = "switch buffer" })

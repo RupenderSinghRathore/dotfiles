@@ -3,7 +3,7 @@
 search_dirs=("$HOME/Downloads" "$HOME/Documents")
 
 # Find files
-mapfile -t files < <(find "${search_dirs[@]}" -type f \( -iname '*.pdf' -o -iname '*.epub' -o -iname '*.pptx' -o -iname '*.docx' \) -print 2>/dev/null)
+mapfile -t files < <(find "${search_dirs[@]}" -type f \( -iname '*.pdf' -o -iname '*.epub' -o -iname '*.pptx' -o -iname '*.docx' \) -print )
 
 # Exit if no files found
 [ ${#files[@]} -eq 0 ] && exit 0
@@ -31,7 +31,7 @@ chosen_short=$(
 # Match selection back to full path
 for i in "${!display_list[@]}"; do
     if [[ "${display_list[$i]}" == "$chosen_short" ]]; then
-        com.github.ahrm.sioyek --new-window "${files[$i]}" 2>/dev/null &
+        flatpak run com.github.ahrm.sioyek --new-window "${files[$i]}"
         break
     fi
 done

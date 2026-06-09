@@ -113,7 +113,6 @@ M.change_dir = function()
     vim.fn.expand("~/Documents"),
     vim.fn.expand("~/Downloads"),
     vim.fn.expand("~/lunaar/languages/go"),
-    vim.fn.expand("~/Notes"),
   }
 
   local find_cmd = {

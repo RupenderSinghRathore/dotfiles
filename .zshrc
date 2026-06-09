@@ -6,6 +6,8 @@ export MANPAGER='nvim +Man!'
 export GTK_USE_PORTAL=0
 export GREENLIGHT_DB_DSN='postgres://greenlight:touka@localhost/greenlight?sslmode=disable'
 
+export XDG_DATA_DIRS="$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:$XDG_DATA_DIRS"
+
 export KRAFTKIT_LOG_LEVEL=debug
 export KRAFTKIT_LOG_TYPE=basic
 
@@ -29,6 +31,11 @@ export SUDO_EDITOR="nvim"
 # CASE_SENSITIVE="true"
 HYPHEN_INSENSITIVE="true" # Case-sensitive completion must be off. _ and - will be interchangeable.
 
+# - $ZSH_CUSTOM/aliases.zsh
+source ~/dotfiles/.config/zsh/aliases
+source ~/dotfiles/.config/zsh/functions
+# source ~/dotfiles/.config/zsh/api-keys.sh
+
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
 zstyle ':omz:update' mode reminder # just remind me to update when it's time
@@ -49,11 +56,6 @@ source $ZSH/oh-my-zsh.sh
 # [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 # . "$HOME/.local/share/../bin/env"
-
-# - $ZSH_CUSTOM/aliases.zsh
-source ~/dotfiles/.config/zsh/aliases
-source ~/dotfiles/.config/zsh/functions
-# source ~/dotfiles/.config/zsh/api-keys.sh
 
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.

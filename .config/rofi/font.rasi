@@ -1,0 +1,5 @@
+
+configuration {
+    font: "FiraCodeNerdFont  14";
+	icon-theme: "Candy";    
+}

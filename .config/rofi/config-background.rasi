@@ -1,5 +1,6 @@
 // @import "~/dotfiles/.config/rofi/colors.rasi"
 @import "~/dotfiles/.config/rofi/theme.rasi"
+@import "~/dotfiles/.config/rofi/font.rasi"
 
 * {
     background-color-elements:   #2f1d4eaf;
@@ -18,7 +19,7 @@ configuration {
 	normalize-match: true;
 	icon-theme: "Tela-circle";    
     show-icons: true;
-    font: "SauceCodePro Nerd Font 0";
+    // font: "SauceCodePro Nerd Font 0";
 	// Matching setting
 	matching: "normal";
 	tokenize: true;

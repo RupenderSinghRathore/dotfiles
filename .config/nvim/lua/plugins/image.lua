@@ -14,12 +14,17 @@ return {
         enabled = true,
         download_remote_images = true,
         only_render_image_at_cursor = true,
+        only_render_image_at_cursor_mode = "popup", -- or "inline"
+        floating_windows = true, -- if true, images will be rendered in floating markdown windows
+        filetypes = { "markdown", "vimwiki", "leetcode.nvim" }, -- ← add "leetcode" here
       },
-      ["leetcode.nvim"] = {
-        enabled = true,
-        download_remote_images = true,
-        only_render_image_at_cursor = true,
-      },
+      -- ["leetcode.nvim"] = {
+      --   enabled = true,
+      --   download_remote_images = true,
+      --   only_render_image_at_cursor = true,
+      --   only_render_image_at_cursor_mode = "popup", -- or "inline"
+      --   floating_windows = true, -- if true, images will be rendered in floating markdown windows
+      -- },
     },
 
     -- max_width = nil,
