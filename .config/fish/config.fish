@@ -8,7 +8,7 @@
 
 # Environment variables
 
-set -gx ZSH "$HOME/.oh-my-zsh"
+# set -gx ZSH "$HOME/.oh-my-zsh"
 
 set -g fish_greeting 
 # if status is-interactive 
@@ -45,14 +45,28 @@ set -gx DEBUGINFOD_URLS "https://debuginfod.archlinux.org"
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
 
-set -gx HYPHEN_INSENSITIVE true
+# set -gx HYPHEN_INSENSITIVE true
 
 # Starship
-starship init fish | source
+# starship init fish | source
 
 # Source aliases/functions
 source ~/dotfiles/.config/fish/aliases.fish
 source ~/dotfiles/.config/fish/functions.fish
+
+# vim mode
+set -U fish_key_bindings fish_vi_key_bindings
+set -g fish_cursor_insert block
+
+# binds
+bind -M insert \cp up-or-search
+bind -M insert \cn down-or-search
+bind -M insert \ce accept-autosuggestion
+
+bind -M insert \ca beginning-of-line
+# bind -M insert \ce end-of-line
+bind -M insert \cb backward-char
+bind -M insert \cf forward-char
 
 # Window title
 # function fish_title

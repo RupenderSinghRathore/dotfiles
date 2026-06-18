@@ -94,7 +94,7 @@ return {
         async = false,
         timeout_ms = 1000,
       })
-      vim.cmd("w")
+      vim.cmd("silent w")
     end, { desc = "Format whole file or range (in visual mode) with" })
   end,
 }

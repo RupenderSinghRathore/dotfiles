@@ -12,7 +12,8 @@ return {
     require("auto-session").setup({
       auto_save = true,
       auto_restore = false,
-      auto_session_suppress_dirs = {},
+      -- auto_session_suppress_dirs = {},
+      suppress_dirs = {},
       session_name = function()
         return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
       end,

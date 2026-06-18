@@ -47,6 +47,12 @@ window-rule {
     // default-window-height { fixed 600; }
 }
 window-rule {
+    match app-id="Blanket"
+    open-floating true
+    // default-column-width { proportion 0.70; }
+    // default-window-height { fixed 600; }
+}
+window-rule {
     // match title="Choose Directory"
     match app-id="xdg-desktop-portal-gtk"
     open-floating true

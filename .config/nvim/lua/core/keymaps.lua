@@ -3,20 +3,29 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local opts = { noremap = true, silent = false }
+
+local function desc(desc)
+  return { noremap = true, silent = false, desc = desc }
+end
+
+local function silent_desc(desc)
+  return { noremap = true, silent = true, desc = desc }
+end
 -- local opts2 = { noremap = true, silent = true }
 
 -- Compile
-vim.keymap.set("n", "<leader>cc", "<cmd>Recompile<CR>", { silent = true, desc = "re-compile" })
-vim.keymap.set("n", "<leader>cC", "<cmd>Compile<CR>", { silent = true, desc = "compile" })
+vim.keymap.set("n", "<leader>cc", "<cmd>Recompile<CR>", silent_desc("re-compile"))
+vim.keymap.set("n", "<leader>cC", "<cmd>Compile<CR>", silent_desc("compile"))
 
-vim.keymap.set("n", "<leader><leader>", ":! ", { silent = true, desc = "command" })
-vim.keymap.set("n", "<leader>H", ":help ", { silent = true, desc = "help" })
+vim.keymap.set("n", "<leader><leader>", ":! ", silent_desc("command"))
+vim.keymap.set("n", "<leader>H", ":help ", silent_desc("help"))
 
-vim.keymap.set("n", "<leader>R", "<cmd>restart<CR>", { silent = true, desc = "restart" })
+vim.keymap.set("n", "<leader>R", "<cmd>restart<CR>", silent_desc("restart"))
 
-vim.keymap.set("n", "<leader>S", "<cmd>w !sudo tee %<CR>", { silent = true, desc = "save with sudo" })
+vim.keymap.set("n", "<leader>S", "<cmd>w !sudo tee %<CR>", silent_desc("save with sudo"))
 
-vim.keymap.set("n", "<leader>cp", "<cmd>pwd<CR>", { silent = true, desc = "pwd" })
+vim.keymap.set("n", "<leader>cp", "<cmd>pwd<CR>", silent_desc("pwd"))
+
 -- vim.keymap.set({ "n", "i" }, "<C-g>", "<cmd>pwd<CR>", { silent = true, desc = "pwd" })
 
 -- Sessionizer
@@ -34,7 +43,7 @@ vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>N", function()
 end, { desc = "Open project" })
 
 -- vim.keymap.set("n", "<C-Space>g", "<cmd>silent !alacritty -e lazygit &<CR>", opts)
-vim.keymap.set("n", "<C-Space>g", "<cmd>tabnew | terminal lazygit<CR>a", opts)
+vim.keymap.set("n", "<C-Space>g", "<cmd>tabnew | terminal lazygit<CR>a", desc("lazygit"))
 
 vim.keymap.set("n", "<leader>fp", function()
   require("core.sessionizer").open_project()
@@ -48,15 +57,22 @@ vim.keymap.set("n", "<leader>fc", function()
   require("core.sessionizer").change_dir()
 end, { desc = "Change dir" })
 
+vim.keymap.set("n", "<leader>fC", ":tcd ", opts)
+
 -- save file
-vim.keymap.set("n", "<leader>sa", "<cmd>w<CR>", opts)
+vim.keymap.set("n", "<leader>sa", "<cmd>w<CR>", silent_desc("save"))
+vim.keymap.set("n", "u", "<cmd>undo<CR>", silent_desc("undo"))
+vim.keymap.set("n", "<C-r>", "<cmd>redo<CR>", silent_desc("redo"))
 vim.keymap.set("n", "<leader>sq", "<cmd>wq<CR>", opts)
 vim.keymap.set("n", "<leader>qq", "<cmd>qall<CR>", opts)
 vim.keymap.set("n", "<leader>nq", "<C-w>c", opts)
 
+vim.keymap.set("n", "<leader>Y", "<cmd>%y+<CR>", desc("buffer copy"))
+
 -- vim.keymap.set("n", "<leader>te", ":e %:h/", opts)
 
 vim.keymap.set("n", "<Esc>", "<cmd>Noice dismiss<CR>", opts)
+-- vim.keymap.set("n", "<Esc>", "<cmd>echo ''<CR>", opts)
 
 -- terminal
 vim.keymap.set("n", "<leader>tt", function()
@@ -71,11 +87,11 @@ end, { desc = "Toggle terminal" })
 -- vim.keymap.set("n", "<leader>Y", "<cmd>silent !kitty -e yazi &<CR>", opts)
 -- vim.keymap.set("n", "<leader>L", "<cmd>silent !alacritty -e lazygit &<CR>", opts)
 
-vim.api.nvim_set_keymap("t", "<C-k>", [[<C-\><C-n><C-w>k]], opts)
+vim.api.nvim_set_keymap("t", "<C-k>", [[<C-\><C-n><C-w>k]], desc("goto top split"))
 -- vim.api.nvim_set_keymap("t", "<Esc><Esc>", [[<C-\><C-n>]], opts)
-vim.api.nvim_set_keymap("t", "<C-Space>[", [[<C-\><C-n>]], opts)
+vim.api.nvim_set_keymap("t", "<C-Space>[", [[<C-\><C-n>]], desc("goto normal mode"))
 -- vim.api.nvim_set_keymap("t", "<C-q>", [[<C-\><C-n><cmd>bdelete!<CR>]], opts)
-
+--
 -- lsp keymaps
 vim.keymap.set("n", "<leader>hr", ":lsp restart", opts)
 vim.keymap.set("n", "<leader>hi", "<cmd>checkhealth lsp<CR>", opts)
@@ -119,14 +135,14 @@ vim.keymap.set("n", "<leader>x", function()
 
   vim.cmd("bdelete " .. current)
 end, { desc = "delete buffer" })
-vim.keymap.set("n", "<leader>X", "<cmd>bdelete!<CR>", { desc = "delete buffer without saving" })
-vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", opts) -- new buffer
+vim.keymap.set("n", "<leader>X", "<cmd>bdelete!<CR>", desc("delete buffer without saving"))
+vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", desc("new buffer"))
 
 -- Resize windows with arrow keys
-vim.keymap.set({ "n", "t" }, "<C-Up>", "<C-w>+", { desc = "Increase window height" })
-vim.keymap.set({ "n", "t" }, "<C-Down>", "<C-w>-", { desc = "Decrease window height" })
-vim.keymap.set({ "n", "t" }, "<C-Left>", "<C-w><", { desc = "Decrease window width" })
-vim.keymap.set({ "n", "t" }, "<C-Right>", "<C-w>>", { desc = "Increase window width" })
+vim.keymap.set({ "n", "t" }, "<C-Up>", "<C-w>+", desc("Increase window height"))
+vim.keymap.set({ "n", "t" }, "<C-Down>", "<C-w>-", desc("Decrease window height"))
+vim.keymap.set({ "n", "t" }, "<C-Left>", "<C-w><", desc("Decrease window width"))
+vim.keymap.set({ "n", "t" }, "<C-Right>", "<C-w>>", desc("Increase window width"))
 
 -- Tabs
 for i = 1, 9 do

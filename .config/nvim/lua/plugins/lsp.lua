@@ -55,6 +55,7 @@ return {
 
     require("fidget").setup({
       notification = {
+        -- override_vim_notify = true,
         window = {
           winblend = 0, -- Disable transparency (prevents black blocks)
           -- border = "rounded", -- Optional: adds a nice border
@@ -196,7 +197,9 @@ return {
       -- zls = {},
 
       -- kotlin_language_server = {},
-      pyright = {},
+      -- pyright = {},
+      basedpyright = {},
+      -- pylsp = {},
 
       -- rust_analyzer = {},
       --

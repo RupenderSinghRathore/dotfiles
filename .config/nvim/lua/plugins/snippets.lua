@@ -106,6 +106,16 @@ return {
             }))
           end, { buffer = true, desc = "http handlerfunc signature" })
 
+          vim.keymap.set("i", "<c-k>a", function()
+            ls.snip_expand(s("Handler func", {
+              t({ "func (app *application) " }),
+              i(1),
+              t({ "() {", "\t" }),
+              i(2),
+              t({ "", "}" }),
+            }))
+          end, { buffer = true, desc = "app function signature" })
+
           vim.keymap.set("i", "<c-k>ee", function()
             ls.snip_expand(s("Errorhandling", {
               t({ "if err != nil {", "\t" }),

@@ -50,6 +50,15 @@ return {
         },
         opts = { skip = true },
       },
+
+      -- Silence low-priority notify notifications
+      -- {
+      --   filter = {
+      --     event = "msg_show",
+      --     kind = { "", "echo", "echomsg" },
+      --   },
+      --   opts = { skip = true },
+      -- },
       --   {
       --     view = "popup",
       --     filter = {
@@ -98,6 +107,11 @@ return {
     -- OPTIONAL:
     --   `nvim-notify` is only needed, if you want to use the notification view.
     --   If not available, we use `mini` as the fallback
-    "rcarriga/nvim-notify",
+    {
+      "rcarriga/nvim-notify",
+      opts = {
+        background_colour = "#000000",
+      },
+    },
   },
 }

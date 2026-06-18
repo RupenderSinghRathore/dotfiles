@@ -1,5 +1,5 @@
 # File system
-alias ls='eza -F --group-directories-first'
+alias ls='ls -F --group-directories-first'
 alias lsl='eza -lh --group-directories-first --icons=auto'
 alias lsla='eza -alh --group-directories-first --icons=auto'
 alias lsa='ls -a'
@@ -25,7 +25,8 @@ alias kt='tmux kill-server'
 alias b='brightnessctl'
 alias y='yazi'
 
-alias f="printf '\033[2J\033[H' && echo '\n' && fastfetch"
+# alias f="printf '\033[2J\033[H' && echo '\n' && fastfetch"
+alias f="printf '\033[2J\033[H' && fastfetch"
 
 alias mysqlDisable='sudo systemctl disable mysqld'
 alias mysqlStart='sudo systemctl start mysqld'

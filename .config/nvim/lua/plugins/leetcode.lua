@@ -40,7 +40,8 @@ return {
       ["python3"] = {
         imports = function()
           return {
-            "from typing import List",
+            "from __future__ import annotations",
+            "from typing import List, Optional",
           }
         end,
         -- before = { "from typing import List" },
@@ -156,7 +157,8 @@ return {
     vim.keymap.set("n", "<leader>lt", "<cmd>Leet tabs<CR>", { desc = "choose tabs" }),
     vim.keymap.set("n", "<leader>lS", "<cmd>Leet submit<CR>", { desc = "submit question" }),
     vim.keymap.set("n", "<leader>ld", "<cmd>Leet desc<CR>", { desc = "toggle desc" }),
-    vim.keymap.set("n", "<leader>ll", "<cmd>Leet list<CR>", { desc = "questions list" }),
+    vim.keymap.set("n", "<leader>ll", ":Leet ", { desc = "Leet in cmd" }),
+    vim.keymap.set("n", "<leader>lL", "<cmd>Leet list<CR>", { desc = "questions list" }),
     vim.keymap.set("n", "<leader>lc", "<cmd>Leet console<CR>", { desc = "console" }),
   },
   -- configuration goes here

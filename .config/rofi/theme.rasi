@@ -1,17 +1,17 @@
 * {
-    rose:                        #8faeb1;
-    foam:                        #d1b394;
-    iris:                        #db6d6d;
-    pine:                        #831212;
-    gold:                        #2f5a5e;
-    love:                        #db6d6d;
+    rose:                        #d1c88f;
+    foam:                        #e6bead;
+    iris:                        #ffb695;
+    pine:                        #7a3004;
+    gold:                        #4e471b;
+    love:                        #ffb4ab;
 
-    text-color:                  #cdc5bd;
-    input-text-color:            #db6d6d;
+    text-color:                  #ede0db;
+    input-text-color:            #ffb695;
 
-    background-color:            #1a1b1cd9;
-    background-color-elements:   #252627;
+    background-color:            #181210d9;
+    background-color-elements:   #251e1c;
 
-    border-color:                #656668;
-    active:                      #db6d6d;
+    border-color:                #a08d85;
+    active:                      #ffb695;
 }

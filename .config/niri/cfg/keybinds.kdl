@@ -45,15 +45,17 @@ binds {
 
     // Spotify controls
     Mod+S allow-when-locked=true {
-        spawn-sh "playerctl --player=spotify,ncspot,spotube play-pause"
+        spawn-sh "playerctl --player=spotify,ncspot,spotube,Blanket play-pause"
     }
     Mod+Up allow-when-locked=true {
         // spawn-sh "playerctl --player=spotify,ncspot,spotube volume 0.05+ || qs -c noctalia-shell ipc call volume increase"
-        spawn-sh "playerctl -l | grep -q spotube && qs -c noctalia-shell ipc call volume increase || playerctl --player=spotify,ncspot volume 0.05+"    
+        // spawn-sh "playerctl -l | grep -q spotube && qs -c noctalia-shell ipc call volume increase || playerctl --player=spotify,ncspot volume 0.05+"    
+        spawn-sh "playerctl --player=spotify,ncspot,Blanket volume 0.05+"    
     }
     Mod+Down allow-when-locked=true {
         // spawn-sh "playerctl --player=spotify,ncspot,spotube volume 0.05- || qs -c noctalia-shell ipc call volume decrease"
-        spawn-sh "playerctl -l | grep -q spotube && qs -c noctalia-shell ipc call volume decrease || playerctl --player=spotify,ncspot volume 0.05-"
+        // spawn-sh "playerctl -l | grep -q spotube && qs -c noctalia-shell ipc call volume decrease || playerctl --player=spotify,ncspot volume 0.05-"
+        spawn-sh "playerctl --player=spotify,ncspot,Blanket volume 0.05-"    
     }
     Mod+Right allow-when-locked=true {
         spawn-sh "playerctl --player=spotify,ncspot,spotube next"

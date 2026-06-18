@@ -45,23 +45,29 @@ return {
   --   end,
   -- },
   {
+    "folke/tokyonight.nvim",
+    -- lazy = false,
+    -- priority = 1000,
+    opts = {
+      style = "moon",
+    },
+    -- config = function(_, opts)
+    --   require("tokyonight").setup(opts)
+    --   vim.cmd.colorscheme("tokyonight")
+    -- end,
+  },
+  {
     "RRethy/base16-nvim",
     config = function()
       require("core.matugen").setup()
     end,
   },
   -- {
-  --   "nyoom-engineering/oxocarbon.nvim",
-  --   -- Add in any other configuration;
-  --   --   event = foo,
-  --   --   config = bar
-  --   --   end,
-  -- },
-  -- {
-  --   "RRethy/base16-nvim",
-  --   config = function()
-  --     require("core.matugen").setup()
-  --   end,
+    -- "nyoom-engineering/oxocarbon.nvim",
+    -- Add in any other configuration;
+    --   event = foo,
+    --   config = bar
+    --   end,
   -- },
   -- {
   --   "catppuccin/nvim",

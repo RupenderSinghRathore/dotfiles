@@ -9,7 +9,20 @@ return {
         if ft == "kdl" or ft == "rasi" then
           return "// %s"
         end
-        if ft == "kitty" or ft == "fish" or ft == "hyprlang" or ft == "conf" or ft == "tmux" or ft == "desktop" or ft == "dosini" then
+
+        if ft == "sql" then
+          return "-- %s"
+        end
+
+        if
+          ft == "kitty"
+          or ft == "fish"
+          or ft == "hyprlang"
+          or ft == "conf"
+          or ft == "tmux"
+          or ft == "desktop"
+          or ft == "dosini"
+        then
           return "# %s"
         end
       end,

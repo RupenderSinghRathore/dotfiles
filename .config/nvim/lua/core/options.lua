@@ -47,6 +47,8 @@ vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- Separate Vim plugins fr
 --vim.o.showtabline = 0 -- Always hides tabs
 -- vim.o.showtabline = 1
 
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 -- vim.opt.laststatus = 0 -- Hide the statusline by default
 vim.o.scroll = 10
 vim.o.winborder = "rounded"
@@ -56,6 +58,9 @@ vim.g.netrw_liststyle = 3
 vim.opt.guicursor = "n-v-c-i-r-cr-o-sm:block"
 vim.g.db_ui_expand_tables_by_default = 1
 
+-- remove yank messages
+vim.o.report = 99999
+
 -- vim.api.nvim_create_autocmd("BufWritePost", {
 --   pattern = "*",
 --   callback = function()
@@ -64,14 +69,14 @@ vim.g.db_ui_expand_tables_by_default = 1
 --     end, 1000)
 --   end,
 -- })
-vim.api.nvim_create_autocmd("TextYankPost", {
-  pattern = "*",
-  callback = function()
-    vim.defer_fn(function()
-      vim.cmd("echo ''")
-    end, 1500)
-  end,
-})
+-- vim.api.nvim_create_autocmd("TextYankPost", {
+--   pattern = "*",
+--   callback = function()
+--     vim.defer_fn(function()
+--       vim.cmd("echo ''")
+--     end, 1500)
+--   end,
+-- })
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "*",
   callback = function()

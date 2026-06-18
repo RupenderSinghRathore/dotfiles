@@ -6,6 +6,7 @@ return {
   branch = "master",
   dependencies = {
     "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope-symbols.nvim",
     { -- If encountering errors, see telescope-fzf-native README for installation instructions
       "nvim-telescope/telescope-fzf-native.nvim",
 
@@ -153,6 +154,7 @@ return {
     vim.keymap.set("n", "<leader>n.", builtin.oldfiles, { desc = 'Search Recent Files ("." for repeat)' })
     vim.keymap.set("n", "<leader>nd", builtin.diagnostics, { desc = "Search Diagnostics" })
     vim.keymap.set("n", "<leader>nr", builtin.resume, { desc = "Search Resume" })
+    vim.keymap.set("n", "<leader>ns", builtin.lsp_document_symbols, { desc = "Search lsp document symbols" })
     vim.keymap.set("n", "<leader>jj", builtin.buffers, { desc = "Find existing buffers" })
     -- vim.keymap.set("n", "<leader>jj", builtin.buffers, { desc = "Find existing buffers" })
 
