@@ -2,6 +2,7 @@
 require("core.options")
 require("core.keymaps")
 require("core.tabs")
+require("core.neovide")
 -- require("core.make-file")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

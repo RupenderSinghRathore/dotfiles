@@ -39,7 +39,7 @@ return {
     latex = {
       enabled = true,
       converter = { "latex2text", "utftex" }, -- Try 'latex2text' first (Python-based, often better for fractions/complex expr)
-      -- Other options: po ition = 'center', top_pad = 0, etc.
+      -- Other options: position = 'center', top_pad = 0, etc.
     },
     keys = {
       { "<leader>mt", "<cmd>RenderMarkdown toggle<CR>" },

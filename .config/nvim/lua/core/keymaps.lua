@@ -42,8 +42,21 @@ vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>N", function()
   require("core.sessionizer").open_file()
 end, { desc = "Open project" })
 
--- vim.keymap.set("n", "<C-Space>g", "<cmd>silent !alacritty -e lazygit &<CR>", opts)
-vim.keymap.set("n", "<C-Space>g", "<cmd>tabnew | terminal lazygit<CR>a", desc("lazygit"))
+vim.keymap.set("i", "<C-BS>", "<C-w>", opts)
+-- vim.keymap.set("i", "<C-m>", "<CR>", opts)
+
+-- vim.keymap.set("n", "<C-Space>g", "<cmd>tabnew | terminal lazygit<CR>a", desc("lazygit"))
+vim.keymap.set("n", "<C-Space>g", function()
+  vim.cmd("tabnew | terminal lazygit")
+  vim.cmd("startinsert")
+  vim.api.nvim_create_autocmd("TermClose", {
+    buffer = vim.api.nvim_get_current_buf(),
+    once = true,
+    callback = function()
+      vim.cmd("tabclose")
+    end,
+  })
+end, { desc = "lazygit" })
 
 vim.keymap.set("n", "<leader>fp", function()
   require("core.sessionizer").open_project()
@@ -86,6 +99,9 @@ end, { desc = "Toggle terminal" })
 -- vim.keymap.set("n", "<leader>ng", "<cmd>term<CR>ilazygit && exit<CR>", opts)
 -- vim.keymap.set("n", "<leader>Y", "<cmd>silent !kitty -e yazi &<CR>", opts)
 -- vim.keymap.set("n", "<leader>L", "<cmd>silent !alacritty -e lazygit &<CR>", opts)
+
+vim.keymap.set("t", "<C-m>", "<CR>", silent_desc("enter"))
+-- vim.keymap.set("t", "<C-m>", "<CR>", silent_desc("enter"))
 
 vim.api.nvim_set_keymap("t", "<C-k>", [[<C-\><C-n><C-w>k]], desc("goto top split"))
 -- vim.api.nvim_set_keymap("t", "<Esc><Esc>", [[<C-\><C-n>]], opts)
@@ -154,6 +170,9 @@ vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>c", "<cmd>tabnew<CR>", opts)
 vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>x", "<cmd>tabclose<CR>", opts)
 vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>n", "<cmd>tabn<CR>", opts)
 vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>p", "<cmd>tabp<CR>", opts)
+
+vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>H", "<cmd>tabmove -1<CR>", { desc = "Move tab left" })
+vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>L", "<cmd>tabmove +1<CR>", { desc = "Move tab right" })
 
 vim.keymap.set("t", "<C-Space>c", [[<C-\><C-n>]] .. "<cmd>tabnew<CR>", opts)
 vim.keymap.set("t", "<C-Space>x", [[<C-\><C-n>]] .. "<cmd>tabclose<CR>", opts)

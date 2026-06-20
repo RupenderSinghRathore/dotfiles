@@ -9,7 +9,7 @@ return {
         auto_trigger = true,
 
         keymap = {
-          accept = "<Tab>",
+          accept = "<C-e>",
           next = "<C-.>",
           prev = "<C-,>",
           dismiss = "<C-]>",
@@ -27,7 +27,7 @@ return {
     },
     keys = {
       {
-        "<leader>ap",
+        "<leader>cd",
         "<cmd>Copilot toggle<CR>",
         desc = "Toggle Copilot",
       },
@@ -42,23 +42,34 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "zbirenbaum/copilot.lua",
     },
-
     opts = {
       strategies = {
         chat = {
           adapter = "copilot",
         },
-
         inline = {
           adapter = "copilot",
         },
       },
-
+      interactions = {
+        shared = {
+          keymaps = {
+            accept_change = {
+              modes = { i = "<C-e>" },
+              description = "Accept the suggested change",
+            },
+            reject_change = {
+              modes = { n = "gr" },
+              opts = { nowait = true },
+              description = "Reject the suggested change",
+            },
+          },
+        },
+      },
       opts = {
         log_level = "DEBUG",
       },
     },
-
     keys = {
       {
         "<leader>ct",
@@ -66,14 +77,12 @@ return {
         mode = "n",
         desc = "Toggle AI Chat",
       },
-
       {
         "<leader>ca",
         "<cmd>CodeCompanionActions<CR>",
         mode = { "n", "v" },
         desc = "AI Actions",
       },
-
       {
         "<leader>ci",
         "<cmd>CodeCompanion<CR>",
