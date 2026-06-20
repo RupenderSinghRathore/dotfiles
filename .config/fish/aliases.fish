@@ -1,5 +1,5 @@
 # File system
-alias ls='ls -F --group-directories-first'
+alias ls='ls -F --group-directories-first --color'
 alias lsl='eza -lh --group-directories-first --icons=auto'
 alias lsla='eza -alh --group-directories-first --icons=auto'
 alias lsa='ls -a'
@@ -52,7 +52,8 @@ alias ani='ani-cli -q best'
 alias anidub='ani-cli --dub -q best'
 
 alias gitlog='git log --graph --all --oneline'
-alias gotest='go test -v'
+# alias gotest='go test -v'
+alias gotest='gotestsum ./...'
 
 alias yt='youtube'
 alias chat='chatgpt'

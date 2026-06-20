@@ -7,10 +7,11 @@ binds {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus kitty"
     }
     Mod+N hotkey-overlay-title="Neovim" {
-        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-focus nvim"
+        spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus neovide"
     }
     Mod+Shift+N hotkey-overlay-title="Neovim" {
-        spawn-sh "kitty --class 'nvim' -e nvim"
+        // spawn-sh "kitty --class 'nvim' -e nvim"
+        spawn-sh "neovide"
     }
     Super+F hotkey-overlay-title="Open thunar" {
         spawn-sh "/home/kami-sama/.local/omarchy/bin/niri-launch-or-focus thunar"

@@ -17,12 +17,17 @@ set -g fish_greeting
 # fish_ignoreeof 1
 # setopt IGNOREEOF
 
-set -gx PATH \
-    $HOME/.local/bin \
-    $HOME/.local/omarchy/bin \
-    $HOME/go/bin \
-    $HOME/.cargo/bin \
-    $PATH
+# set -gx PATH \
+#     $HOME/.local/bin \
+#     $HOME/.local/omarchy/bin \
+#     $HOME/go/bin \
+#     $HOME/.cargo/bin \
+#     $PATH
+
+fish_add_path $HOME/.local/bin
+fish_add_path $HOME/.local/omarchy/bin
+fish_add_path $HOME/go/bin
+fish_add_path $HOME/.cargo/bin
 
 set -gx MANPAGER 'nvim +Man!'
 set -gx GTK_USE_PORTAL 0

@@ -100,8 +100,11 @@ layer-rule {
     place-within-backdrop true
 }
 window-rule {
-    match app-id="nvim"
+    match app-id="neovide"
     open-on-workspace "2"
+    // background-effect {
+    //     blur true
+    // }
 }
 window-rule {
     match app-id="obsidian"
