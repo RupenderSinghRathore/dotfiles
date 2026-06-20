@@ -44,15 +44,16 @@ M.toggle_terminal = function()
   else
     vim.cmd("terminal")
     term.buf = vim.api.nvim_get_current_buf()
+    vim.b[term.buf].is_toggle_term = true
   end
 
   vim.cmd("startinsert")
 end
 
--- vim.api.nvim_create_autocmd("TabClosed", {
---   callback = function(args)
---     M.terminals[tonumber(args.match)] = nil
---   end,
--- })
+-- helper so the keymap can check before calling toggle
+M.is_toggle_term_buf = function(buf)
+  buf = buf or vim.api.nvim_get_current_buf()
+  return vim.b[buf].is_toggle_term == true
+end
 
 return M
