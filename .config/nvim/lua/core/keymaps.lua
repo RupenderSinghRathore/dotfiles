@@ -110,8 +110,8 @@ vim.keymap.set("n", "<leader>Y", "<cmd>%y+<CR>", desc("buffer copy"))
 
 -- save file without auto-formatting
 -- vim.keymap.set("n", "<leader>ns", "<cmd>noautocmd w <CR>", opts)
--- vim.keymap.set("n", "<leader>ns", ":mksession!Session.vim<CR>:wqa<CR>", opts)
--- vim.keymap.set("n", "<leader>nS", ":source Session.vim<CR>", opts)
+vim.keymap.set("n", "<leader>ns", ":mksession!Session.vim<CR>:wqa<CR>", opts)
+vim.keymap.set("n", "<leader>nS", ":source Session.vim<CR>", opts)
 
 --------------------------------------------------------------------------------
 -- Terminal
@@ -158,6 +158,14 @@ vim.keymap.set({ "n", "i", "v", "t" }, "<C-Space>t", function()
 
   vim.cmd("startinsert")
 end, { desc = "smart terminal" })
+
+vim.keymap.set("n", "<C-Space>T", function()
+  local cwd = vim.fn.getcwd()
+  vim.fn.jobstart({ "kitty" }, {
+    cwd = cwd,
+    detach = true,
+  })
+end, { desc = "external terminal" })
 
 --------------------------------------------------------------------------------
 -- LSP
@@ -262,14 +270,6 @@ vim.keymap.set("t", "<C-Space>p", [[<C-\><C-n>]] .. "<cmd>tabp<CR>", opts)
 --   vim.cmd("startinsert")
 -- end, { desc = "terminal buffer" })
 --
--- vim.keymap.set("n", "<C-Space>T", function()
---   local cwd = vim.fn.getcwd()
---   vim.fn.jobstart({ "kitty" }, {
---     cwd = cwd,
---     detach = true,
---   })
--- end, { desc = "external terminal" })
-
 -- vim.keymap.set("n", "<C-Space>b", [[<leader>tt]] .. [[<C-\><C-n>]] .. "<C-w>oa", opts)
 
 --------------------------------------------------------------------------------
@@ -300,3 +300,18 @@ vim.keymap.set("n", "<leader>lw", "<cmd>set wrap! linebreak! nolist! <CR>", opts
 
 vim.keymap.set("i", "{K", "{<CR>}<Esc>O", { noremap = true })
 -- vim.keymap.set("i", "(E", "()<Esc>i", { noremap = true })
+
+--------------------------------------------------------------------------------
+-- Comments
+--------------------------------------------------------------------------------
+vim.keymap.set({ "n" }, "<C-/>", "gcc", { remap = true })
+vim.keymap.set("v", "<C-/>", "gc", { remap = true })
+
+
+--------------------------------------------------------------------------------
+-- Rebinds
+--------------------------------------------------------------------------------
+-- vim.keymap.set("t", "<Home>", "<Home>", { noremap = true })
+-- vim.keymap.set("t", "<End>", "<End>", { noremap = true })
+-- vim.keymap.set("t", "<PageUp>", "<PageUp>", { noremap = true })
+-- vim.keymap.set("t", "<PageDown>", "<PageDown>", { noremap = true })

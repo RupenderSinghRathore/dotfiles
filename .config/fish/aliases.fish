@@ -95,3 +95,5 @@ if set -q NVIM
 else
     alias n='nvim'
 end
+
+alias tldr-fzf="bash -c 'tldr -l | fzf --preview \"tldr {1} --color=always\" --preview-window=right,70% | xargs tldr'"

@@ -84,3 +84,7 @@ end
 function clippy
     cargo clippy $argv -- -W clippy::all -W clippy::pedantic
 end
+
+function gccl
+    gcc -g -Wall -Wextra -Wpedantic -fsanitize=address,undefined -fno-omit-frame-pointer $argv -o run && ./run
+end

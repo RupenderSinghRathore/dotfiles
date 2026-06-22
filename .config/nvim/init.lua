@@ -25,7 +25,7 @@ require("lazy").setup({
   require("plugins.autocompletion"),
   require("plugins.snippets"),
   require("plugins.indent-blankline"),
-  require("plugins.comment"),
+  -- require("plugins.comment"),
   require("plugins.auto-tag"),
   require("plugins.misc"),
   require("plugins.formatting"),

@@ -7,6 +7,19 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
   },
+  keys = {
+    { "<leader>lo", "<cmd>Leet open<CR>", desc = "open in browser" },
+    { "<leader>lr", "<cmd>Leet run<CR>", desc = "run test" },
+    { "<leader>li", "<cmd>Leet info<CR>", desc = "question info" },
+    { "<leader>lq", "<cmd>Leet exit<CR>", desc = "exit leetcode" },
+    { "<leader>ly", "<cmd>Leet yank<CR>", desc = "yank code" },
+    { "<leader>lt", "<cmd>Leet tabs<CR>", desc = "choose tabs" },
+    { "<leader>lS", "<cmd>Leet submit<CR>", desc = "submit question" },
+    { "<leader>ld", "<cmd>Leet desc<CR>", desc = "toggle desc" },
+    { "<leader>ll", ":Leet ", desc = "Leet in cmd" },
+    { "<leader>lL", "<cmd>Leet list<CR>", desc = "questions list" },
+    { "<leader>lc", "<cmd>Leet console<CR>", desc = "console" },
+  },
   -- local lc = require("leetcode"),
   opts = {
     ---@type string
@@ -148,18 +161,6 @@ return {
 
     ---@type boolean
     image_support = true,
-
-    vim.keymap.set("n", "<leader>lo", "<cmd>Leet open<CR>", { desc = "open in browser" }),
-    vim.keymap.set("n", "<leader>lr", "<cmd>Leet run<CR>", { desc = "run test" }),
-    vim.keymap.set("n", "<leader>li", "<cmd>Leet info<CR>", { desc = "question info" }),
-    vim.keymap.set("n", "<leader>lq", "<cmd>Leet exit<CR>", { desc = "exit leetcode" }),
-    vim.keymap.set("n", "<leader>ly", "<cmd>Leet yank<CR>", { desc = "yank code" }),
-    vim.keymap.set("n", "<leader>lt", "<cmd>Leet tabs<CR>", { desc = "choose tabs" }),
-    vim.keymap.set("n", "<leader>lS", "<cmd>Leet submit<CR>", { desc = "submit question" }),
-    vim.keymap.set("n", "<leader>ld", "<cmd>Leet desc<CR>", { desc = "toggle desc" }),
-    vim.keymap.set("n", "<leader>ll", ":Leet ", { desc = "Leet in cmd" }),
-    vim.keymap.set("n", "<leader>lL", "<cmd>Leet list<CR>", { desc = "questions list" }),
-    vim.keymap.set("n", "<leader>lc", "<cmd>Leet console<CR>", { desc = "console" }),
   },
   -- configuration goes here
 }

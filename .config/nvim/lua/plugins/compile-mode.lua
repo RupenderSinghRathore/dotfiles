@@ -34,7 +34,8 @@ return {
         go = "go run",
         python = "python %",
         javascript = "node %",
-        c = "clang -fsanitize=address -g -Iinclude -Wall % -o run && ./run",
+        -- c = "clang -fsanitize=address -g -Iinclude -Wall % -o run && ./run",
+        c = "gcc -g -Wall -Wextra -Wpedantic -fsanitize=address,undefined -fno-omit-frame-pointer main.c -o run && ./run",
         java = "javac % && java %:t:r",
       },
     }
